@@ -40,36 +40,23 @@
                 </tr>    
               </tbody>
             </table>
-
         <!--以上為自製版型-->
         <!--產品列表卡片-->
         <!--頁籤-->
-        <nav aria-label="Page navigation example">
+        <nav aria-label="...">
             <ul class="pagination">
-                <li class="page-item">
-                    <a  
-                    class="page-link" href="#" aria-label="Previous"
-                    @click.prevent="getProducts(pagination.current_page-1)"
-                    > <!--:class="{'disabled':!pagination.has_pre}"-->
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
+                <li class="page-item" :class="{'disabled':!pagination.has_pre}">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true" @click.prevent="getProducts(pagination.current_page-1)">上一頁</a>
                 </li>
-                <li :class="{'active':pagination.current_page===page}" 
-                v-for="page in pagination.total_pages" :key:"page" class="page-item">
-                    <a @click.prevent="getProducts(page)" class="page-link" href="#">
-                        {{ page }}
-                    </a>
+                <li class="page-item" v-for="page in pagination.total_pages" :key="page" :class="{'active':pagination.current_page===page}">
+                    <a class="page-link" href="#" @click.prevent="getProducts(page)">{{page}}</a>
                 </li>
-                <li class="page-item">
-                    <a 
-                    class="page-link" href="#" aria-label="Next"
-                    @click.prevent="getProducts(pagination.current_page+1)"
-                    ><!--:class="{'disabled':!pagination.has_next}"-->
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
+                <li class="page-item"  :class="{'disabled':!pagination.has_next}">
+                    <a class="page-link" href="#" @click.prevent="getProducts(pagination.current_page+1)">下一頁</a>
                 </li>
             </ul>
         </nav>
+        
         <!--頁籤-->
         <!--Modal-->
         
@@ -206,7 +193,6 @@ export default {
             pagination:'',
             tempProduct:{},
             isNew:false,
-            page:'',  // 不確定需不需要?
             isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
