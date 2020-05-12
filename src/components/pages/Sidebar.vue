@@ -6,15 +6,19 @@
                     <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" href="#">
-                        <span data-feather="home"></span>
-                        Dashboard <span class="sr-only">(current)</span>
+                            <router-link to="/dashboard/products">
+                                <span data-feather="home"></span>
+                                商品管理 <span class="sr-only">(current)</span>
+                            </router-link>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="file"></span>
-                        Orders
-                        </a>
+                        <router-link to="/dashboard/customer_orders">
+                                <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                訂單
+                                </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
