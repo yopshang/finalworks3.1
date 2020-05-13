@@ -30,7 +30,7 @@
                         <i class="fas fa-spinner fa-spin" v-if="status.loadingItem===item.id"></i>
                         查看更多
                     </button>
-                    <button type="button" class="btn btn-outline-danger btn-sm ml-auto">
+                    <button @click="addtoCart(item.id)" type="button" class="btn btn-outline-danger btn-sm ml-auto">
                         <i class="fas fa-spinner fa-spin" v-if="status.loadingItem===item.id"></i>
                         加到購物車
                     </button>
@@ -106,8 +106,8 @@
                                 <hr>
                                 <div class="form-group">
                                     <div>選購數量</div>
-                                    <select>
-                                        <option></option>                                      
+                                    <select v-model="product.num">
+                                        <option :value="num" v-for="num in 10" :key="num">選購 {{num}} {{product.unit}}</option>                                      
                                     </select>
                                 </div>
                                 <hr>
@@ -140,7 +140,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-primary">確認</button>
+                        <!--加入小計多少錢-->
+                        <button type="button" class="btn btn-primary" @click="addtoCart(product.id,product.num)">加入購物車</button>
                     </div>
                 </div>
             </div>
@@ -185,6 +186,53 @@
             </ul>
         </nav>  
         <!--頁籤結束-->
+        <!--購物車-->
+        
+            <table class="table">
+                <thead>
+                    <th></th>
+                    <th>品名</th>
+                    <th>數量</th>
+                    <th>單價</th>
+                </thead>
+                <tbody>
+                    <tr v-for="item in cart"> 
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-outline-danger btn-sm">
+                            <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                        <td class="align-middle">
+                            {{ item.product.title }}
+                            <!-- <div class="text-success" v-if="item.coupon">
+                            已套用優惠券
+                            </div> -->
+                        </td>
+                        <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
+                        <td class="align-middle text-right">{{ item.final_total }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right">總計</td>
+                        <td class="text-right">{{ item.total }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right text-success">折扣價</td>
+                        <td class="text-right text-success">{{ item.final_total }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="input-group mb-3 input-group-sm">
+                <input type="text" class="form-control" placeholder="請輸入優惠碼">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">
+                    套用優惠碼
+                    </button>
+                </div>
+            </div>
+            
+        <!--購物車結束-->
     </div>
 
 </template>
@@ -226,6 +274,21 @@ export default {
                 $('#productModal').modal('show');
                 console.log(response);
                 vm.status.loadingItem='';
+            })
+        },
+        addtoCart(id,qty=1){
+            const vm = this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
+            vm.status.loading=id;
+            const cart={
+                product_id:id,
+                qty  //  等同qty:qty
+            }
+            this.$http.post(url,{data:cart}).then((response)=>{
+                //等於將response的資料以cart存放在data中?
+                console.log(response);
+                vm.status.loadingItem='';
+                $('#productModal').modal('hide');
             })
         }
     },
