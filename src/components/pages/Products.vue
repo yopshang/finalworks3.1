@@ -57,7 +57,7 @@
         </nav>       
         <!--頁籤-->
         <!--Modal-->
-            <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content border-0">
@@ -84,8 +84,8 @@
                                         <input type="file" id="customFile" class="form-control"
                                         ref="files" @change="uploadFile">
                                     </div>
-                                    <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
-                                    class="img-fluid" src="tempProduct.imageUrl" alt="">
+                                    <img 
+                                    class="img-fluid" :src="tempProduct.imageUrl" alt="" img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80">
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="form-group">
@@ -176,7 +176,7 @@
                 </div>
             </div>
         </div>               
-        <!--Modal-->
+        <!--Modal結束-->
     </div>
 </template>
 <script>
@@ -254,7 +254,7 @@ export default {
                 if (response.data.success){
                     // vm.tempProduct.imageUrl=response.data.imageUrl;
                     // console.log(vm.tempProduct);
-                    vm.$set(vm.tempProduct,imageUrl,response.data.imageUrl);
+                    vm.$set(vm.tempProduct,'imageUrl',response.data.imageUrl);
                 }else{
                     this.$bus.$emit('message:push',response.data.message,'danger');
                 }
