@@ -7,13 +7,13 @@
         <!--全螢幕讀取效果結束-->
         <!--產品列表卡片-->
         <div class="text-right mt-4">
-            <button class="btn btn primary" data-toggle="model" data-target="#productModal" @click="openModal(true)">建立新的產品</button>
+            <button class="btn btn primary btn-outline-primary btn-sm" data-toggle="model" data-target="#productModal" @click="openModal(true)">建立新的產品</button>
         </div>
         <table class="table table-striped table-sm">
             <thead>
             <tr>
                 <th width="120">分類</th>
-                <th>產品名稱</th>
+                <th width="150">產品名稱</th>
                 <th width="120">原價</th>
                 <th width="120">售價</th>
                 <th width="80">是否啟用</th>
@@ -36,6 +36,7 @@
                 </td>
                 <td>
                     <button class="btn btn-outline-primary btn-sm" @click="openModal(false,item)">編輯</button>
+                    <button class="btn btn-outline-primary btn-sm">刪除</button>
                 </td>
             </tr>    
             </tbody>

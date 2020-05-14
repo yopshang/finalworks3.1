@@ -2,7 +2,7 @@
     <div>
         <!--讀取效果-->
         <div class="vld-parent">
-            <loading :active.sync="isLoading" ></loading>    
+            <loading :active.sync="isLoading" ></loading>
         </div>
         <!--讀取效果結束-->
         <!--訂單列表-->
@@ -187,7 +187,7 @@
         </nav>  
         <!--頁籤結束-->
         <!--購物車-->
-        
+        <!--
             <table class="table">
                 <thead>
                     <th></th>
@@ -206,7 +206,7 @@
                             {{ item.product.title }}
                             <!-- <div class="text-success" v-if="item.coupon">
                             已套用優惠券
-                            </div> -->
+                            </div> 
                         </td>
                         <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
                         <td class="align-middle text-right">{{ item.final_total }}</td>
@@ -231,7 +231,7 @@
                     </button>
                 </div>
             </div>
-            
+            -->
         <!--購物車結束-->
     </div>
 

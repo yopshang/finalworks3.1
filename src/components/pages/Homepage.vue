@@ -1,7 +1,10 @@
 <template>
     <div>
-        登入成功
-        <a href="#" @click.prevent="signout">登出</a>
+        <div>
+            登入成功
+            <a href="#" @click.prevent="signout">登出</a>
+        </div>
+        
     </div>
 </template>
 <script>
