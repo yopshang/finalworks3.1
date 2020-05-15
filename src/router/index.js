@@ -38,12 +38,12 @@ export default new Router({
           component: CustomerOrders,
           // meta:{requiresAuth:true}
         },
-        {
-          path: 'cart',
-          name: 'cart',
-          component: cart,
-          // meta:{requiresAuth:true}
-        },
+        // {
+        //   path: 'cart',
+        //   name: 'cart',
+        //   component: cart,
+        //   // meta:{requiresAuth:true}
+        // },
       ]
     },
   ]

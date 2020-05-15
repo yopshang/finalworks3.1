@@ -187,7 +187,7 @@
         </nav>  
         <!--頁籤結束-->
         <!--購物車-->
-        <!--
+        
             <table class="table">
                 <thead>
                     <th></th>
@@ -196,30 +196,30 @@
                     <th>單價</th>
                 </thead>
                 <tbody>
-                    <tr v-for="item in cart"> 
+                    <tr v-for="item in carts" :key="item.id"> 
                         <td class="align-middle">
                             <button type="button" class="btn btn-outline-danger btn-sm">
                             <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
                         <td class="align-middle">
-                            {{ item.product.title }}
+                            {{ item.product.title }} <!--carts-->
                             <!-- <div class="text-success" v-if="item.coupon">
                             已套用優惠券
-                            </div> 
+                            </div> -->
                         </td>
-                        <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-                        <td class="align-middle text-right">{{ item.final_total }}</td>
+                        <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td><!--carts-->
+                        <td class="align-middle text-right">{{ item.final_total }}</td><!--carts-->
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-right">總計</td>
-                        <td class="text-right">{{ item.total }}</td>
+                        <td class="text-right"></td><!--{{ item.total }}-->
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right text-success">折扣價</td>
-                        <td class="text-right text-success">{{ item.final_total }}</td>
+                        <td class="text-right text-success"></td><!--{{ item.final_total }}-->
                     </tr>
                 </tfoot>
             </table>
@@ -231,7 +231,7 @@
                     </button>
                 </div>
             </div>
-            -->
+            
         <!--購物車結束-->
     </div>
 
@@ -249,12 +249,13 @@ export default {
                 loadingItem:'',
             },
             tempProduct:{},
+            carts:{},
         };
     },
     methods: {
         getProducts(page=1) {
             const vm = this;
-            const api=`https://vue-course-api.hexschool.io/api/yop/products?page=:page`;
+            const api=`https://vue-course-api.hexschool.io/api/yop/products?page=${page}`;
             vm.isLoading=true;
             this.$http.get(api).then((response)=>{
                 vm.products=response.data.products;
@@ -285,15 +286,26 @@ export default {
                 qty  //  等同qty:qty
             }
             this.$http.post(url,{data:cart}).then((response)=>{
-                //等於將response的資料以cart存放在data中?
                 console.log(response);
                 vm.status.loadingItem='';
+
                 $('#productModal').modal('hide');
+            })
+        },
+        getCart(){
+            const vm =this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/cart`
+            vm.isLoading=true;
+            this.$http.get(url).then((response)=>{
+                console.log(response);
+                vm.carts=response.data.data.carts; //vm.carts=response.data.data.carts
+                vm.isLoading=false;
             })
         }
     },
     created() {
         this.getProducts();
+        this.getCart();
     }
 
 
