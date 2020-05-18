@@ -6,6 +6,7 @@ import Dashboard from '@/components/pages/Dashboard.vue'
 import Products from '@/components/pages/Products.vue'
 import CustomerOrders from '@/components/pages/CustomerOrders.vue'
 import cart from '@/components/pages/Cart.vue'
+import Customerorder from '@/components/pages/CustomerOrder.vue'
 
 Vue.use(Router)
 
@@ -38,12 +39,18 @@ export default new Router({
           component: CustomerOrders,
           // meta:{requiresAuth:true}
         },
-        // {
-        //   path: 'cart',
-        //   name: 'cart',
-        //   component: cart,
-        //   // meta:{requiresAuth:true}
-        // },
+        {
+          path: 'cart',
+          name: 'cart',
+          component: cart,
+          // meta:{requiresAuth:true}
+        },
+        {
+          path: 'customer_order',
+          name: 'Customerorder',
+          component: Customerorder,
+          // meta:{requiresAuth:true}
+        },
       ]
     },
   ]

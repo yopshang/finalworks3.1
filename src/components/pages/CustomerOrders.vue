@@ -186,7 +186,7 @@
             </ul>
         </nav>  
         <!--頁籤結束-->
-        <!--購物車-->
+        <!--購物車
         
             <table class="table">
                 <thead>
@@ -206,20 +206,20 @@
                             {{ item.product.title }} <!--carts-->
                             <!-- <div class="text-success" v-if="item.coupon">
                             已套用優惠券
-                            </div> -->
+                            </div>
                         </td>
-                        <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td><!--carts-->
-                        <td class="align-middle text-right">{{ item.final_total }}</td><!--carts-->
+                        <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td><!--carts
+                        <td class="align-middle text-right">{{ item.final_total }}</td><!--carts
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-right">總計</td>
-                        <td class="text-right"></td><!--{{ item.total }}-->
+                        <td class="text-right"></td><!--{{ item.total }}
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right text-success">折扣價</td>
-                        <td class="text-right text-success"></td><!--{{ item.final_total }}-->
+                        <td class="text-right text-success"></td><!--{{ item.final_total }}
                     </tr>
                 </tfoot>
             </table>
@@ -232,7 +232,7 @@
                 </div>
             </div>
             
-        <!--購物車結束-->
+        購物車結束-->
     </div>
 
 </template>

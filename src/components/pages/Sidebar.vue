@@ -43,6 +43,14 @@
                             </a>
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/dashboard/customer_order">
+                            <a class="nav-link" href="#" @click="toggle">
+                            <span data-feather="file-text"></span>
+                                我的訂單
+                            </a>
+                        </router-link>
+                    </li>
                     </ul>
                 </div>
             </nav>              
