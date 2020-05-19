@@ -8,9 +8,31 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import './router/bus';
 import currencyFilter from './components/pages/filter/currency';
-// import VeeVlidate from 'vee-validate';
-// import VueI18n from 'vue-i18n';
 
+// vee-validate表單驗證
+
+import { ValidationProvider} from 'vee-validate';
+Vue.component('ValidationProvider', ValidationProvider);
+
+import { extend } from 'vee-validate';
+import * as rules from 'vee-validate/dist/rules';
+import { required, email,alpha_num } from 'vee-validate/dist/rules';
+
+// No message specified.
+extend('required',required);
+extend('email', email);
+extend('alpha_num', alpha_num);
+
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule]);
+});
+// 表單驗證中文化
+import { localize } from 'vee-validate'
+import TW from 'vee-validate/dist/locale/zh_TW.json'
+
+localize('zh_TW', TW)
+// 表單驗證中文化
+// vee-validate表單驗證結束
 axios.defaults.withCredentials = true;
 router.beforeEach((to,from,next)=>{
   if(to.meta.requiresAuth){
@@ -19,30 +41,16 @@ router.beforeEach((to,from,next)=>{
     next();
   }
 });
-// Vue.use(VeeValidate);
-// Vue.use(Vue.VueI18n);
-// const i18n=new VueI18n({
-//   local:'zhTW'
-// });
-// Vue.use(VeeVlidate,{
-//   i18n,
-//   distionary:{
-//     zhTW
-//   }
-// });
-// new Vue({
-//   i18n,
-//   el:'#app',
-//   components:{App},
-//   template:<App/>
-// })
+
+
+
+
 Vue.filter('currency',currencyFilter);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 Vue.component('Loading',Loading);
 /* eslint-disable no-new */
 new Vue({
-  // i18n,
   el: '#app',
   router,
   render: h => h(App)

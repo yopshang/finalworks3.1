@@ -1,31 +1,39 @@
 <template>
     <div>
+        驗證
         <div class="my-5 row justify-content-center">
             <form class="col-md-6">
                 <div class="form-group">
                     <label for="useremail">Email</label>
-                    <input class="{'is-invalid':erros.has('name')} form-control" type="email" name="email" id="useremail"
-                        v-model="form.user.email" placeholder="請輸入 Email" required> <!-- v-validate=" 'required' "-->
-                    <span class="text-danger"></span>
+                    <ValidationProvider v-slot="{errors}"  rules="required | email">
+                        <input class="{'is-invalid':erros.has('name')} form-control" type="email" name="Email" id="useremail"
+                            v-model="form.user.email" placeholder="請輸入 Email" required> <!-- -->
+                    <span  class="text-danger">{{errors[0]}}</span>
+                    </ValidationProvider>
                 </div>
-            
                 <div class="form-group">
                     <label for="username">收件人姓名</label>
-                    <input type="text" class="form-control" name="name" id="username"
-                        v-model="form.user.name" placeholder="輸入姓名">
-                    <span class="text-danger"></span>
+                    <ValidationProvider v-slot="{errors}"  rules="required">    
+                    <input type="text" class="form-control" name="收件人姓名" id="username"
+                        v-model="form.user.name" placeholder="輸入姓名" required>
+                    <span class="text-danger">{{errors[0]}}</span>
+                    </ValidationProvider>
                 </div>
-            
                 <div class="form-group">
+                <ValidationProvider v-slot="{errors}"  rules="required | alpha_num">
                     <label for="usertel">收件人電話</label>
-                    <input type="tel" class="form-control" id="usertel" v-model="form.user.tel" placeholder="請輸入電話">
+                    <input name="收件人電話" type="tel" class="form-control" id="usertel" v-model="form.user.tel" placeholder="請輸入電話">
+                    <span class="text-danger">{{errors[0]}}</span>
+                </ValidationProvider>
                 </div>
             
                 <div class="form-group">
+                    <ValidationProvider v-slot="{errors}"  rules="required">
                     <label for="useraddress">收件人地址</label>
-                    <input type="text" class="form-control" name="address" id="useraddress" v-model="form.user.address"
+                    <input type="text" class="form-control" name="收件人地址" id="useraddress" v-model="form.user.address"
                         placeholder="請輸入地址">
-                    <span class="text-danger">地址欄位不得留空</span>
+                    <span class="text-danger">{{errors[0]}}</span>
+                    </ValidationProvider>
                 </div>
             
                 <div class="form-group">
@@ -33,7 +41,7 @@
                     <textarea name="" id="comment" class="form-control" cols="30" rows="10" v-model="form.message"></textarea>
                 </div>
                 <div class="text-right">
-                   <button class="btn btn-danger">送出訂單</button>
+                   <button type="submit" :disabled="invalid" class="btn btn-danger">送出訂單</button>
                 </div>
             </form>
             </div>
@@ -63,7 +71,17 @@ export default {
             vm.isLoading=true;
             this.$http.post(url,{data:order}).then((response)=>{
                 console.log('訂單成立');
-                vm.isLoading=false;
+                if(result){
+                    this.$http.post(url,{data:order}).then((response)=>{
+                        console.log('訂單已建立',response);
+                        if(response.data.success){
+                            vm.$router.push('/customer_checkout/${response.data.orderId}');
+                            vm.isLoading=false;
+                        }else{
+                            console.log('欄位不完整');
+                        }
+                    })
+                }
             })
             
         }
