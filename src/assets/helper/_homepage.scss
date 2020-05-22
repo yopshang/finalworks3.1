@@ -1,0 +1,205 @@
+$blue:    #007bff ;
+$indigo:  #6610f2 ;
+$purple:  #6f42c1 ;
+$pink:    #e83e8c ;
+$red:     #dc3545 ;
+$orange:  #fd7e14 ;
+$yellow:  #ffc107 ;
+$green:   #28a745 ;
+$teal:    #20c997 ;
+$cyan:    #17a2b8 ;
+    .d-flex{
+        display: flex;
+    }
+    .ai-center{
+        align-items: center;
+    }
+    .jc-center{
+        justify-content: center;
+    }
+    .mainDiv{
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+    a{
+        text-decoration: none;
+    }
+    li{
+        list-style: none;
+    }
+    // navbar
+    .homeNav{
+        color:#fff;
+        font-weight: bold;
+        max-width:1280px;
+        margin: 0 auto;
+        background-color: $blue ;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        .logo{
+            margin: 20px;
+            font-size: 32px;
+            .logoIcon{
+                margin-right: 10px;
+            }
+        }
+        .navUl{
+            margin-right: 20px;
+            .navLi{
+                list-style:none;
+                margin-left: 10px;
+                color:#fff;
+                font-weight: bold;
+            }
+        }
+    }
+    // navbar end
+    // firstDiv
+    .firstDiv{
+        background-color: gray;
+        margin-bottom: 20px;
+        .firstLeft{
+            // background-size: contain;
+            // 開發用
+            background-color: #000;
+            height: 400px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            // 開發用end
+        }
+        .fisetRight{
+            background-color: #fff;
+            .firstTop{
+                //開發用
+                background-color: blue;
+                height: 200px;
+                margin-bottom: 20px;
+                //開發用結束
+                .firstTopup{
+                    // 開發用
+                    background-color: pink;
+                    height: 80px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    //開發用結束
+                    .topupInside{
+                        flex-direction: column;
+                        //開發用
+                        background-color: gray;
+                        height: 80px;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        //開發用結束
+                        .topupInside1{
+                            //
+                            background-color: red;
+                            height: 80px;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            //
+                        }
+                        .topupInside1{
+
+                        }
+                    }
+                }
+                .firstTopdown{
+                    //開發用
+                     background-color: black;
+                     height: 80px;
+                     margin-top: 10px;
+                     margin-bottom: 10px;
+                    // 開發用結束
+                }
+            }
+            .firstBottom{
+                // 開發用
+                background-color: red;
+                height: 180px;
+                // 開發用emd
+            }
+        }
+    }
+    // fristDiv end
+    // productDiv
+    .productDiv{
+        background-color: blue;
+        margin-bottom: 30px;
+        justify-content: space-around;
+        .product1{
+            //
+            background:yellow;
+            height: 300px;
+            //
+            div{
+                background-color: gray;
+                height: 130px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+        }
+        .product2{
+            //
+            background-color: green;
+            height: 300px;
+            //
+            div{
+                background-color: gray;
+                height: 130px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+        }
+        .product3{
+            //
+            background-color: red;
+            height: 300px;
+            //
+            div{
+                background-color: gray;
+                height: 130px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+        }
+    }
+    // productDiv
+    // footer
+    .footer{
+        //
+        background-color: gray;
+        // height: 400px;
+        //
+        .footerInside{
+
+        }
+        .footerBottom{
+            justify-content: space-around;
+            .footerUl{
+                background-color: #fff;
+                height: 300px;
+                .insideFooterUl1{
+                    background-color: black;
+                    height: 180px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+                .insideFooterUl2{
+                    background-color: pink;
+                    height: 80px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+        .bottom{
+            background-color: $blue;
+            height: 200px;
+            .insideBottom{
+                li{
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+    // footer end

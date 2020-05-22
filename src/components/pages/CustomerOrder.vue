@@ -8,7 +8,7 @@
                     <ValidationProvider v-slot="{errors}"  rules="required | email">
                         <input class="{'is-invalid':erros.has('name')} form-control" type="email" name="Email" id="useremail"
                             v-model="form.user.email" placeholder="請輸入 Email" required> <!-- -->
-                    <span  class="text-danger">{{errors[0]}}</span>
+                    <span class="text-danger">{{errors[0]}}</span>
                     </ValidationProvider>
                 </div>
                 <div class="form-group">
@@ -20,8 +20,8 @@
                     </ValidationProvider>
                 </div>
                 <div class="form-group">
-                <ValidationProvider v-slot="{errors}"  rules="required | alpha_num">
                     <label for="usertel">收件人電話</label>
+                    <ValidationProvider v-slot="{errors}"  rules="required | alpha_num">
                     <input name="收件人電話" type="tel" class="form-control" id="usertel" v-model="form.user.tel" placeholder="請輸入電話">
                     <span class="text-danger">{{errors[0]}}</span>
                 </ValidationProvider>

@@ -14,6 +14,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path:'*',  //假設進入非我定義的頁面，將使用者重新導向到登入畫面
+      redirect:'login',
+    },
+    {
       path: '/',
       name: 'Homepage',
       component: Homepage,
@@ -32,7 +36,7 @@ export default new Router({
           path: 'products',
           name: 'Products',
           component: Products,
-          // meta:{requiresAuth:true}
+          meta:{requiresAuth:true}
         },
         {
           path: 'customer_orders',

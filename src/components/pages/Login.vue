@@ -41,9 +41,23 @@ export default {
                 }
             })
         },
-        
+        loginCheck(){
+            const api=`https://vue-course-api.hexschool.io/api/user/check`;
+            const vm= this;
+            this.$http.post(api).then((response)=>{
+                console.log(response.data);
+                //驗證是否持續登入
+                if (response.data.success){
+                    vm.$router.push('/dashboard/products');
+                }
+            });    
+        }
+    },
+    // methods結束
+    created(){
+        this.loginCheck();
     }
-};
+}
 </script>
 <style>
     .bd-placeholder-img {

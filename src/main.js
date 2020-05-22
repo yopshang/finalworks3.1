@@ -33,15 +33,28 @@ import TW from 'vee-validate/dist/locale/zh_TW.json'
 localize('zh_TW', TW)
 // 表單驗證中文化
 // vee-validate表單驗證結束
+//登入驗證
 axios.defaults.withCredentials = true;
 router.beforeEach((to,from,next)=>{
   if(to.meta.requiresAuth){
-      console.log('這裡需要驗證');
-  }else{
-    next();
+      const api=`https://vue-course-api.hexschool.io/api/user/check`;
+      axios.post(api).then((response)=>{
+          console.log(response.data);
+          //驗證是否持續登入
+          if (response.data.success){
+            next();
+          }else{
+            next({
+              path:'/login',
+            })
+          }
+          ////驗證是否持續登入結束
+      });
+    }else{
+      next();
   }
 });
-
+// 登入驗證結束
 
 
 

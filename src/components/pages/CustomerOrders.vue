@@ -7,7 +7,7 @@
         <!--讀取效果結束-->
         <!--訂單列表-->
         <!--產品列表卡片-->
-        <div class="col-md-12 mb-4 d-flex flex-wrap" >
+        <div class="col-md-12 mb-4 d-flex flex-wrap">
             <div class="card border-0 shadow-sm col-md-4" v-for="item in products" :key="item.id" >
                 <div style="max-width: 300px; background-size: cover; background-position: center">
                     <img :src="item.imageUrl" class="img-fluid" alt="">
