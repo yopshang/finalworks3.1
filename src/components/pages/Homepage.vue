@@ -18,7 +18,7 @@
             <div class="firstDiv row jc-center">
                 <div class="firstLeft col-lg-3">
                 </div>
-                <!-- <img src="/src/img/rec-4png" class="firstLeft col-lg-4"/> -->
+                <img src="//i.imgur.com/eweF5Gt" crossOrigin=""  class="firstLeft col-lg-4"/>
                 <div class="fisetRight col-lg-7">
                     <div class=" firstTop col-lg-12">
                         <div class="firstTopup ai-center col-lg-12">

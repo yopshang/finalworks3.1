@@ -1,0 +1,220 @@
+$main-color:#0E8A00;
+$secondary-color:#0000009A;
+$third-color:#00000062;
+
+.mainDiv{
+    margin: 0 85px;
+}
+a{
+    color: #fff;
+    text-decoration: none
+    
+    ;
+}
+// firstRow
+.topDiv{
+    height: 800px;
+    margin-bottom: 72px;
+}
+.titleIntop{
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+.bigTitleintop{
+    font-size: 48px;
+}
+.insideTop{
+    margin: 30% 0;
+}
+.smTitleintop{
+    font-size: 24px;
+    color: $secondary-color;
+}
+.shopBtn{
+    color:$main-color;
+    background-color: $main-color;
+    font-size: 16px;
+    color: #fff;
+}
+.topDivright{
+    background-image: url('https://imgur.com/G9harLu');//img/index-1.jpg
+    background-size: cover;
+    background-repeat: no-repeat;
+    ul{
+        li{
+            color: #fff;
+            margin: 30px 24px;
+        }
+    }
+}
+.h-15{
+    height: 1.5em;
+}
+// fisrRow end
+// secondRow
+.secRowsection{
+    margin-bottom: 32px;
+    h2{
+        font-size: 24px;
+        color: #121212;
+        margin-bottom: 16px;
+    }
+    p{
+        $secondary-color:#0000009A;
+        margin-bottom: 24px;
+    }
+    h3{
+        color: $main-color;
+    }
+}
+.mb-72{
+    margin-bottom: 72px;
+}
+// secondRow end
+// thirdRow
+.thirdRow{
+    background-image: url('/img/index-5.jpg');
+    background-size:cover;
+    background-position: center;
+    height: 400px;
+    margin-bottom: 72px;
+}
+.leftSide{
+    padding: 0;
+    p{
+        color: #FFFFFF;
+        font-size: 35px;
+        font-weight: bold;
+    }
+}
+.ma-85{
+    margin: auto 85px;
+}
+.rightSide{
+    padding: 0;
+    h2{
+        color: #FFFFFF99;
+    }
+    h1{
+        color: #FFFFFF;
+        font-size: 24px;
+    }
+    ul{
+        justify-content: space-between;
+        padding: 0;
+        li{
+            color: $main-color;
+            font-size: 14px;
+        }
+    }
+
+}
+// thirdRow end
+// fourthRow
+.fourthRow{
+    margin-bottom: 72px;
+}
+.fourthRowinside{
+    flex-wrap: nowrap;
+    overflow:scroll;
+    overflow-y: hidden;
+    height: 480px;
+    div{    
+        img{
+            width: 350px;
+            height: 350px;
+        }
+        h2{
+            font-size: 24px;
+        }
+        ul{
+            color: #121212;
+            padding: 0;
+            scroll-behavior:smooth;
+            li{
+                color: $third-color;
+                margin-right: 8px;
+                
+            }
+        }
+    }
+}
+.fourthRowinside::-webkit-scrollbar {
+    display: none;
+  }
+.onSile{
+    color: #fff;
+    font-size: 14px;
+    margin-top: -315px;
+    text-align: right;
+    margin-right: 16px;
+    font-weight: bold;
+}
+.underOnsile{
+    margin-top: 280px;
+}
+// fourthRow end
+// bottomRow
+.bottomRow{
+    background-image: url('/img/footer.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    div{
+        padding: 0;
+        margin-top: 39px;
+        margin-bottom: 39px;
+        margin-left: 85px;
+        h2{
+            font-size: 48px;
+            font-weight: bold;
+            color: #fff;
+        }
+        form{
+            .inputBtn{
+                min-width: 286px;
+                height: 56px;
+                background-color: $main-color;
+                color: #fff;
+            }
+            .emailInput{
+                min-width: 160px;
+                height: 56px;
+            }
+        }
+    }
+}
+// bottomRow end
+// footerRow
+.footerRow{
+    background-color: #121212;
+    justify-content: space-between;
+    div{
+        margin: 39px 0;
+        h2{
+            color: #FFFFFF;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        p{
+            color: #FFFFFF99;
+            font-size: 14px;
+        }
+        ul{
+            li{
+                color: #FFFFFFDE;
+                font-size: 14px;
+            }
+        }
+    }
+}
+.leftSidefooter{
+    margin-left: 85px;
+}
+.rightSidefooter{
+    margin-right: 85px;
+}
+// footerRow end
+@media(max-width:760px){
+}
