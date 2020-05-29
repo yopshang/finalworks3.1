@@ -1,164 +1,206 @@
 <template>
-    <div class="main-container">
-        <div class="mainDiv mb-72">
-        <!-- firstRow -->
-        <div class="row topDiv">
-            <div class="insideTopdiv col-lg-6">
-                <h2 class="titleIntop">CRAFTsMAN</h2>
-                <div class="insideTop">
-                    <h1 class="bigTitleintop">Enjoy Your 
-                        <br>
-                        Minimalist Lifestyle.
+<div class="mainContainer">
+        <!--全螢幕讀取效果-->
+        <div class="vld-parent">
+            <loading :active.sync="isLoading" ></loading>    
+        </div>
+        <!--全螢幕讀取效果結束-->
+        <homenav/>
+        <!-- firstRow --><!--title-->
+        <div class="topDiv d-flex">
+            <div class="insideTopdiv w-50 d-flex ai-center">
+                <div  class="insideTop">
+                    <h1 class="bigTitleintop mb-10 animated__animate animate__fadeInLeft">
+                        Enjoy Your 
                     </h1>
-                    <h2 class="smTitleintop">The best crafts in Taiwan. Get your free shipping on the first order.</h2>
-                    <a href="/product.html">
-                        <input class="shopBtn" type="button" value="Shop now"></input>
+                    <h1 class="bigTitleintop animated__animate                     
+                      animate__fadeInLeft mb-10">
+                      Minimalist Lifestyle.
+                    </h1>
+                    <h2 class="smTitleintop mb-10">The best crafts in Taiwan. Get your free shipping on the first order.</h2>
+                    <a href="/product.html mb-10"> 
+                        <input class="shopBtn p-15" type="button" value="Shop now"></input>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6 d-flex topDivright jc-flex-end" style="background-image:url(img1)" >
-                <ul class="h-15 d-flex">
-                    <li class="productList">
-                        <a href="/product.html">
-                            Product
-                        </a>
-                    </li>
-                    <li class="productList">Blog</li>
-                    <li class="productList">Contact</li>
-                    <!-- <i class="fas fa-shopping-cart"></i> -->
-                    <!--icon位置-->
-                </ul>
+            <div class="d-flex w-50 topDivright jc-flex-end" 
+            :style="{ backgroundImage: 'url(' + require('@/assets/img/index-1.jpg') + ')' }">
             </div>
         </div>
         <!-- firstRow end -->
-        <!-- secondRow -->
-        <div class="secRow">
-            <div>
-                <div class="row">
-                    <img class="col-lg-6" src="/img/index-2.jpg" alt="">
-                    <div class="d-flex ai-center col-lg-6 ai-center">
-                        <section class="secRowsection">
-                            <h2>Special Clays</h2>
-                            <p>A general body formulation for contemporary earthenware is 25% kaolin, 25% ball clay, 35% quartz and 15% feldspar.</p>
+        <!-- secondRow --><!--three img-->
+        <div>
+            <div class="d-flex mb-25 h-250">
+                <div  class="w-50 " 
+                :style="{ backgroundImage: 'url(' + require('@/assets/img/index-2.jpg') + ')' }"></div>
+                <div class="d-flex ai-center w-50 ai-center">
+                    <section class="secRowsection">
+                        <h2>Special Clays</h2>
+                        <p>A general body formulation for contemporary earthenware is 25% kaolin, 25% ball clay, 35% quartz and 15% feldspar.</p>
+                        <router-link to="">
                             <h3>learn more</h3>
+                        </router-link>
+                    </section>
+                </div>
+            </div>
+            <div class="secRowrwd d-flex mb-25 h-250"> <!--修這裡-->
+                    <div class="d-flex ai-center w-50">
+                        <section class="secRowsection">
+                            <h2>Less is more</h2>
+                            <p>Trimming pottery can transform a weighty Earth-bound pot into one that is a pleasure to hold, look at, and use.</p>
+                            <router-link to="">
+                                <h3>learn more</h3>
+                            </router-link>
                         </section>
                     </div>
-                </div>
-                <div class="row secRowrwd"> <!--修這裡-->
-                        <div class="d-flex ai-center col-lg-6">
-                            <section class="secRowsection">
-                                <h2>Less is more</h2>
-                                <p>Trimming pottery can transform a weighty Earth-bound pot into one that is a pleasure to hold, look at, and use.</p>
+                    <div class="w-50" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-3.jpg') + ')' }"></div>
+            </div>
+            <div class="d-flex mb-25 h-250">
+                    <div class="w-50" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-4.jpg') + ')' }"></div>
+                    <div class="d-flex ai-center w-50">
+                        <section class="secRowsection">
+                            <h2>Marvelous Detail</h2>
+                            <p>In Craftsman, the art director, working with marketers, develops or creates an idea of a new creation.</p>
+                            <router-link to="">
                                 <h3>learn more</h3>
-                            </section>
-                        </div>
-                    <img class="col-lg-6" src="/img/index-3.jpg" alt="">
-                </div>
-                <div class="row">
-                    <img class="col-lg-6" src="/img/index-4.jpg" alt="">
-                        <div class="d-flex ai-center col-lg-6">
-                            <section class="secRowsection">
-                                <h2>Marvelous Detail</h2>
-                                <p>In Craftsman, the art director, working with marketers, develops or creates an idea of a new creation.</p>
-                                <h3>learn more</h3>
-                            </section>
-                        </div>
-                </div>
+                            </router-link>
+                        </section>
+                    </div>
             </div>
         </div>
         <!-- secondRow end -->
-    </div>
-    <!-- thirdRow -->
-    <div class="row thirdRow">
-        <div class=" d-flex col-lg-6 leftSide ai-center">
-            <p class="ma-85">“I want to make the life more simple by crafts.”</p>
+    <!-- thirdRow --> <!--big img-->
+    <div class="d-flex thirdRow" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">
+        <div class=" d-flex w-50 leftSide ai-center">
+            <p class="m-30">“I want to make the life more simple by crafts.”</p>
         </div>
-        <div class="col-lg-6  d-flex jc-center ai-center">
+        <div class="w-50 d-flex jc-center ai-center">
             <section class="rightSide ">
                 <h2>Art Director</h2>
-                <h1>hsiao-Ming Chen</h1>
+                <h1 class="mb-10">hsiao-Ming Chen</h1>
                 <ul class="d-flex">
-                    <li>Instagram</li>
-                    <li>Twitter</li>
+                    <li>
+                        <a href="">
+                        Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                        Facecbook
+                        </a>
+                    </li>
                 </ul>
             </section>
         </div>
     </div>
     <!-- thirdRow end -->
-    <!-- fourthRow -->
-    <div class="main-container">
-        <div class="fourthRow mainDiv row">
-            <div class="row d-flex fourthRowinside ">
-                <div class="col-lg-4">
-                    <img src="/img/img-1.jpg" alt="">
-                    <p class="onSile">ON SALE</p>
-                    <h2 class="underOnsile">Tatami Cup</h2>
-                    <ul class="d-flex">
-                        <li>NT$1,080</li>
-                        <li>NT$1,200</li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <img src="/img/img-2.jpg" alt="">
-                    <h2>Couple Collection</h2>
-                    <ul>
-                        <li>Couple Collection</li>
-                        <li></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <img src="/img/img-3.jpg" alt="">
-                    <h2>Couple Collection</h2>
-                    <ul>
-                        <li>NT$4,800</li>
-                        <li></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <img src="/img/img-4.jpg" alt="">
-                    <h2>Baifan Bowl</h2>
-                    <ul>
-                        <li>Baifan Bowl</li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- fourthRow products--> <!--等新版product做好，要import進來-->
+    <div class="fourthRowinside d-flex mb-25">
+        <div v-for="(item) in products" :key="item.id" class="w-25">
+            <!-- 商品照片 -->
+            <!-- <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-1.jpg') + ')' }"></div> -->
+            <img :src="item.imageUrl" alt="">             
+            <h2 >{{ item.title }}</h2> <!--商品名稱-->
+            <ul class="d-flex">
+                <li>{{ item.price }}</li> <!--特價-->
+                <li>{{ item.origin_price }}</li> <!--原價-->
+            </ul>
+        </div>
+        <div class="w-25">
+            <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-2.jpg') + ')' }"></div>
+            <h2>Couple Collection</h2>
+            <ul>
+                <li>Couple Collection</li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="w-25">
+            <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-3.jpg') + ')' }"></div>
+            <h2>Couple Collection</h2>
+            <ul>
+                <li>NT$4,800</li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="w-25">
+            <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-4.jpg') + ')' }"></div>
+            <!-- <img src="/img/img-4.jpg" alt=""> -->
+            <h2>Baifan Bowl</h2>
+            <ul>
+                <li>Baifan Bowl</li>
+                <li></li>
+            </ul>
         </div>
     </div>
     <!-- fourthRow end -->
     <!-- bottomRow -->
-    <div class="bottomRow row d-flex jc-flex-start ai-center">
-        <div class="col-lg-6">
-            <h2>Subscribe for news and special offers!</h2>
-            <form class="d-flex">
-                <input class="emailInput" type="text" placeholder="Your email address">
-                <input class="inputBtn" type="button" value="Subscribe">
+    <div class="bottomRow d-flex jc-flex-start ai-center" 
+    :style="{ backgroundImage: 'url(' + require('@/assets/img/footer.jpg') + ')' }">
+        <div class="w-60 p-30 ai-center">
+            <h2 class="">Subscribe for news and special offers!</h2>
+            <form class="w-100 p-30">
+                <input class="emailInput p-15 w-85" type="text" placeholder="Your email address">
+                <input class="inputBtn p-15" type="button" value="Subscribe">
             </form>
         </div>
     </div>
     <!-- bottomRow end -->
     <!-- footerRow -->
-    <div class="footerRow d-flex ai-center">
-        <div class="d-flex leftSidefooter">
-            <h2>CRAFTsMAN</h2>
-            <p>© 2020. All Rights Reserved.</p>
+    <div class="footerRow p-15 d-flex ai-center jc-space-between">
+        <div class="d-flex ai-center">
+            <h2 class="mr-15">CRAFTsMAN</h2>
+            <p class="mr-15">© 2020. All Rights Reserved.</p>
         </div>
-        <div>
-            <ul class="d-flex rightSidefooter">
-                <li>Purchase Policy</li>
-                <li>Privacy Policy</li>
-                <li>Terms & Conditions</li>
-            </ul>
-        </div>
+        <ul class="d-flex">
+            <router-link to="">
+                <li class="li mr-15">
+                        Purchase Policy
+                </li>
+            </router-link>
+            <router-link to="">
+                <li class="li mr-15">
+                    Privacy Policy
+                </li>
+            </router-link>
+            <router-link to="">
+                <li class="li mr-15">
+                    Terms & Conditions
+                </li>
+            </router-link>
+        </ul>
     </div>
     <!-- footerRow end -->
 </div>
 </template>
 <script>
+import homenav from './homenav.vue';
 export default {
+    components:{
+                homenav
+            },
     data(){
         return{
+            products:[],
+            isLoading:false,
         }
-    }
+    },
+    // data end
+    methods:{
+        getProducts(){
+            const api=`https://vue-course-api.hexschool.io/api/yop/admin/products`;
+            const vm=this;
+            vm.isLoading=true;
+            this.$http.get(api).then((response)=>{
+                console.log(response.data);
+                vm.isLoading=false;
+                vm.products=response.data.products;
+            })
+        },
+    },
+    // methods end
+    created() {
+        // this.getProducts();
+    },
+    // created end
 }
 </script>

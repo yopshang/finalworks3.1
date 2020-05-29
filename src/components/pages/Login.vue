@@ -37,7 +37,7 @@ export default {
             this.$http.post(api,vm.user).then((response)=>{
                 console.log(response.data);
                 if (response.data.success){
-                    vm.$router.push('/dashboard/products');
+                    vm.$router.push('/home');
                 }
             })
         },
@@ -47,9 +47,9 @@ export default {
             this.$http.post(api).then((response)=>{
                 console.log(response.data);
                 //驗證是否持續登入
-                if (response.data.success){
-                    vm.$router.push('/dashboard/products');
-                }
+                // if (response.data.success){
+                //     vm.$router.push('/dashboard/products');
+                // }
             });    
         }
     },

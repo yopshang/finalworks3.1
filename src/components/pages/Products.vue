@@ -43,6 +43,17 @@
         </table>
         <!--產品列表卡片結束-->
         <!--頁籤-->
+        <!-- 新頁籤 -->
+        <div class="row jc-center mb-4">
+            <ul class="row col-lg-6 jc-space-between">
+                <li class="pageNumber" :class="{'disabled':!pagination.has_pre}" @click.prevent="getProducts(pagination.current_page-1)">
+                    上一頁
+                </li>
+                <li class="pageNumber" v-for="page in pagination.total_pages" :key="page" :class="{'active':pagination.current_page===page}" @click.prevent="getProducts(page)">{{page}}</li>
+                <li class="pageNumber" :class="{'disabled':!pagination.has_next}" @click.prevent="getProducts(pagination.current_page+1)">下一頁</li>
+            </ul>
+        </div>
+        <!-- 新頁籤結束 -->
         <nav aria-label="...">
             <ul class="pagination">
                 <li class="page-item" :class="{'disabled':!pagination.has_pre}">
@@ -180,6 +191,23 @@
         <!--Modal結束-->
     </div>
 </template>
+<style lang="scss" scope>
+    // product cards
+    .btn-outline-primary{
+        color: #0000009A;
+        border-color:#0E8A00 ;
+    }
+    .btn-outline-primary:hover{
+        background-color:#0E8A00;
+    }
+    .btn-outline-primary:active{
+        background-color:#0E8A00;
+    }
+    // product cards end
+    // pagination
+
+    // pagination end
+</style>
 <script>
 import $ from 'jquery';
 export default {

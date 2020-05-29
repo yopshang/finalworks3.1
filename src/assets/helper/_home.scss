@@ -1,31 +1,73 @@
+
 $main-color:#0E8A00;
 $secondary-color:#0000009A;
 $third-color:#00000062;
-
-.mainDiv{
-    margin: 0 85px;
+.mainContainer{
+    max-width: 1000px;
+    margin: 0 auto;
 }
 a{
-    color: #fff;
-    text-decoration: none
-    
-    ;
+    text-decoration: none;
+    color: $main-color;
 }
+a:hover{
+    color: $main-color;
+    text-decoration: none;
+}
+// config user interface
+.w-100{
+    max-width: 100%;
+}
+.w-85{
+    max-width: 85%;
+}
+.w-60{
+    max-width: 60%;
+}
+.w-50{
+    max-width: 50%;
+}
+.w-25{
+    min-width: 25%;
+}
+.mr-15{
+    margin-right: 15px;
+}
+.mb-25{
+    margin-bottom: 25px;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
+.p-30{
+    padding: 30px;
+}
+.p-15{
+    padding: 15px;
+}
+.m-30{
+    margin: 30px;
+}
+// config user interface end
+//nav
+//nav end
 // firstRow
 .topDiv{
-    height: 800px;
+    height: 650px;
     margin-bottom: 72px;
 }
 .titleIntop{
     margin-top: 24px;
     margin-bottom: 24px;
     font-size: 24px;
+    animation-duration: 6s;
 }
 .bigTitleintop{
     font-size: 48px;
 }
 .insideTop{
     margin: 30% 0;
+    animation-duration: 6s;
 }
 .smTitleintop{
     font-size: 24px;
@@ -36,11 +78,12 @@ a{
     background-color: $main-color;
     font-size: 16px;
     color: #fff;
+    border: none;
 }
 .topDivright{
-    background-image: url('https://imgur.com/G9harLu');//img/index-1.jpg
     background-size: cover;
     background-repeat: no-repeat;
+    background-position:center;
     ul{
         li{
             color: #fff;
@@ -48,11 +91,11 @@ a{
         }
     }
 }
-.h-15{
-    height: 1.5em;
-}
 // fisrRow end
-// secondRow
+// secondRow threeimg
+.h-250{
+    height: 250px;
+}
 .secRowsection{
     margin-bottom: 32px;
     h2{
@@ -74,7 +117,7 @@ a{
 // secondRow end
 // thirdRow
 .thirdRow{
-    background-image: url('/img/index-5.jpg');
+    // background-image: url('/img/index-5.jpg');
     background-size:cover;
     background-position: center;
     height: 400px;
@@ -88,11 +131,7 @@ a{
         font-weight: bold;
     }
 }
-.ma-85{
-    margin: auto 85px;
-}
 .rightSide{
-    padding: 0;
     h2{
         color: #FFFFFF99;
     }
@@ -112,18 +151,15 @@ a{
 }
 // thirdRow end
 // fourthRow
-.fourthRow{
-    margin-bottom: 72px;
-}
 .fourthRowinside{
     flex-wrap: nowrap;
     overflow:scroll;
     overflow-y: hidden;
-    height: 480px;
+    height: 250px;
     div{    
         img{
-            width: 350px;
-            height: 350px;
+            // width: 350px;
+            // height: 350px;
         }
         h2{
             font-size: 24px;
@@ -152,35 +188,32 @@ a{
     font-weight: bold;
 }
 .underOnsile{
-    margin-top: 280px;
+    margin-top: 295px;
 }
 // fourthRow end
 // bottomRow
 .bottomRow{
-    background-image: url('/img/footer.jpg');
     background-size: cover;
     background-position: center;
     height: 400px;
     div{
-        padding: 0;
-        margin-top: 39px;
-        margin-bottom: 39px;
-        margin-left: 85px;
+        // padding: 0;
+        // margin-top: 39px;
+        // margin-bottom: 39px;
+        // margin-left: 85px;
         h2{
             font-size: 48px;
             font-weight: bold;
             color: #fff;
         }
         form{
+            .emailInput{
+                height: 56px;
+            }
             .inputBtn{
-                min-width: 286px;
                 height: 56px;
                 background-color: $main-color;
                 color: #fff;
-            }
-            .emailInput{
-                min-width: 160px;
-                height: 56px;
             }
         }
     }
@@ -198,23 +231,26 @@ a{
             font-weight: bold;
         }
         p{
-            color: #FFFFFF99;
+            color: #ffffff99;
             font-size: 14px;
         }
-        ul{
-            li{
-                color: #FFFFFFDE;
-                font-size: 14px;
-            }
         }
     }
+.li{
+    color: #FFFFFF99;
+    font-size: 14px;
 }
-.leftSidefooter{
-    margin-left: 85px;
+.li:hover{
+    color: #FFFFFFDE;
 }
-.rightSidefooter{
-    margin-right: 85px;
+.white{
+    color: #fff;
+    font-weight: bold;
 }
 // footerRow end
-@media(max-width:760px){
+@media(max-width:375px){
+    .mainContainer{
+        max-width: 350px; 
+        margin: 0 auto;
+    }
 }

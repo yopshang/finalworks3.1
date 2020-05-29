@@ -1,29 +1,59 @@
 <template>
     <div>
-        <!--navbar-->
-        <div class="homeNav d-flex ">
-            <div class="logo ai-center d-flex">
-                <router-link class="logo" to="/">
-                    <i class=" logoIcon fas fa-eye-slash">
-                        Shop Buy
-                    </i>
-                </router-link>
-            </div>
-            <ul class="navUl ai-center d-flex">
-                <li class="navLi"><router-link class="navLi" to="/dashboard/products">| 我的賣場 |</router-link></li>
-                <li class="navLi"><router-link class="navLi" to="/dashboard/customer_orders">| 購物去 |</router-link></li>
-                <li class="navLi"><router-link class="navLi" to="/dashboard/cart">| 我的購物車 |</router-link></li>
-                <li class="navLi"><router-link class="navLi" to="/dashboard/customer_order">| 我的訂單 |</router-link></li>
-                <li class="navLi"><router-link class="navLi" to="/dashboard/customer_checkout">| 結帳去 |</router-link></li>
-                <li class="navLi"><router-link class="navLi" to="/login">| 登入 |</router-link></li>
-                <li class="navLi"><a class="navLi" href="#" @click.prevent="signout">| 登出 |</a></li>
+        <!--nav-->
+        <nav class="homenav d-flex flex-wrap jc-space-between ai-center">
+            <h2 class="topLogo d-flex animated__animate animate__heartBeat">
+                <div>
+                CRAFTsMAN
+                </div> 
+                <i id="ham-icon" class="fas fa-bars"></i>
+            </h2>
+            
+            <ul class="d-flex ulList flex-wrap">
+                <li class=" dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link class="productList animated__animate animate__heartBeat" to="/product">
+                        Products
+                    </router-link>
+                </li>
+                <li class=" dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link class="productList" to="/login">
+                        Login
+                    </router-link>
+                </li>
+                <li class="dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link class="productList" to="/login">
+                        Login
+                    </router-link>
+                </li>
+                <!--購物車圖案-->
+                <li class="dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link class="productList" to="/login">
+                        <i class="fas fa-shopping-cart"></i>
+                    </router-link>
+                </li>
+                <!--漢堡選單-->
             </ul>
-        </div>
-        <!--navbar結束-->
+        </nav>
+        <!-- nav end -->
     </div>
 </template>
-<style lang="scss">
-    .logo{
-        color:blanchedalmond;
-    }
-</style>
+<script>
+export default {
+    name:'homenav',
+    data(){
+        return{
+        }
+    },
+}
+</script>
+<script>
+import $ from 'jquery';
+$( document ).ready(function() {
+    console.log( "ready!" );
+    $('#ham-icon').click(function(e) {
+        e.preventDefault();
+        $('.dropdown').toggleClass('hide');
+        console.log('成功點擊');
+    })
+});
+</script>

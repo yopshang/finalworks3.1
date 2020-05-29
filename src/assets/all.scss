@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/functions";
 @import "./helper/_variables.scss";
 @import "~bootstrap/scss/bootstrap";
+@import "./helper/css-reset";
 @import "./helper/_dashboard.scss";
 @import "./helper/_nav";
 @import "./helper/_sidebar";
@@ -8,9 +9,9 @@
 @import "./helper/_utils";
 @import "./helper/_products";
 @import "./helper/homepage";
-@import "./helper/homenav";
 @import "./helper/_fontfamily";
 @import "./helper/home";
 @import "./helper/product";
 @import "./helper/variable";
+@import "./helper/homenav";
 

@@ -1,27 +1,35 @@
     // navbar
-    .homeNav{
-        color:#fff;
-        font-weight: bold;
-        max-width:1280px;
-        margin: 0 auto;
-        background-color: $blue ;
-        justify-content: space-between;
-        margin-bottom: 30px;
-        .logo{
-            margin: 20px;
-            font-size: 32px;
-            .logoIcon{
-                margin-right: 10px;
-            }
+    #ham-icon{
+        visibility: hidden;
+    }
+    .homenav{
+        font-size: 24px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         }
-        .navUl{
-            margin-right: 20px;
-            .navLi{
-                list-style:none;
-                margin-left: 10px;
-                color:#fff;
-                font-weight: bold;
-            }
+    .productList{
+        a{
+            color: #121212;
         }
     }
     // navbar end
+    @media(max-width:375px){
+        #ham-icon{
+            visibility: visible;
+        }
+        .topLogo{
+            width: 100%;
+            justify-content: space-between;
+        }
+        .hide{
+            display: none;
+        }
+        .ulList{
+            width: 100%;
+            li{
+                width: 100%;
+                margin: 0;
+                padding: 10px;
+            }
+        }
+    }
