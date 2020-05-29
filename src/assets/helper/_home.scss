@@ -56,6 +56,9 @@ a:hover{
     height: 650px;
     margin-bottom: 72px;
 }
+.insideTopdiv{
+    width: 50%;
+}
 .titleIntop{
     margin-top: 24px;
     margin-bottom: 24px;
@@ -66,7 +69,6 @@ a:hover{
     font-size: 48px;
 }
 .insideTop{
-    margin: 30% 0;
     animation-duration: 6s;
 }
 .smTitleintop{
@@ -84,6 +86,7 @@ a:hover{
     background-size: cover;
     background-repeat: no-repeat;
     background-position:center;
+    width: 50%;
     ul{
         li{
             color: #fff;
@@ -95,6 +98,14 @@ a:hover{
 // secondRow threeimg
 .h-250{
     height: 250px;
+}
+.secondRow{
+    width: 50%;
+}
+.secFix{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
 }
 .secRowsection{
     margin-bottom: 32px;
@@ -148,6 +159,9 @@ a:hover{
         }
     }
 
+}
+.thirdTurnRwd{
+    width: 50%;
 }
 // thirdRow end
 // fourthRow
@@ -223,6 +237,10 @@ a:hover{
 .footerRow{
     background-color: #121212;
     justify-content: space-between;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     div{
         margin: 39px 0;
         h2{
@@ -247,10 +265,101 @@ a:hover{
     color: #fff;
     font-weight: bold;
 }
+.bottomDiv{
+    width: 60%;
+    padding: 30px;
+}
 // footerRow end
 @media(max-width:375px){
     .mainContainer{
         max-width: 350px; 
         margin: 0 auto;
     }
+    .topDivright{
+        display:none;
+        position: absolute;
+    }
+    .insideTopdiv{
+        width: 100%;
+    }
+    .topDivright{
+        width: 100%;
+    }
+    .secondRow{
+        width: 100%;
+        height: 150px;
+    }
+    .m-rwd{
+        margin-bottom: 30px;
+    }
+    .secRowRwd{
+        margin-top: 100px;
+    }
+    .reRow{
+        flex-direction: row-reverse;
+    }
+    // third Row 
+    .mt-70{
+        margin-top: 70px;
+    }
+    .thirdRowoutsideRwd{
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .thirdTurnRwd{
+        width: 100%;
+        p{
+            font-size: 16px;
+        }
+    }
+    .secFix{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+  
+    // third Row end
+    // forth Row
+    .bottomDiv{
+        width: 100%;
+        padding: 0;
+    }
+    .formRwd{
+        display: flex;
+    }
+    .emailInput{
+        max-width: 200px;
+    }
+    .bottomRow div h2 {
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+    }
+    // forth Row end
+    // footer
+    .footerRow{
+        background-color: #121212;
+        justify-content: space-between;
+        padding: 15px;
+        display: block; //
+        align-items: center;
+        justify-content: space-between;
+        div{
+            margin:10px 0;
+            h2{
+                color: #FFFFFF;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            p{
+                color: #ffffff99;
+                font-size: 14px;
+            }
+        }
+        ul{
+            display: block;
+            font-size: 14px;
+        }
+    }
+    // footer end
 }
