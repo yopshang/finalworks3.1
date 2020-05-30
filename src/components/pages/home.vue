@@ -95,93 +95,46 @@
     </div>
     <!-- thirdRow end -->
     <!-- fourthRow products--> <!--等新版product做好，要import進來-->
-    <div class="fourthRowinside d-flex mb-25">
-        <div v-for="(item) in products" :key="item.id" class="w-25">
+    <div class="fourthRowinside mb-25">
+        <div v-for="(item) in products" :key="item.id" class="productCard">
             <!-- 商品照片 -->
             <!-- <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-1.jpg') + ')' }"></div> -->
-            <img :src="item.imageUrl" alt="">             
+            <div class="outsideProImg">
+                <img class="proImg" :src="item.imageUrl" alt="">
+                <div class="cate">{{item.category}}</div>             
+            </div>
             <h2 >{{ item.title }}</h2> <!--商品名稱-->
             <ul class="d-flex">
-                <li>{{ item.price }}</li> <!--特價-->
-                <li>{{ item.origin_price }}</li> <!--原價-->
-            </ul>
-        </div>
-        <div class="w-25">
-            <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-2.jpg') + ')' }"></div>
-            <h2>Couple Collection</h2>
-            <ul>
-                <li>Couple Collection</li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="w-25">
-            <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-3.jpg') + ')' }"></div>
-            <h2>Couple Collection</h2>
-            <ul>
-                <li>NT$4,800</li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="w-25">
-            <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-4.jpg') + ')' }"></div>
-            <!-- <img src="/img/img-4.jpg" alt=""> -->
-            <h2>Baifan Bowl</h2>
-            <ul>
-                <li>Baifan Bowl</li>
-                <li></li>
+                <li class="text-dec">原價{{ item.origin_price | currency }}</li> <!--原價-->
+                <li>特價{{ item.price | currency }}</li> <!--特價-->
             </ul>
         </div>
     </div>
     <!-- fourthRow end -->
-    <!-- bottomRow -->
-    <div class="bottomRow d-flex jc-flex-start ai-center" 
-    :style="{ backgroundImage: 'url(' + require('@/assets/img/footer.jpg') + ')' }">
-        <div class="bottomDiv ai-center">
-            <h2 class="">Subscribe for news and special offers!</h2>
-            <form class="formRwd w-100 p-30">
-                <input class="emailInput p-15 w-85" type="text" placeholder="Your email address">
-                <input class="inputBtn p-15" type="button" value="Subscribe">
-            </form>
-        </div>
-    </div>
-    <!-- bottomRow end -->
-    <!-- footerRow -->
-    <div class="footerRow">
-        <div class="d-flex ai-center">
-            <h2 class="mr-15">CRAFTsMAN</h2>
-            <p class="mr-15">© 2020. All Rights Reserved.</p>
-        </div>
-        <ul class="d-flex">
-            <router-link to="">
-                <li class="li mr-15">
-                        Purchase Policy
-                </li>
-            </router-link>
-            <router-link to="">
-                <li class="li mr-15">
-                    Privacy Policy
-                </li>
-            </router-link>
-            <router-link to="">
-                <li class="li mr-15">
-                    Terms & Conditions
-                </li>
-            </router-link>
-        </ul>
-    </div>
-    <!-- footerRow end -->
+    <bottom/>
 </div>
 </template>
 <script>
 import homenav from './homenav.vue';
+import bottom from './bottom';
+import productList from './productlist';
 export default {
     components:{
-                homenav
+                homenav,
+                bottom,
+                productList
             },
     data(){
-        return{
+        return {
             products:[],
-            isLoading:false,
+            pagination:'',
+            tempProduct:{},
+            isNew:false,
+            isLoading:false, //控制全螢幕讀取效果
+            status:{
+                fileUploading:false,
+            }
+            
         }
     },
     // data end
@@ -196,10 +149,11 @@ export default {
                 vm.products=response.data.products;
             })
         },
+
     },
     // methods end
     created() {
-        // this.getProducts();
+        this.getProducts();
     },
     // created end
 }

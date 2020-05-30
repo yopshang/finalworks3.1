@@ -1,55 +1,78 @@
-// nav
-.navOnproduct{
-    justify-content: space-between;
-}
-.ulOnnav{
-    justify-content: space-between;
-}
-.titleIntop{
 
-    font-size: 24px;
-}
-.productList:hover{
-    color: #0E8A00;
-}
-
-// nav end
-// 改良分類nav
-.listOntop{
-    color: #0000009A;
-}
-.listOntop:hover{
-    color:#0E8A00;
-}
-// 改良分類nav 結束
 // product filter
+.mb-30{
+    margin-bottom: 30px;
+}
+.mb-15{
+    margin-bottom: 15px;
+}
+.mt-15{
+    margin-top: 15px;
+}
+.mr-15{
+    margin-right: 15px;
+}
+.p-15{
+    padding:15px;
+}
+.h-100{
+    height: 100px;
+}
+.w-100{
+    width: 100%;
+}
+.w-25{
+    max-width: 100%;
+}
+
 .productFilter{
     background-color: #F2F2F2;
     // margin-bottom: 48px;
-    .productUl{
-        justify-content: space-between;
-    }
+}
+.filterList{
+}
+.filterList:hover{
+    color: $main-color;
+    text-decoration: none;
 }
 // product filter end
 // product
-.onsile{
-    color: #FFFFFF;
-    font-size: 14px;
-    text-align: right;
-    margin-top: -16em;
+.productcard{
+    padding: 15px;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .productArea{
+        max-width: 20%;
+        border: solid;
+        padding: 15px;
+        margin: 15px;
+        border-radius: 5%;
+        // background-color: #00000062;
+            .cate{
+                color: #0E8A00;
+                font-size: 14px;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                background-color: #b4d1bd62;
+                border-radius: 15%;
+                border: solid;
+            }
+            .productImg{
+                border: solid;
+                border-radius: 10%;
+                width: 150px;
+                height: 160px;
+            }
+    }
 }
-.underOnsile{
-    margin-top: 210px;
+.cateContainer{
+    position: relative;
 }
-.onsile2{
-    color: #FFFFFF;
-    font-size: 14px;
-    text-align: right;
-    margin-top: -18em;
-}
-.underOnsile2{
-    margin-top: 230px;
-}
+
+
 // product end
 // pagenumber
 .pageNumber{

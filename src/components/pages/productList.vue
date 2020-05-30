@@ -1,52 +1,41 @@
 <template>
-<div class="mainContainer">
-        <!--nav-->
-        <homenav/>
-        <!-- nav end -->
-
-        <!-- product -->
-        <router-view>
-
-        </router-view>
-        <!-- <productList/> -->
-
-        <!-- product end -->
-        <!--layout footer-->
-        <bottom/>
-        <!-- bottomRow -->
-        <!-- <div class="bottomRow row d-flex jc-flex-start ai-center">
-            <div class="col-lg-6">
-                <h2>Subscribe for news and special offers!</h2>
-                <form class="d-flex">
-                    <input class="emailInput" type="text" placeholder="Your email address">
-                    <input class="inputBtn" type="button" value="Subscribe">
-                </form>
-            </div>
-            
-        </div> -->
-        <!-- bottomRow end -->
-        <!-- footerRow -->
-        <!-- <div class="row footerRow d-flex ai-center ">
-            <div class="d-flex leftSidefooter">
-                <h2>CRAFTsMAN</h2>
-                <p>© 2020. All Rights Reserved.</p>
-            </div>
-            <div>
-                <ul class="d-flex rightSidefooter">
-                    <li>Purchase Policy</li>
-                    <li>Privacy Policy</li>
-                    <li>Terms & Conditions</li>
+<div>
+            <!-- product filter -->
+        <div class="mb-30"> <!--做一個分類fiter-->
+            <div class="productFilter p-15 d-flex">
+                <ul v-for="(item) in products" :key="item.id" class="d-flex w-100 jc-space-between">
+                    <li class="filterList">{{item.category}}<sup></sup></li>
                 </ul>
             </div>
-        </div> -->
-        <!-- footerRow end -->
-        <!-- layout footer end -->
-    </div> 
+        </div>
+        <!-- product filter end -->
+    <div class="productcard">
+        <div v-for="(item) in products" :key="item.id" class="productArea"><!--這邊要用v-for引入資料-->
+            <div class="cateContainer">
+                <img :src="item.imageUrl" class="productImg" alt="">
+                <div class="cate">{{item.category}}</div>
+                <section class="d-flex fd-column">
+                    <h2 class="mb-15">{{item.title}}</h2>
+                    <div class="w-100 d-flex jc-space-between">
+                        <p class="">{{item.price | currency}}</p>
+                        <p class="text-dec">{{item.origin_price | currency}}</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- page number -->
+    <div class="row jc-center mb-4">
+        <ul class="row col-lg-1 jc-space-between">
+            <li class="pageNumber">1</li>
+            <li class="pageNumber">2</li>
+            <li class="pageNumber">3</li>
+        </ul>
+    </div>
+    <!-- page number end -->    
+</div>
 </template>
 <script>
-import homenav from './homenav.vue';
-import bottom from './bottom';
-import productList from './productList';
 import $ from 'jquery';
 export default {
     name:'Procucts',
@@ -60,13 +49,11 @@ export default {
             status:{
                 fileUploading:false,
             }
+            
         }
     },
-    components:{
-        homenav,bottom,productList
-    },
     methods: {
-        getProducts(){
+        getProducts(page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
             const vm=this;
             vm.isLoading=true;

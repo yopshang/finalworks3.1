@@ -9,6 +9,7 @@ import cart from '@/components/pages/Cart.vue'
 import Customerorder from '@/components/pages/CustomerOrder.vue'
 import CustomerCheckout from '@/components/pages/CustomerCheckout.vue'
 import product from '@/components/pages/product.vue'
+import productList from '@/components/pages/productList.vue';
 
 Vue.use(Router)
 
@@ -31,7 +32,15 @@ export default new Router({
     {
       path: '/product',
       name: 'product',
-      component: product
+      component: product,
+      children:[
+        {
+          path: 'productlist',
+          name: 'productList',
+          component:productList ,
+          // meta:{requiresAuth:true}
+        },
+      ]
     },
     {
       path: '/dashboard',

@@ -37,7 +37,7 @@ export default {
             this.$http.post(api,vm.user).then((response)=>{
                 console.log(response.data);
                 if (response.data.success){
-                    vm.$router.push('/home');
+                    vm.$router.push('/');
                 }
             })
         },
@@ -46,10 +46,10 @@ export default {
             const vm= this;
             this.$http.post(api).then((response)=>{
                 console.log(response.data);
-                //驗證是否持續登入
-                // if (response.data.success){
-                //     vm.$router.push('/dashboard/products');
-                // }
+                驗證是否持續登入
+                if (response.data.success){
+                    vm.$router.push('/');
+                }
             });    
         }
     },
