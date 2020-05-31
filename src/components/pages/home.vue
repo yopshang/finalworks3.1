@@ -18,8 +18,10 @@
                       Minimalist Lifestyle.
                     </h1>
                     <h2 class="smTitleintop mb-10">The best crafts in Taiwan. Get your free shipping on the first order.</h2>
-                    <a href="/product.html mb-10"> 
-                        <input class="shopBtn p-15" type="button" value="Shop now"></input>
+                    <a href="/product.html mb-10">
+                        <router-link to="/product/productList">
+                            <input class="shopBtn p-15" type="button" value="Shop now"></input>
+                        </router-link> 
                     </a>
                 </div>
             </div>

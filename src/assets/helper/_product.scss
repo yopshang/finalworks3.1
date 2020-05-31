@@ -29,11 +29,32 @@
     background-color: #F2F2F2;
     // margin-bottom: 48px;
 }
-.filterList{
+.filterList:active{
+    color: $main-color;
 }
 .filterList:hover{
     color: $main-color;
     text-decoration: none;
+}
+.PDL{
+    .addProduct{
+        border: none;
+        background-color: #F2F2F2;
+        color: $main-color;
+        padding: 15px;
+        border-radius: 15%;
+        border: solid;
+        // position: absolute;
+        // right: 5px;
+        // top:0px
+    }
+    .addProduct:hover{
+        background-color:$main-color;
+        color:#F2F2F2;
+    }
+}
+.active{
+    color: $main-color;
 }
 // product filter end
 // product
@@ -88,5 +109,19 @@
     color: #0E8A00;
     text-decoration:underline;
 }
+.pageUl{
+    // border: solid;
+}
 // pagenumber
 
+@media(max-width:375px){
+    .productcard{
+        height: 400px;
+        overflow: scroll;
+        margin: 50px;
+        .productArea{
+            max-width: 100%;
+        }
+    }
+        
+}

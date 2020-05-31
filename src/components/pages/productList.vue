@@ -1,16 +1,39 @@
 <template>
-<div>
-            <!-- product filter -->
-        <div class="mb-30"> <!--做一個分類fiter-->
-            <div class="productFilter p-15 d-flex">
-                <ul v-for="(item) in products" :key="item.id" class="d-flex w-100 jc-space-between">
-                    <li class="filterList">{{item.category}}<sup></sup></li>
-                </ul>
-            </div>
+<div class="PDL">
+    <!-- product filter -->
+    <div class="mb-30"> <!--做一個分類fiter-->
+        <div class="productFilter p-15 d-flex">
+            <ul class="d-flex w-100 jc-space-between">
+                <li class="filterList" :class="{'active':sort=='all'}" @click="sort='all'">
+                    ALL
+                </li>                                        
+                <li class="filterList" :class="{'active':sort=='保養品'}" @click="sort='保養品'">
+                    保養品
+                </li>
+                <li class="filterList" :class="{'active':sort=='玩具'}" @click="sort='玩具'">
+                    玩具
+                </li>
+                <li class="filterList" :class="{'active':sort=='外套'}" @click="sort='外套'">
+                    外套
+                </li>
+                <li class="filterList" :class="{'active':sort=='配件'}" @click="sort='配件'">
+                    配件
+                </li>
+                <li class="filterList" :class="{'active':sort=='鞋子'}" @click="sort='鞋子'">
+                    鞋子
+                </li>
+                <li class="filterList" :class="{'active':sort=='其他'}" @click="sort='其他'">
+                    其他
+                </li>
+            </ul>
         </div>
-        <!-- product filter end -->
+    </div>
+    <button class="addProduct"> + 新增商品</button>
+    <!-- product filter end -->
     <div class="productcard">
-        <div v-for="(item) in products" :key="item.id" class="productArea"><!--這邊要用v-for引入資料-->
+        <div v-for="(item) in products" :key="item.id" 
+        v-if="item.category==sort || sort=='all'"
+        class="productArea"><!--這邊要用v-for引入資料-->
             <div class="cateContainer">
                 <img :src="item.imageUrl" class="productImg" alt="">
                 <div class="cate">{{item.category}}</div>
@@ -22,14 +45,30 @@
                     </div>
                 </section>
             </div>
-        </div>
+        </div>          
     </div>
     <!-- page number -->
-    <div class="row jc-center mb-4">
-        <ul class="row col-lg-1 jc-space-between">
-            <li class="pageNumber">1</li>
-            <li class="pageNumber">2</li>
-            <li class="pageNumber">3</li>
+    <div class="p-15">
+        <ul class="pageUl d-flex jc-center">
+            <li class="pageNumber p-15" :class="{'disabled':!pagination.has_pre}">
+                <a href="#" @click.prevent="getProducts(pagination.current_page-1)">
+                    <<
+                </a>
+            </li>
+            <li class="pageNumber  p-15" 
+            v-for="page in pagination.total_pages" 
+            :key="page" 
+            :class="{'active':pagination.current_page===page}">
+            <a href="#" @click.prevent="getProducts(page)">
+                {{page}}
+            </a>
+            </li>
+            <li class="pageNumber  p-15"
+            :class="{'disabled':!pagination.has_next}" >
+            <a href="#" @click.prevent="getProducts(pagination.current_page+1)">
+                >>
+            </a>
+            </li>
         </ul>
     </div>
     <!-- page number end -->    
@@ -48,8 +87,8 @@ export default {
             isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
-            }
-            
+            },
+            sort:"all",
         }
     },
     methods: {
