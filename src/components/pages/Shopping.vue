@@ -29,16 +29,15 @@
         </div>
     </div>
     <div class="d-flex jc-space-between ai-center">
-        <div class="mylogoDiv">我的商城</div>
-        <button class="addProduct" data-toggle="modal" data-target="#productModal"> + 新增商品</button>
+        <div class="mylogoDiv">購物專區</div>
     </div>
     <!-- product filter end -->
     <div class="productcard">
-        <div v-for="(item) in products" :key="item.id" 
+        <div  @click="getProduct(item.id)" v-for="(item) in products" :key="item.id" 
         v-if="item.category==sort || sort=='all'"
-        class="productArea"><!--這邊要用v-for引入資料-->
+        class="productArea cardHover"><!--這邊要用v-for引入資料-->
             <div class="cateContainer">
-                <img :src="item.imageUrl" class="productImg" alt="">
+                <img :src="item.imageUrl" class="productImg mb-10" alt="">
                 <div class="cate">{{item.category}}</div>
                 <section class="d-flex fd-column">
                     <h2 class="mb-15">{{item.title}}</h2>
@@ -49,7 +48,6 @@
                 </section>
             </div>
         </div>          
-        
     </div>
     <!-- page number -->
     <div class="p-15">
@@ -76,96 +74,133 @@
         </ul>
     </div>
     <!-- page number end -->
-    <!-- Modal -->
-        <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+    <!-- Modal --> <!--引入detail版型-->
+        <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content border-0">
                             <div class="modal-header">
-                                <h5  class="titleStyle p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
-                                    <span >新增產品</span>
+                                <h5 class="titleStyle p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
+                                    <span></span>
                                 </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--叉叉按鈕-->
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="d-flex">
-                                <div class="w-40 mr-15">
-                                    <div class="form-group ">
-                                        <label class=" mb-10" for="image">輸入圖片網址</label>
-                                        <input v-model="tempProduct.imageUrl" type="text" class="form-control p-15" id="image"
-                                        placeholder="請輸入圖片連結">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="customFile" class="mb-15">或 上傳圖片
-                                            <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
-                                        </label>
-                                        <input type="file" id="customFile" class="form-control"
-                                        ref="files" @change="uploadFile">
-                                    </div>
-                                    <div class="urlImgDiv p-15 mb-10">
-                                        <img class="img-fluid" :src="tempProduct.imageUrl" 
-                                        alt="" img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80">
-                                    </div>
-                                </div>
-                                <div class="w-60">
-                                    <div class="form-group">
-                                        <label for="title" class="mb-15">標題</label>
-                                        <input type="text"  v-model="tempProduct.title" class="form-control p-15" id="title"
-                                        placeholder="請輸入標題">
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="category" class="mb-10">分類</label>
-                                            <input type="text" class="form-control p-15" id="category"
-                                            placeholder="請輸入分類"  v-model="tempProduct.category">
-                                        </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="price" class="mb-10">單位</label>
-                                        <input type="unit" class="form-control p-15" id="unit"
-                                        placeholder="請輸入單位"  v-model="tempProduct.unit">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="origin_price" class="mb-10">原價</label>
-                                        <input type="number" class="form-control p-15" id="origin_price"
-                                        placeholder="請輸入原價"  v-model="tempProduct.origin_price">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="price" class="mb-10">售價</label>
-                                        <input type="number" class="form-control p-15" id="price"
-                                        placeholder="請輸入售價"  v-model="tempProduct.price">
-                                    </div>
-                                </div>
-                                <hr>
-
-                                <div class="form-group">
-                                    <label for="description" class="mb-10">產品描述</label>
-                                    <textarea type="text" class="form-control p-15" id="description"
-                                    placeholder="請輸入產品描述"  v-model="tempProduct.description"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="content" class="mb-10">說明內容</label>
-                                    <textarea type="text" class="form-control p-15" id="content"
-                                    placeholder="請輸入產品說明內容" v-model="tempProduct.content"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                        id="is_enabled" v-model="tempProduct.is_enabled"
-                                        :true-value="1"
-                                        :false-value="0">
-                                        <label class="form-check-label" for="is_enabled">
-                                            是否啟用
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- detail -->
+        <!-- product detail -->
+        <!-- 左邊圖案區塊 -->
+        <div v-for="item in product" :key="item.id" class="d-flex flex-wrap-no productDetail">
+            <div data-aos="zoom-in" class="row detailImg w-100">
+                <img :src="item.imageUrl" alt=""> <!---->
+            <!-- 加入購物車div塊 右邊 -->
+            <div class=" animate__animated animate__fadeInRight detailText row col-lg-6 ai-center jc-center">
+                <div class="underText row">
+                    <div>
+                        <h3 class="h3inText">Home / Product / Cup</h3>
+                        <h2 class="h2inText">{{item.title}}</h2>
+                    </div>
+                    <ul class="d-flex priceDiv jc-flex-end">
+                        <li class="originPrice">NT$1,200</li>
+                        <li class="price">NT$1,080</li>
+                    </ul>
+                    <ul class="row flex-wrap-no">
+                        <button class="button col-lg-2  d-flex ai-center">
+                            <li>
+                                -
+                            </li>
+                        </button>
+                        <li  class="button col-lg-2 d-flex ai-center">
+                            <p class="mb-0">1</p>
+                        </li>
+                        <button  class="button  col-lg-2  d-flex ai-center">
+                            <li>
+                                +
+                            </li>
+                        </button>
+                        <button class="btn bigBtn col-lg-8 d-flex ai-center jc-center addTocart"  
+                        type="button"
+                        data-toggle="modal"
+                        data-target="#cart">
+                                Add to cart
+                        </button>
+                    </ul>
+                </div>
+            </div>
+            <!-- 加入購物車div塊結束 -->
+            </div>
+        </div>
+        <!--product detail 下面文字-->
+        <div class="row col-lg-8 mt-2 mb-2 ">
+            <p class="script col-lg-8">This beautiful light grey cup comes from Taiwan. Add some minimalist scenes to your lifetime and use this cup for tea, coffee, dessert, or to place small items as a dish tray.</p>
+            <p class=" col-lg-4">Made in Taiwan 8 x 8 x 6 cm Dishwasher and Microwave-safe</p>
+        </div>
+        <!-- product detail 下面文字 end-->
+        <!-- product detail end -->
+        <!-- you might like -->
+        <div>
+            <h1>You might also like…</h1>
+            <ul class="ulOndetail row flex-wrap-no">
+                <li class="animate__animated animate__fadeInRight col-lg-3">
+                    <img alt="">
+                    <div class="onsile">ON SALE</div>
+                    <section>
+                        <h2 class="underOnsile">Tatami Cup</h2>
+                        <div class="row col-lg-6 jc-space-around">
+                            <p>NT$1,080</p>
+                            <p class="text-dec">NT$1,200</p>
                         </div>
+                    </section>
+                </li>
+                <li class="animate__animated animate__fadeInRight col-lg-3">
+                    <img src="/img/img-1.jpg" alt="">
+                    <div class="onsile">ON SALE</div>
+                    <section>
+                        <h2 class="underOnsile">Tatami Cup</h2>
+                        <div class="row col-lg-6 jc-space-around">
+                            <p>NT$1,080</p>
+                            <p class="text-dec">NT$1,200</p>
+                        </div>
+                    </section>
+                </li>
+                <li class="animate__animated animate__fadeInRight col-lg-3">
+                    <img src="/img/img-1.jpg" alt="">
+                    <div class="onsile">ON SALE</div>
+                    <section>
+                        <h2 class="underOnsile">Tatami Cup</h2>
+                        <div class="row col-lg-6 jc-space-around">
+                            <p>NT$1,080</p>
+                            <p class="text-dec">NT$1,200</p>
+                        </div>
+                    </section>
+                </li>
+                <li class="animate__animated animate__fadeInRight col-lg-3">
+                    <img src="/img/img-1.jpg" alt="">
+                    <div class="onsile">ON SALE</div>
+                    <section>
+                        <h2 class="underOnsile">Tatami Cup</h2>
+                        <div class="row col-lg-6 jc-space-around">
+                            <p>NT$1,080</p>
+                            <p class="text-dec">NT$1,200</p>
+                        </div>
+                    </section>
+                </li>
+                <li class="animate__animated animate__fadeInRight col-lg-3">
+                    <img src="/img/img-1.jpg" alt="">
+                    <div class="onsile">ON SALE</div>
+                    <section>
+                        <h2 class="underOnsile">Tatami Cup</h2>
+                        <div class="row col-lg-6 jc-space-around">
+                            <p>NT$1,080</p>
+                            <p class="text-dec">NT$1,200</p>
+                        </div>
+                    </section>
+                </li>
+            </ul>
+        </div>
+        <!-- you might like end -->
+        <!-- detail end -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
@@ -209,14 +244,16 @@ export default {
     data(){
         return {
             products:[],
+            isLoading:false, //控制全螢幕讀取效果
             pagination:'',
             tempProduct:{},
-            isNew:false,
-            isLoading:false, //控制全螢幕讀取效果
             status:{
-                fileUploading:false,
+                loadingItem:'',
             },
+            tempProduct:{},
+            carts:{},
             sort:"all",
+            product:{}
         }
     },
     methods: {
@@ -229,6 +266,42 @@ export default {
                 vm.isLoading=false;
                 vm.products=response.data.products;
                 vm.pagination=response.data.pagination;
+            })
+        },
+        getProduct(id){
+            const vm= this;
+            const url = `https://vue-course-api.hexschool.io/api/yop/product/${id}`;
+            vm.status.loadingItem=id;
+            this.$http.get(url).then((response) =>{
+                vm.product= response.data.product;
+                $('#productModal').modal('show');
+                console.log(response);
+                vm.status.loadingItem='';
+            })
+        },
+        addtoCart(id,qty=1){
+            const vm = this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
+            vm.status.loading=id;
+            const cart={
+                product_id:id,
+                qty  //  等同qty:qty
+            }
+            this.$http.post(url,{data:cart}).then((response)=>{
+                console.log(response);
+                vm.status.loadingItem='';
+
+                $('#productModal').modal('hide');
+            })
+        },
+        getCart(){
+            const vm =this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/cart`
+            vm.isLoading=true;
+            this.$http.get(url).then((response)=>{
+                console.log(response);
+                vm.carts=response.data.data.carts; //vm.carts=response.data.data.carts
+                vm.isLoading=false;
             })
         },
         openModal(isNew,item){
@@ -282,20 +355,12 @@ export default {
                     this.$bus.$emit('message:push',response.data.message,'danger');
                 }
             });
-        },
-        signout(){
-            const vm = this;
-            const url= 'https://vue-course-api.hexschool.io/logout';
-            this.$http.post(url).then((response) =>{
-                console.log(response.data);
-                if (response.data.success){
-                    vm.$router.push('/login');
-                }
-            })
-        },         
+        },      
     },
     created() {
         this.getProducts();
+        // this.getProduct();
+        this.getCart();
     }
 }
 </script>

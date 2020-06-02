@@ -36,6 +36,9 @@
     color: $main-color;
     text-decoration: none;
 }
+.mylogoDiv{
+    font-size: 24px;
+}
 .PDL{
     .addProduct{
         border: none;
@@ -58,6 +61,10 @@
 }
 // product filter end
 // product
+.productArea:hover{
+    background-color:#0000009A ;
+    color:#fff;
+}
 .productcard{
     padding: 15px;
     margin: 15px;
@@ -66,7 +73,7 @@
     justify-content: center;
     .productArea{
         max-width: 20%;
-        border: solid;
+        // border: solid;
         padding: 15px;
         margin: 15px;
         border-radius: 5%;
@@ -92,8 +99,6 @@
 .cateContainer{
     position: relative;
 }
-
-
 // product end
 // pagenumber
 .pageNumber{
@@ -113,6 +118,16 @@
     // border: solid;
 }
 // pagenumber
+// Modal
+
+.font20{
+    font: 20px;
+}
+.urlImgDiv{
+    height: 250px;
+    border: solid;
+}
+// Modal end
 
 @media(max-width:375px){
     .productcard{

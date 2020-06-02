@@ -8,38 +8,9 @@
         <router-view>
 
         </router-view>
-        <!-- <productList/> -->
-
         <!-- product end -->
         <!--layout footer-->
         <bottom/>
-        <!-- bottomRow -->
-        <!-- <div class="bottomRow row d-flex jc-flex-start ai-center">
-            <div class="col-lg-6">
-                <h2>Subscribe for news and special offers!</h2>
-                <form class="d-flex">
-                    <input class="emailInput" type="text" placeholder="Your email address">
-                    <input class="inputBtn" type="button" value="Subscribe">
-                </form>
-            </div>
-            
-        </div> -->
-        <!-- bottomRow end -->
-        <!-- footerRow -->
-        <!-- <div class="row footerRow d-flex ai-center ">
-            <div class="d-flex leftSidefooter">
-                <h2>CRAFTsMAN</h2>
-                <p>© 2020. All Rights Reserved.</p>
-            </div>
-            <div>
-                <ul class="d-flex rightSidefooter">
-                    <li>Purchase Policy</li>
-                    <li>Privacy Policy</li>
-                    <li>Terms & Conditions</li>
-                </ul>
-            </div>
-        </div> -->
-        <!-- footerRow end -->
         <!-- layout footer end -->
     </div> 
 </template>

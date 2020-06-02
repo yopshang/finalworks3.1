@@ -1,13 +1,20 @@
 <template>
     <div>
         <body class="text-center">
-            <form class="form-signin" @submit.prevent="signin">
+            <div class="w-60" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">
+                
+            </div>
+            <form class="form-signin w-40" @submit.prevent="signin">
                 <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input v-model="user.username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <h1 class="h3 mb-3 font-weight-normal">會員中心</h1>
+                <div class="mb-25">
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input v-model="user.username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                </div>
+                <div>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                </div>
                 <div class="checkbox mb-3">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
@@ -37,7 +44,7 @@ export default {
             this.$http.post(api,vm.user).then((response)=>{
                 console.log(response.data);
                 if (response.data.success){
-                    vm.$router.push('/');
+                    vm.$router.push('/#');
                 }
             })
         },
@@ -48,7 +55,10 @@ export default {
                 console.log(response.data);
                 驗證是否持續登入
                 if (response.data.success){
-                    vm.$router.push('/');
+                    // vm.$router.push('/');
+                    next();
+                }else{
+                    vm.$router.push('/#');
                 }
             });    
         }

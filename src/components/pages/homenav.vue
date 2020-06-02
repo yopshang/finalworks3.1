@@ -18,12 +18,12 @@ ASD83A<template>
                     </router-link>
                 </li>
                 <li class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/product/productlist">
+                    <router-link class="productList" to="/product/shopping">
                         | Shopping
                     </router-link>
                 </li>
                 <li class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/">
+                    <router-link class="productList" to="/product">
                         | My Order
                     </router-link>
                 </li>                
@@ -33,13 +33,13 @@ ASD83A<template>
                     </router-link>
                 </li>
                 <li class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/">
+                    <a @click.prevent="signout" class="productList" href="#">
                         | Logout
-                    </router-link>
+                    </a>
                 </li>                
                 <!--購物車圖案-->
                 <li class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/login">
+                    <router-link class="productList" to="/product/mycart">
                         | <i class="fas fa-shopping-cart"></i>
                     </router-link>
                 </li>
@@ -56,6 +56,18 @@ export default {
         return{
         }
     },
+    methods:{
+        signout(){
+            const vm = this;
+            const url= 'https://vue-course-api.hexschool.io/logout';
+            this.$http.post(url).then((response) =>{
+                console.log(response.data);
+                if (response.data.success){
+                    vm.$router.push('/login');
+                }
+            })
+        },        
+    }
 }
 </script>
 <script>

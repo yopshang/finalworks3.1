@@ -2,14 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/pages/home.vue'
 import Login from '@/components/pages/Login.vue'
-import Dashboard from '@/components/pages/Dashboard.vue'
-import Products from '@/components/pages/Products.vue'
-import CustomerOrders from '@/components/pages/CustomerOrders.vue'
-import cart from '@/components/pages/Cart.vue'
-import Customerorder from '@/components/pages/CustomerOrder.vue'
-import CustomerCheckout from '@/components/pages/CustomerCheckout.vue'
 import product from '@/components/pages/product.vue'
 import productList from '@/components/pages/productList.vue';
+import shopping from '@/components/pages/shopping.vue';
+import myCart from '@/components/pages/myCart.vue';
 
 Vue.use(Router)
 
@@ -40,41 +36,16 @@ export default new Router({
           component:productList ,
           // meta:{requiresAuth:true}
         },
-      ]
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-      children: [
         {
-          path: 'products',
-          name: 'Products',
-          component: Products,
+          path: 'shopping',
+          name: 'shopping',
+          component:shopping ,
           // meta:{requiresAuth:true}
         },
         {
-          path: 'customer_orders',
-          name: 'Customerorders',
-          component: CustomerOrders,
-          // meta:{requiresAuth:true}
-        },
-        {
-          path: 'cart',
-          name: 'cart',
-          component: cart,
-          // meta:{requiresAuth:true}
-        },
-        {
-          path: 'customer_order',
-          name: 'Customerorder',
-          component: Customerorder,
-          // meta:{requiresAuth:true}
-        },
-        {
-          path: 'customer_checkout',
-          name: 'CustomerCheckout',
-          component: CustomerCheckout,
+          path: 'mycart',
+          name: 'myCart',
+          component:myCart ,
           // meta:{requiresAuth:true}
         },
       ]

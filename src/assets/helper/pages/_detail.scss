@@ -1,0 +1,113 @@
+
+// nav
+.titleIntop{
+    color: #121212;
+}
+.ulOnnav{
+    color:#121212;
+}
+.aindetail:hover{
+    color: $main-color;
+}
+// nav end
+// product detail
+.productDetail{
+}
+.detailImg{
+    background-color: gray;
+    height: 250px;
+}
+.script{
+    font-size: 20px;
+    color: #121212;
+}
+.script2{
+    font-size: 16px;
+    color: #0000009A;
+}
+.detailText{
+    margin-left:-150px;
+    div{
+        padding:32px;
+    }
+}
+.underText{
+    background-color: #FFFFFF;
+}
+.h3inText{
+    color: #0000009A;
+    font-size: 16px;
+}
+.h2inText{
+    color: #121212;
+    font-size: 48px;
+}
+.priceDiv{
+    flex-direction: column;
+    .originPrice{
+        text-decoration:line-through;
+        color: #00000062;
+    }
+    .price{
+        color: #121212;
+        font-size: 24px;
+    }
+}
+.button{
+    padding: 16px;
+    font-size: 24px;
+    background-color: #F2F2F2;
+}
+.bigBtn{
+    background-color: #0E8A00;
+    color: #fff;
+}
+.addTocart{
+    background-color:#0E8A00;
+    color: #fff;
+}
+// product detail end
+// you might like
+.ulOndetail{
+    overflow:scroll;
+    overflow-y: hidden;
+}
+.ulOndetail::-webkit-scrollbar {
+    display: none;
+  }
+// you might like end
+// Modal
+.modalTitle{
+    font-size: 48px;
+    font-weight: bold;
+}
+.myCart{
+    background-color: #F2F2F2;
+}
+.priceIncart{
+    padding: 16px;
+}
+.imgIncart{
+    width: 112px;
+    height: 112px;
+}
+.deletePrice{
+    color: #0000009A;
+}
+.controlNum{
+    width: 24px;
+    height: 24px;
+}
+.priceArea{
+    flex-direction: column;
+    align-items: flex-end;
+}
+.totalPrice{
+    color: #121212;
+    font-size: 24px;
+    font-weight: bold;
+}
+.checkOut{
+    height: 56px;
+}
+// Modal

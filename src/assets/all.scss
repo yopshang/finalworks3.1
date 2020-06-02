@@ -1,17 +1,33 @@
-@import "~bootstrap/scss/functions";
-@import "./helper/_variables.scss";
+
+// vendors
 @import "~bootstrap/scss/bootstrap";
-@import "./helper/css-reset";
-@import "./helper/_dashboard.scss";
-@import "./helper/_nav";
-@import "./helper/_sidebar";
-@import "./helper/_base";
-@import "./helper/_utils";
-@import "./helper/_products";
-@import "./helper/homepage";
-@import "./helper/_fontfamily";
-@import "./helper/home";
-@import "./helper/product";
-@import "./helper/variable";
-@import "./helper/homenav";
+@import "~bootstrap/scss/functions";
+@import "./helper/vendors/_variables.scss";
+
+// base
+@import "./helper/base/css-reset";
+@import "./helper/base/_fontfamily";
+@import "./helper/base/_base";
+
+// pages
+@import "./helper/pages/home";
+@import "./helper/pages/product";
+@import "./helper/pages/shopping.scss";
+@import "./helper/pages/detail";
+@import "./helper/pages/myOrder";
+
+// compontents
+@import "./helper/component/variable";
+
+// layout
+@import "./helper/layout/_homenav";
+
+
+// utils
+@import "./helper/utils/utils";
+
+// @import "./helper/_dashboard.scss";
+// @import "./helper/_nav";
+// @import "./helper/_sidebar";
+// @import "./helper/homepage";
 

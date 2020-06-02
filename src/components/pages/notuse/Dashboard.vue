@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Navbar/>
+        <!-- <Navbar/> -->
         <!-- <Navbar/> -->
         <!-- <Sidebar/> -->
         <Alert/>
@@ -16,14 +16,14 @@
     </div>
 </template>
 <script>
-import Sidebar from './Sidebar.vue';
-import Navbar from './Navbar.vue';
+// import Sidebar from './Sidebar.vue';
+// import Navbar from './Navbar.vue';
 import Alert from './AlertMessage.vue';
 // import homenav from './homenav.vue';
 export default {
     components: {
-        Sidebar,
-        Navbar,
+        // Sidebar,
+        // Navbar,
         Alert,
         // homenav
     }

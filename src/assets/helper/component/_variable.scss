@@ -1,0 +1,18 @@
+.titleStyle{
+    font-weight: bold;
+    color:#0E8A00 ;
+}
+.bigBtn{
+    color:$main-color;
+    background-color: #fff;
+    font-size: 16px;
+    color: $main-color;
+    border: solid;
+}
+.bigBtn:hover{
+    color:$main-color;
+    background-color: $main-color;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+}
