@@ -27,6 +27,18 @@
     margin-left: 16px;
 }
 // nav end
+.left{
+    max-width: 50%;
+    @media (max-width:375px) {
+        max-width: 100%;
+    }
+}
+.right{
+    min-width: 40%;
+    @media (max-width:375px) {
+       min-width: 100%; 
+    }
+}
 // contact information
 .inputEmail{
     height: 56px;
@@ -41,13 +53,20 @@
     color: #fff;
 }
 .informationTitle{
-    font-size: 20px;
+    font-size: 16px;
 }
 .option{
     color: #00000098;
 }
 .mainColor{
     color:#0E8A00;
+}
+.checkOutAreaImg{
+    //暫放
+    background-color:black;
+    height:100px;
+    //暫放
+
 }
 
 // shopping address end

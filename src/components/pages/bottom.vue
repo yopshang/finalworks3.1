@@ -6,8 +6,8 @@
         :style="{ backgroundImage: 'url(' + require('@/assets/img/footer.jpg') + ')' }">
             <div class="bottomDiv ai-center">
                 <h2 class="">Subscribe for news and special offers!</h2>
-                <form class="formRwd w-100 p-30">
-                    <input class="emailInput p-15 w-85" type="text" placeholder="Your email address">
+                <form class="d-flex jc-center formRwd w-100">
+                    <input class="emailInput p-15 " type="text" placeholder="Your email address">
                     <input class="inputBtn p-15" type="button" value="Subscribe">
                 </form>
             </div>

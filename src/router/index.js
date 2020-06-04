@@ -5,7 +5,7 @@ import Login from '@/components/pages/Login.vue'
 import product from '@/components/pages/product.vue'
 import productList from '@/components/pages/productList.vue';
 import shopping from '@/components/pages/shopping.vue';
-import myCart from '@/components/pages/myCart.vue';
+import myOrder from '@/components/pages/myOrder.vue';
 
 Vue.use(Router)
 
@@ -13,7 +13,7 @@ export default new Router({
   routes: [
     {
       path:'*',  //假設進入非我定義的頁面，將使用者重新導向到登入畫面
-      redirect:'login',
+      redirect:'/login',
     },
     {
       path: '/',
@@ -34,19 +34,17 @@ export default new Router({
           path: 'productlist',
           name: 'productList',
           component:productList ,
-          // meta:{requiresAuth:true}
+          meta:{requiresAuth:true}
         },
         {
           path: 'shopping',
           name: 'shopping',
           component:shopping ,
-          // meta:{requiresAuth:true}
         },
         {
-          path: 'mycart',
-          name: 'myCart',
-          component:myCart ,
-          // meta:{requiresAuth:true}
+          path: 'myorder',
+          name: 'myOrder',
+          component:myOrder ,
         },
       ]
     },

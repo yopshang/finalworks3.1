@@ -1,5 +1,7 @@
 <template>
 <div class="PDL">
+    <!-- 全螢幕讀取效果 -->
+    <loading :active.sync="isLoading" ></loading>        
     <!-- product filter -->
     <div class="mb-30"> <!--做一個分類fiter-->
         <div class="productFilter p-15 d-flex">
@@ -28,9 +30,15 @@
             </ul>
         </div>
     </div>
-    <div class="d-flex jc-space-between ai-center">
+    <div class="d-flex jc-space-between ai-center p-15">
         <div class="mylogoDiv">我的商城</div>
-        <button class="addProduct" data-toggle="modal" data-target="#productModal"> + 新增商品</button>
+        <div>
+            <button class="addProduct mr-15" data-toggle="modal" data-target="#productModal" @click="openModal(true)"> + 新增商品</button>
+            <button @click.prevent="signout"  class="addProduct">登出</button>
+            <!-- <a  href="#" >
+                登出
+            </a>   -->
+        </div>
     </div>
     <!-- product filter end -->
     <div class="productcard">
@@ -46,6 +54,11 @@
                         <p class="">{{item.price | currency}}</p>
                         <p class="text-dec">{{item.origin_price | currency}}</p>
                     </div>
+                    <div class="w-100 mt-15 d-flex jc-space-between">
+                        <button class="smBtn p-10" data-toggle="modal"
+                        data-target="#editModal" @click="openModal(false,item)">編輯</button>
+                        <button class="smBtn-cancel p-10" @click="deleteProduct(item)">刪除</button>
+                    </div>                    
                 </section>
             </div>
         </div>          
@@ -76,8 +89,8 @@
         </ul>
     </div>
     <!-- page number end -->
-    <!-- Modal -->
-        <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+    <!-- Modal --> <!--id="productModal"-->
+    <div class="modal fade" id="" tabindex="-1" role="dialog" 
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content border-0">
@@ -199,6 +212,80 @@
             </div>
         </div>       
     <!-- Modal end -->
+    <!-- Edit Modal --> <!--引入detail版型-->
+    <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div  class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-header">
+                    <h5 class="titleStyle p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
+                        <span>編輯商品</span>
+                        <!-- <input type="text" v-model="tempProduct.title"> -->
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--叉叉按鈕-->
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+        <div class="modal-body productDetail">
+        <!-- detail -->
+        <!-- product detail -->
+        <!-- 左邊圖案區塊 -->
+        <div class="d-flex flex-wrap-no ">
+            <!-- leftSide -->
+            <div class="  d-flex w-60 flex-wrap p-15 mr-15">
+                <div class="d-flex jc-center">
+                    <img class="smoothInput" :src="tempProduct.imageUrl" alt="">
+                </div>
+                <!-- <div else class="tempImg mb-30 w-100" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-1.jpg') + ')' }"></div> -->
+                <div class="d-flex w-100 ai-center mb-15">
+                    <input type="text" v-model="tempProduct.imageUrl" class="w-50 m-10 form-control p-15 " id="image" placeholder="請輸入圖片連結">
+                    <input type="file" id="customFile" class="form-control m-10 w-50" placeholder="請拖曳或上傳圖片" ref="files" @change="uploadFile">
+                </div>
+                <ul class="w-100 d-flex jc-space-around">
+                    <li class="w-40">
+                        <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品描述"  v-model="tempProduct.description">
+                    </li>
+                    <li class="w-40">
+                        <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品說明內容" v-model="tempProduct.content">
+                    </li>
+                </ul>
+            </div>
+            <!-- rightSide -->
+            <div class=" d-flex ai-center w-40 p-15">
+                <section class="modalInside w-100 jc-flex-start p-15">
+                    <input class="smoothInput w-40" type="text" name="" id="" placeholder="請輸入類別"  v-model="tempProduct.category">
+                    <div>
+                        <div class="productDetailTitle  mb-30">
+                            <input class="w-100 smoothInput" type="text" v-model="tempProduct.title" placeholder="請輸入標題">
+                        </div>
+                        <div class="d-flex jc-space-between mb-15">
+                            <div>原價</div>
+                            <input class="w-35 smoothInput" type="text" placeholder="請輸入原價"  v-model="tempProduct.origin_price">
+                            <div>售價</div>
+                            <input class="w-35 smoothInput" type="text" placeholder="請輸入售價"  v-model="tempProduct.price">
+                        </div>
+                    </div>
+                    <footer>
+                        <ul class="d-flex">
+                            <li class="p-15 ">-</li>
+                            <li class="p-15 ">1</li>
+                            <li class="p-15 ">+</li>
+                            <input class="w-35 smoothInput" type="text" placeholder="請輸入單位"  v-model="tempProduct.unit">
+                            <!-- <li class="fullColorBtn p-15">Add to cart</li> -->
+                        </ul>
+                    </footer>   
+                </section>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn bigBtn" @click="updateProduct">確認</button>
+        </div>
+                    </div>
+                </div>
+            </div>     
+    <!-- Edit Modal end -->
     
 </div>
 </template>
@@ -217,6 +304,7 @@ export default {
                 fileUploading:false,
             },
             sort:"all",
+            product:{},
         }
     },
     methods: {
@@ -236,14 +324,15 @@ export default {
                 this.tempProduct={};
                 this.isNew=true;
             }else{
-                this.tempProduct=Object.assign({},item);
+                this.tempProduct=Object.assign({},item); //避免物件傳參考的特性
+                this.isNew=false;
             }
             $('#productModal').modal('show');
         },
         updateProduct(){
             let api=`https://vue-course-api.hexschool.io/api/yop/admin/product`;
             const vm= this;
-            let httpMethods=`post`;
+            let httpMethods='post';
             if(!vm.isNew){
                 api=`https://vue-course-api.hexschool.io/api/yop/admin/product/${vm.tempProduct.id}`;
                 httpMethods='put';
@@ -255,9 +344,17 @@ export default {
                     vm.getProducts();
                 }else{
                     $('#productModal').modal('hide');
+                    vm.getProducts();
                     console.log('新增失敗');
-                }
+                } 
             })
+        },
+        deleteProduct(item){
+          const vm=this;
+          const url=`https://vue-course-api.hexschool.io/api/yop/admin/product/${item.id}`;
+          this.$http.delete(url).then((response)=>{
+              vm.getProducts();
+          })  
         },
         uploadFile(){
             console.log(this);
@@ -289,7 +386,7 @@ export default {
             this.$http.post(url).then((response) =>{
                 console.log(response.data);
                 if (response.data.success){
-                    vm.$router.push('/login');
+                    vm.$router.push('/');
                 }
             })
         },         

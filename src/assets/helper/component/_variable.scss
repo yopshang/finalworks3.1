@@ -6,13 +6,44 @@
     color:$main-color;
     background-color: #fff;
     font-size: 16px;
-    color: $main-color;
     border: solid;
 }
 .bigBtn:hover{
-    color:$main-color;
-    background-color: $main-color;
-    font-size: 16px;
     color: #fff;
+    background-color: $main-color;
+}
+.fullColorBtn{
+    background-color: $main-color;
+    color: #fff;
+    font-size: 16px;
     border: none;
 }
+.fullColorBtn:hover{
+    background-color:#fff;
+    color:  $main-color;
+}
+.smBtn{
+    color:$main-color;
+    background-color: #fff;
+    font-size: 16px;
+    border: solid;
+    border-radius: 15%;
+}
+.smBtn:hover{
+    color: #fff;
+    background-color:$main-color ;
+}
+.smBtn-cancel{
+    color:#0000009A;
+    background-color: #fff;
+    font-size: 16px;
+    border: solid;
+    border-radius: 15%;
+}
+.smBtn-cancel:hover{
+    color: #fff;
+    background-color:#0000009A;
+}
+// .inThisPage{
+//     color: #000;
+// }

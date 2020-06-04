@@ -1,9 +1,10 @@
 <template>
     <div>
         <body class="text-center">
-            <div class="w-60" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">
-                
-            </div>
+    <!-- 全螢幕讀取效果 -->
+    <loading :active.sync="isLoading" ></loading>                
+            <!-- <div class="w-60" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">  
+            </div> -->
             <form class="form-signin w-40" @submit.prevent="signin">
                 <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 font-weight-normal">會員中心</h1>
@@ -44,7 +45,7 @@ export default {
             this.$http.post(api,vm.user).then((response)=>{
                 console.log(response.data);
                 if (response.data.success){
-                    vm.$router.push('/#');
+                    vm.$router.push('/product/productlist');
                 }
             })
         },
@@ -53,12 +54,12 @@ export default {
             const vm= this;
             this.$http.post(api).then((response)=>{
                 console.log(response.data);
-                驗證是否持續登入
+                // 驗證是否持續登入
                 if (response.data.success){
                     // vm.$router.push('/');
                     next();
                 }else{
-                    vm.$router.push('/#');
+                    vm.$router.push('login');
                 }
             });    
         }

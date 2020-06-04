@@ -1,3 +1,6 @@
+$main-color:#0E8A00;
+$secondary-color:#0000009A;
+$third-color:#00000062;
 *,::after,::before{
     box-sizing: border-box;
 }
@@ -8,7 +11,23 @@ img{
 li{
     list-style-type:none;
 }
+
 a{
-    text-decoration:none;
-    color:black;
+    text-decoration: none;
+    color: #0000009A;
+}
+a:hover{
+    color: #0E8A00;
+    text-decoration: none;
+}
+.mainContainer{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    @media(max-width: 375px){
+        .mainContainer{
+            max-width: 100%; 
+            margin: 0 auto;
+        }
+    }
 }

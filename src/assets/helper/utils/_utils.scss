@@ -1,12 +1,11 @@
-.main-container{
-    max-width: 1280px;
-    margin: 0 auto;
-}
 .d-flex{
     display: flex;
 }
 .fd-column{
     flex-direction: column;
+}
+.fd-row-reverse{
+    flex-direction:row-reverse
 }
 .flex-wrap{
     flex-wrap: wrap;
@@ -52,19 +51,34 @@
     max-width: 50%;
 }
 .w-40{
-    min-width: 40%;
+    max-width: 40%;
+}
+.w-35{
+    max-width: 35%;
 }
 .w-25{
     max-width: 25%;
 }
+.w-15{
+    max-width: 15%;
+}
 .mt-30{
     margin-top: 30px;
+}
+.mt-15{
+    margin-top: 15px;
 }
 .mr-15{
     margin-right: 15px;
 }
+.mb-30{
+    margin-bottom: 30px;
+}
 .mb-25{
     margin-bottom: 25px;
+}
+.mb-15{
+    margin-bottom: 15px;
 }
 .mb-10{
     margin-bottom: 10px;
@@ -75,7 +89,17 @@
 .p-15{
     padding: 15px;
 }
+.p-5{
+    padding: 5px;
+}
 .m-30{
     margin: 30px;
 }
+.m-10{
+    margin: 10px;
+}
+.h-200{
+    height: 200px;
+}
+
 // config user interface end

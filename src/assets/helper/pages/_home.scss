@@ -1,28 +1,20 @@
 
-$main-color:#0E8A00;
-$secondary-color:#0000009A;
-$third-color:#00000062;
-.mainContainer{
-    max-width: 1000px;
-    margin: 0 auto;
-}
-a{
-    text-decoration: none;
-    color: $main-color;
-}
-a:hover{
-    color: $main-color;
-    text-decoration: none;
-}
-//nav
-//nav end
 // firstRow
 .topDiv{
     height: 650px;
     margin-bottom: 72px;
 }
+.topDivLeft{
+    max-width: 50%;   
+    @media (max-width:375px) {
+        max-width: 100%;
+    }
+}
 .insideTopdiv{
-    width: 50%;
+    max-width: 50%;
+    @media (max-width:375px){
+        max-width: 100%;
+    }
 }
 .titleIntop{
     margin-top: 24px;
@@ -40,18 +32,16 @@ a:hover{
     font-size: 24px;
     color: $secondary-color;
 }
-.shopBtn{
-    color:$main-color;
-    background-color: $main-color;
-    font-size: 16px;
-    color: #fff;
-    border: none;
-}
 .topDivright{
     background-size: cover;
     background-repeat: no-repeat;
     background-position:center;
     width: 50%;
+    @media (max-width:375px){
+        display:none;
+        position: absolute;
+        width: 100%;
+    }
     ul{
         li{
             color: #fff;
@@ -66,6 +56,11 @@ a:hover{
 }
 .secondRow{
     width: 50%;
+    @media (max-width:375px){
+        width: 100%;
+        height: 150px;
+        margin-bottom: 30px;
+    }
 }
 .secFix{
     display: flex;
@@ -93,7 +88,6 @@ a:hover{
 // secondRow end
 // thirdRow
 .thirdRow{
-    // background-image: url('/img/index-5.jpg');
     background-size:cover;
     background-position: center;
     height: 400px;
@@ -101,6 +95,9 @@ a:hover{
 }
 .leftSide{
     padding: 0;
+    @media (max-width:375px) {
+        max-width: 100%;
+    }
     p{
         color: #FFFFFF;
         font-size: 35px;
@@ -126,14 +123,21 @@ a:hover{
 
 }
 .thirdTurnRwd{
-    width: 50%;
+    max-width: 50%;
+    @media (max-width:375px) {
+        width: 100%;
+        p{
+            font-size: 16px;
+        }
+    }
+
 }
 // thirdRow end
 // fourthRow
 .fourthRowinside{
     display: flex;
     overflow:scroll;
-    overflow-y: hidden;
+    overflow-y: hidden; 
     height: 350px;
     .productCard{
         width: 200px;
@@ -179,48 +183,9 @@ a:hover{
 .fourthRowinside::-webkit-scrollbar {
     display: none;
   }
-.onSile{
-    color: #fff;
-    font-size: 14px;
-    margin-top: -315px;
-    text-align: right;
-    margin-right: 16px;
-    font-weight: bold;
-}
-.underOnsile{
-    margin-top: 295px;
-}
 
 // fourthRow end
-// bottomRow
-.bottomRow{
-    background-size: cover;
-    background-position: center;
-    height: 400px;
-    div{
-        // padding: 0;
-        // margin-top: 39px;
-        // margin-bottom: 39px;
-        // margin-left: 85px;
-        h2{
-            font-size: 48px;
-            font-weight: bold;
-            color: #fff;
-        }
-        form{
-            .emailInput{
-                height: 56px;
-            }
-            .inputBtn{
-                height: 56px;
-                background-color: $main-color;
-                color: #fff;
-            }
-        }
-    }
-}
-// bottomRow end
-// footerRow
+
 .footerRow{
     background-color: #121212;
     justify-content: space-between;
@@ -256,100 +221,30 @@ a:hover{
     width: 60%;
     padding: 30px;
 }
+.emailInput{
+    @media (max-width:375px) {
+        max-width: 200px;
+    }
+}
 // footerRow end
 @media(max-width:375px){
-    .mainContainer{
-        max-width: 350px; 
-        margin: 0 auto;
-    }
-    .topDivright{
-        display:none;
-        position: absolute;
-    }
-    .insideTopdiv{
-        width: 100%;
-    }
-    .topDivright{
-        width: 100%;
-    }
-    .secondRow{
-        width: 100%;
-        height: 150px;
-    }
-    .m-rwd{
-        margin-bottom: 30px;
-    }
+
     .secRowRwd{
         margin-top: 100px;
     }
-    .reRow{
-        flex-direction: row-reverse;
-    }
     // third Row 
-    .mt-70{
-        margin-top: 70px;
-    }
     .thirdRowoutsideRwd{
         flex-direction: column;
         justify-content: space-around;
+        margin-top: 70px;
     }
-    .thirdTurnRwd{
-        width: 100%;
-        p{
-            font-size: 16px;
-        }
-    }
-    .secFix{
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 25px;
-    }
-  
     // third Row end
     // forth Row
     .bottomDiv{
         width: 100%;
         padding: 0;
     }
-    .formRwd{
-        display: flex;
-    }
-    .emailInput{
-        max-width: 200px;
-    }
-    .bottomRow div h2 {
-        font-size: 16px;
-        font-weight: bold;
-        color: #fff;
-    }
+
+
     // forth Row end
-    // footer
-    .bottomRow{
-        height: 300px;
-    }
-    .footerRow{
-        background-color: #121212;
-        justify-content: space-between;
-        padding: 15px;
-        display: block; //
-        align-items: center;
-        justify-content: space-between;
-        div{
-            margin:10px 0;
-            h2{
-                color: #FFFFFF;
-                font-size: 24px;
-                font-weight: bold;
-            }
-            p{
-                color: #ffffff99;
-                font-size: 14px;
-            }
-        }
-        ul{
-            display: block;
-            font-size: 14px;
-        }
-    }
-    // footer end
 }

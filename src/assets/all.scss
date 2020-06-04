@@ -13,7 +13,7 @@
 @import "./helper/pages/home";
 @import "./helper/pages/product";
 @import "./helper/pages/shopping.scss";
-@import "./helper/pages/detail";
+@import "./helper/pages/_detail";
 @import "./helper/pages/myOrder";
 
 // compontents
@@ -21,6 +21,7 @@
 
 // layout
 @import "./helper/layout/_homenav";
+@import "./helper/layout/bottom";
 
 
 // utils

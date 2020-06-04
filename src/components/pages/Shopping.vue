@@ -1,5 +1,7 @@
 <template>
 <div class="PDL">
+    <!-- 全螢幕讀取效果 -->
+    <loading :active.sync="isLoading" ></loading>    
     <!-- product filter -->
     <div class="mb-30"> <!--做一個分類fiter-->
         <div class="productFilter p-15 d-flex">
@@ -29,7 +31,7 @@
         </div>
     </div>
     <div class="d-flex jc-space-between ai-center">
-        <div class="mylogoDiv">購物專區</div>
+        <div class="mylogoDiv">購物專區</div>      
     </div>
     <!-- product filter end -->
     <div class="productcard">
@@ -40,7 +42,10 @@
                 <img :src="item.imageUrl" class="productImg mb-10" alt="">
                 <div class="cate">{{item.category}}</div>
                 <section class="d-flex fd-column">
-                    <h2 class="mb-15">{{item.title}}</h2>
+                    <div class="d-flex jc-center">
+                        <h2 class="mb-15 mr-15">{{item.title}}</h2>
+                        <i class=" fas fa-shopping-cart"></i>
+                    </div>
                     <div class="w-100 d-flex jc-space-between">
                         <p class="">{{item.price | currency}}</p>
                         <p class="text-dec">{{item.origin_price | currency}}</p>
@@ -52,7 +57,8 @@
     <!-- page number -->
     <div class="p-15">
         <ul class="pageUl d-flex jc-center">
-            <li class="pageNumber p-15" :class="{'disabled':!pagination.has_pre}">
+            <li class="pageNumber p-15" 
+            v-if="pagination.has_pre"> <!--:class="{'disabled':!pagination.has_pre}"-->
                 <a href="#" @click.prevent="getProducts(pagination.current_page-1)">
                     <<
                 </a>
@@ -66,7 +72,7 @@
                 </a>
             </li>
             <li class="pageNumber  p-15"
-            :class="{'disabled':!pagination.has_next}" >
+            v-if="pagination.has_next"><!--:class="{'disabled':!pagination.has_next}"-->
                 <a href="#" @click.prevent="getProducts(pagination.current_page+1)">
                     >>
                 </a>
@@ -75,7 +81,7 @@
     </div>
     <!-- page number end -->
     <!-- Modal --> <!--引入detail版型-->
-        <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
+    <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content border-0">
@@ -91,15 +97,15 @@
                             <!-- detail -->
         <!-- product detail -->
         <!-- 左邊圖案區塊 -->
-        <div v-for="item in product" :key="item.id" class="d-flex flex-wrap-no productDetail">
+        <div  class="d-flex flex-wrap-no productDetail"><!--v-for="item in product" :key="item.id"-->
             <div data-aos="zoom-in" class="row detailImg w-100">
-                <img :src="item.imageUrl" alt=""> <!---->
+                <img alt=""> <!--:src="item.imageUrl"-->
             <!-- 加入購物車div塊 右邊 -->
             <div class=" animate__animated animate__fadeInRight detailText row col-lg-6 ai-center jc-center">
                 <div class="underText row">
                     <div>
                         <h3 class="h3inText">Home / Product / Cup</h3>
-                        <h2 class="h2inText">{{item.title}}</h2>
+                        <h2 class="h2inText"></h2> <!--{{item.title}}-->
                     </div>
                     <ul class="d-flex priceDiv jc-flex-end">
                         <li class="originPrice">NT$1,200</li>
@@ -234,6 +240,9 @@
             </div>
         </div>       
     <!-- Modal end -->
+    <!-- cart side modal -->
+    
+    <!-- cart side model end -->
     
 </div>
 </template>
@@ -253,19 +262,20 @@ export default {
             tempProduct:{},
             carts:{},
             sort:"all",
-            product:{}
+            product:[]
         }
     },
     methods: {
         getProducts(page=1){
-            const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
+            const api=`https://vue-course-api.hexschool.io/api/yop/products?page=${page}`;
             const vm=this;
             vm.isLoading=true;
             this.$http.get(api).then((response)=>{
-                console.log(response.data);
-                vm.isLoading=false;
                 vm.products=response.data.products;
                 vm.pagination=response.data.pagination;
+                vm.isShow=response.data.imageUrl
+                console.log(response.data);
+                vm.isLoading=false;
             })
         },
         getProduct(id){
@@ -279,6 +289,16 @@ export default {
                 vm.status.loadingItem='';
             })
         },
+        signout(){
+            const url= 'https://vue-course-api.hexschool.io/logout';
+            const vm = this;
+            this.$http.post(url).then((response) =>{
+                console.log(response.data);
+                if (response.data.success){
+                    vm.$router.push('/login');
+                }
+            })
+        }, 
         addtoCart(id,qty=1){
             const vm = this;
             const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
@@ -359,7 +379,6 @@ export default {
     },
     created() {
         this.getProducts();
-        // this.getProduct();
         this.getCart();
     }
 }

@@ -14,7 +14,6 @@
 .productDetail{
 }
 .detailImg{
-    background-color: gray;
     height: 250px;
 }
 .script{
@@ -111,3 +110,21 @@
     height: 56px;
 }
 // Modal
+// productDetailModal
+.tempImg{
+    height: 300px;
+}
+.productDetail{
+    height: 500px;
+}
+.productDetailTitle{
+    font-size: 36px;
+}
+.modalInside{
+    border-radius: 15%;
+    border: solid;
+}
+.smoothInput{
+    border-radius: 10%;
+    border:none;
+}

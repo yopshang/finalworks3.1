@@ -7,8 +7,8 @@
         <!--全螢幕讀取效果結束-->
         <homenav/>
         <!-- firstRow --><!--title-->
-        <div class="topDiv d-flex flex-wrap">
-            <div class="insideTopdiv d-flex ai-center">
+        <div class="topDiv  d-flex flex-wrap">
+            <div class="topDivLeft  d-flex ai-center">
                 <div  class="insideTop">
                     <h1 class="bigTitleintop mb-10 animated__animate animate__fadeInLeft">
                         Enjoy Your 
@@ -20,7 +20,7 @@
                     <h2 class="smTitleintop mb-10">The best crafts in Taiwan. Get your free shipping on the first order.</h2>
                     <a href="/product.html mb-10">
                         <router-link to="/product/productList">
-                            <input class="shopBtn p-15" type="button" value="Shop now"></input>
+                            <input class="fullColorBtn p-15" type="button" value="Shop now"></input>
                         </router-link> 
                     </a>
                 </div>
@@ -33,9 +33,9 @@
         <!-- secondRow --><!--three img-->
         <div>
             <div class="d-flex flex-wrap mb-25 h-250">
-                <div  class="secondRow m-rwd" 
+                <div  class="secondRow" 
                 :style="{ backgroundImage: 'url(' + require('@/assets/img/index-2.jpg') + ')' }"></div>
-                <div class="d-flex ai-center secondRow ai-center  m-rwd">
+                <div class="d-flex ai-center secondRow ai-center">
                     <section class="secRowsection">
                         <h2>Special Clays</h2>
                         <p>A general body formulation for contemporary earthenware is 25% kaolin, 25% ball clay, 35% quartz and 15% feldspar.</p>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="secFix h-250 secRowRwd"> <!--待會回來修理這裡-->
-                <div class="d-flex ai-center secondRow  reRow">
+                <div class="d-flex ai-center secondRow">
                     <section class="secRowsection">
                         <h2>Less is more</h2>
                         <p>Trimming pottery can transform a weighty Earth-bound pot into one that is a pleasure to hold, look at, and use.</p>
@@ -72,7 +72,7 @@
         </div>
         <!-- secondRow end -->
     <!-- thirdRow --> <!--big img-->
-    <div class="d-flex thirdRow mt-70 m-rwd thirdRowoutsideRwd" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">
+    <div class="d-flex thirdRow m-rwd thirdRowoutsideRwd" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">
         <div class=" d-flex thirdTurnRwd leftSide ai-center">
             <p class="m-30">“I want to make the life more simple by crafts.”</p>
         </div>
@@ -136,7 +136,7 @@ export default {
             isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
-            }
+            },
             
         }
     },
@@ -152,6 +152,7 @@ export default {
                 vm.products=response.data.products;
             })
         },
+
 
     },
     // methods end
