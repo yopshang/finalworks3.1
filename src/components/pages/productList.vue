@@ -67,7 +67,8 @@
     <!-- page number -->
     <div class="p-15">
         <ul class="pageUl d-flex jc-center">
-            <li class="pageNumber p-15" :class="{'disabled':!pagination.has_pre}">
+            <li class="pageNumber p-15" 
+            v-if="pagination.has_pre"> <!--:class="{'disabled':!pagination.has_pre}"-->
                 <a href="#" @click.prevent="getProducts(pagination.current_page-1)">
                     <<
                 </a>
@@ -81,7 +82,7 @@
                 </a>
             </li>
             <li class="pageNumber  p-15"
-            :class="{'disabled':!pagination.has_next}" >
+            v-if="pagination.has_next"><!--:class="{'disabled':!pagination.has_next}"-->
                 <a href="#" @click.prevent="getProducts(pagination.current_page+1)">
                     >>
                 </a>
@@ -212,7 +213,7 @@
             </div>
         </div>       
     <!-- Modal end -->
-    <!-- Edit Modal --> <!--引入detail版型-->
+    <!-- Edit Modal -->
     <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div  class="modal-dialog modal-lg" role="document">
@@ -220,7 +221,6 @@
                 <div class="modal-header">
                     <h5 class="titleStyle p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
                         <span>編輯商品</span>
-                        <!-- <input type="text" v-model="tempProduct.title"> -->
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--叉叉按鈕-->
                         <span aria-hidden="true">&times;</span>
@@ -233,7 +233,7 @@
         <div class="d-flex flex-wrap-no ">
             <!-- leftSide -->
             <div class="  d-flex w-60 flex-wrap p-15 mr-15">
-                <div class="d-flex jc-center">
+                <div class="w-100 d-flex jc-center">
                     <img class="smoothInput" :src="tempProduct.imageUrl" alt="">
                 </div>
                 <!-- <div else class="tempImg mb-30 w-100" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-1.jpg') + ')' }"></div> -->

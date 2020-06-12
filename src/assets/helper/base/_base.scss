@@ -31,3 +31,9 @@ a:hover{
         }
     }
 }
+//隱藏input number預設按鈕
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}

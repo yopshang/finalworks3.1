@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <!-- <homenav/> -->
     <router-view/>
   </div>
 </template>
 
 <script>
+import homenav from '@/components/pages/homenav.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    homenav
+  }
 }
 </script>
 

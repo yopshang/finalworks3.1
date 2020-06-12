@@ -27,15 +27,20 @@
                 <li class="filterList" :class="{'active':sort=='其他'}" @click="sort='其他'">
                     其他
                 </li>
+
             </ul>
         </div>
     </div>
+    <!-- test Modal -->
+
+    <!-- test Modal ende-->
     <div class="d-flex jc-space-between ai-center">
         <div class="mylogoDiv">購物專區</div>      
     </div>
     <!-- product filter end -->
     <div class="productcard">
-        <div  @click="getProduct(item.id)" v-for="(item) in products" :key="item.id" 
+        <div  v-for="(item) in products" :key="item.id"
+        @click="getProduct(item.id)" 
         v-if="item.category==sort || sort=='all'"
         class="productArea cardHover"><!--這邊要用v-for引入資料-->
             <div class="cateContainer">
@@ -44,7 +49,9 @@
                 <section class="d-flex fd-column">
                     <div class="d-flex jc-center">
                         <h2 class="mb-15 mr-15">{{item.title}}</h2>
-                        <i class=" fas fa-shopping-cart"></i>
+                        <div class="addToCardBtn" @click="addtoCart(product.id)">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
                     </div>
                     <div class="w-100 d-flex jc-space-between">
                         <p class="">{{item.price | currency}}</p>
@@ -80,166 +87,88 @@
         </ul>
     </div>
     <!-- page number end -->
-    <!-- Modal --> <!--引入detail版型-->
+    <!-- Edit Modal --> <!--修改成取得單一商品-->
     <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content border-0">
-                            <div class="modal-header">
-                                <h5 class="titleStyle p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
-                                    <span></span>
-                                </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--叉叉按鈕-->
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- detail -->
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content border-0">
+                <div class="modal-header titleStyle">
+                    <h5 class=" p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
+                        <span>商品內容</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--叉叉按鈕-->
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+        <div class="modal-body productDetail">
+        <!-- detail -->
         <!-- product detail -->
         <!-- 左邊圖案區塊 -->
-        <div  class="d-flex flex-wrap-no productDetail"><!--v-for="item in product" :key="item.id"-->
-            <div data-aos="zoom-in" class="row detailImg w-100">
-                <img alt=""> <!--:src="item.imageUrl"-->
-            <!-- 加入購物車div塊 右邊 -->
-            <div class=" animate__animated animate__fadeInRight detailText row col-lg-6 ai-center jc-center">
-                <div class="underText row">
+        <div class="d-flex flex-wrap-no ">
+            <!-- leftSide -->
+            <div class="  d-flex w-60 flex-wrap p-15 mr-15">
+                 <!--商品圖片-->
+                <div class="w-100  mb-30 d-flex jc-center">
+                    <img class="smoothInput" :src="product.imageUrl" alt="">
+                </div>
+                <!-- 商品描述及說明 -->
+                <ul class="w-100 d-flex jc-space-around">
+                    <li class="w-40 ">
+                        <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品描述"  v-model="product.description" disabled="disabled">
+                    </li>
+                    <li class="w-40">
+                        <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品說明內容" v-model="product.content" disabled="disabled">
+                    </li>
+                </ul>
+            </div>
+            <!-- rightSide -->
+            <div class=" d-flex ai-center w-40 p-15 flex-wrap jc-center">
+                <section class="modalInside w-100 jc-flex-start p-15">
                     <div>
-                        <h3 class="h3inText">Home / Product / Cup</h3>
-                        <h2 class="h2inText"></h2> <!--{{item.title}}-->
+                        <div class="mb-30 d-flex">
+                            <input class="productDetailTitle w-100 smoothInput" type="text" v-model="product.title" placeholder="請輸入標題" disabled="disabled">
+                            <input class="cata smoothInput w-40" type="text" name="" id="" placeholder="請輸入類別"  v-model="product.category" disabled="disabled">
+                        </div>
+                        <div class="d-flex jc-space-between mb-15 ai-center">
+                            <div>原價</div>
+                            <input class="w-35 smoothInput" type="text" placeholder="請輸入原價"  v-model="product.origin_price" disabled="disabled">
+                            <div>售價</div>
+                            <input class="w-35 smoothInput" type="text" placeholder="請輸入售價"  v-model="product.price" disabled="disabled">
+                        </div>
                     </div>
-                    <ul class="d-flex priceDiv jc-flex-end">
-                        <li class="originPrice">NT$1,200</li>
-                        <li class="price">NT$1,080</li>
-                    </ul>
-                    <ul class="row flex-wrap-no">
-                        <button class="button col-lg-2  d-flex ai-center">
-                            <li>
-                                -
-                            </li>
-                        </button>
-                        <li  class="button col-lg-2 d-flex ai-center">
-                            <p class="mb-0">1</p>
-                        </li>
-                        <button  class="button  col-lg-2  d-flex ai-center">
-                            <li>
-                                +
-                            </li>
-                        </button>
-                        <button class="btn bigBtn col-lg-8 d-flex ai-center jc-center addTocart"  
-                        type="button"
-                        data-toggle="modal"
-                        data-target="#cart">
-                                Add to cart
-                        </button>
-                    </ul>
-                </div>
-            </div>
-            <!-- 加入購物車div塊結束 -->
+                    <footer>
+                        <ul class="d-flex ai-center">
+                            <li class="sign w-25 p-15 " @click="minus(product.num)">-</li>
+                            <input class=" numArea w-25 p-15" type="number" value="" v-model="product.num">
+                            <li class="sign w-25 p-15" @click="add">+</li>
+                            <!-- <select name="" id="" v-model="product.num">
+                                <option value="">
+                                    選購1個
+                                </option>
+                            </select> -->
+                            <input class="w-25 smoothInput" type="text" placeholder="請輸入單位"  v-model="product.unit" disabled="disabled">
+                            <!-- <li class="fullColorBtn p-15">Add to cart</li> -->
+                        </ul>
+                    </footer>   
+                    <hr>
+                    <section class="w-100 d-flex ai-center jc-space-around">
+                        <div>小記</div>
+                        <div>{{product.num*product.price | currency}} </div>
+                        <div>元</div>
+                    </section>
+                </section>
             </div>
         </div>
-        <!--product detail 下面文字-->
-        <div class="row col-lg-8 mt-2 mb-2 ">
-            <p class="script col-lg-8">This beautiful light grey cup comes from Taiwan. Add some minimalist scenes to your lifetime and use this cup for tea, coffee, dessert, or to place small items as a dish tray.</p>
-            <p class=" col-lg-4">Made in Taiwan 8 x 8 x 6 cm Dishwasher and Microwave-safe</p>
         </div>
-        <!-- product detail 下面文字 end-->
-        <!-- product detail end -->
-        <!-- you might like -->
-        <div>
-            <h1>You might also like…</h1>
-            <ul class="ulOndetail row flex-wrap-no">
-                <li class="animate__animated animate__fadeInRight col-lg-3">
-                    <img alt="">
-                    <div class="onsile">ON SALE</div>
-                    <section>
-                        <h2 class="underOnsile">Tatami Cup</h2>
-                        <div class="row col-lg-6 jc-space-around">
-                            <p>NT$1,080</p>
-                            <p class="text-dec">NT$1,200</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="animate__animated animate__fadeInRight col-lg-3">
-                    <img src="/img/img-1.jpg" alt="">
-                    <div class="onsile">ON SALE</div>
-                    <section>
-                        <h2 class="underOnsile">Tatami Cup</h2>
-                        <div class="row col-lg-6 jc-space-around">
-                            <p>NT$1,080</p>
-                            <p class="text-dec">NT$1,200</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="animate__animated animate__fadeInRight col-lg-3">
-                    <img src="/img/img-1.jpg" alt="">
-                    <div class="onsile">ON SALE</div>
-                    <section>
-                        <h2 class="underOnsile">Tatami Cup</h2>
-                        <div class="row col-lg-6 jc-space-around">
-                            <p>NT$1,080</p>
-                            <p class="text-dec">NT$1,200</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="animate__animated animate__fadeInRight col-lg-3">
-                    <img src="/img/img-1.jpg" alt="">
-                    <div class="onsile">ON SALE</div>
-                    <section>
-                        <h2 class="underOnsile">Tatami Cup</h2>
-                        <div class="row col-lg-6 jc-space-around">
-                            <p>NT$1,080</p>
-                            <p class="text-dec">NT$1,200</p>
-                        </div>
-                    </section>
-                </li>
-                <li class="animate__animated animate__fadeInRight col-lg-3">
-                    <img src="/img/img-1.jpg" alt="">
-                    <div class="onsile">ON SALE</div>
-                    <section>
-                        <h2 class="underOnsile">Tatami Cup</h2>
-                        <div class="row col-lg-6 jc-space-around">
-                            <p>NT$1,080</p>
-                            <p class="text-dec">NT$1,200</p>
-                        </div>
-                    </section>
-                </li>
-            </ul>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+            <button type="button" class="btn bigBtn" @click="addtoCart(product.id,product.num)">加入購物車</button>
         </div>
-        <!-- you might like end -->
-        <!-- detail end -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn bigBtn" @click="updateProduct()">確認</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="modal fade" id="delProductModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content border-0">
-                    <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            <span>刪除產品</span>
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        是否刪除 <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-                        <button type="button" class="btn btn-danger">
-                            確認刪除
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>       
-    <!-- Modal end -->
+            </div>     
+    <!-- Edit Modal end -->
+
     <!-- cart side modal -->
     
     <!-- cart side model end -->
@@ -260,9 +189,8 @@ export default {
                 loadingItem:'',
             },
             tempProduct:{},
-            carts:{},
             sort:"all",
-            product:[]
+            product:{},
         }
     },
     methods: {
@@ -310,7 +238,6 @@ export default {
             this.$http.post(url,{data:cart}).then((response)=>{
                 console.log(response);
                 vm.status.loadingItem='';
-
                 $('#productModal').modal('hide');
             })
         },
@@ -320,7 +247,7 @@ export default {
             vm.isLoading=true;
             this.$http.get(url).then((response)=>{
                 console.log(response);
-                vm.carts=response.data.data.carts; //vm.carts=response.data.data.carts
+                vm.carts=response.data.carts; //vm.carts=response.data.data.carts
                 vm.isLoading=false;
             })
         },
@@ -375,7 +302,19 @@ export default {
                     this.$bus.$emit('message:push',response.data.message,'danger');
                 }
             });
-        },      
+        },
+        add(){
+            const vm=this;
+            vm.product.num++;
+        }, 
+        minus(num){
+            const vm=this;
+            if(num<=1){
+                vm.product.num=1;
+            }else{
+                vm.product.num--;
+            }
+        },     
     },
     created() {
         this.getProducts();

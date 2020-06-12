@@ -45,8 +45,8 @@
                     </section>
                 </div>
             </div>
-            <div class="secFix h-250 secRowRwd"> <!--待會回來修理這裡-->
-                <div class="d-flex ai-center secondRow">
+            <div class="secFix h-250 secRowRwd">
+                <div class="fixHere d-flex ai-center secondRow">
                     <section class="secRowsection">
                         <h2>Less is more</h2>
                         <p>Trimming pottery can transform a weighty Earth-bound pot into one that is a pleasure to hold, look at, and use.</p>
@@ -114,13 +114,12 @@
     </div>
     <!-- fourthRow end -->
     <bottom/>
-
 </div>
 </template>
 <script>
 import homenav from './homenav.vue';
 import bottom from './bottom';
-import productList from './productlist';
+import productList from './productList';
 export default {
     components:{
                 homenav,
@@ -143,7 +142,7 @@ export default {
     // data end
     methods:{
         getProducts(){
-            const api=`https://vue-course-api.hexschool.io/api/yop/admin/products`;
+            const api=`https://vue-course-api.hexschool.io/api/yop/products`;
             const vm=this;
             vm.isLoading=true;
             this.$http.get(api).then((response)=>{
@@ -152,8 +151,6 @@ export default {
                 vm.products=response.data.products;
             })
         },
-
-
     },
     // methods end
     created() {

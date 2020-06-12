@@ -46,12 +46,13 @@ export default {
                 console.log(response.data);
                 if (response.data.success){
                     vm.$router.push('/product/productlist');
+                    // next();
                 }
             })
         },
-        loginCheck(){
+        brforeRouterEnter(to, from, next) {
             const api=`https://vue-course-api.hexschool.io/api/user/check`;
-            const vm= this;
+            // const vm= this;
             this.$http.post(api).then((response)=>{
                 console.log(response.data);
                 // 驗證是否持續登入
@@ -59,14 +60,15 @@ export default {
                     // vm.$router.push('/');
                     next();
                 }else{
-                    vm.$router.push('login');
+                    // vm.$router.push('/login');
+                    next('/login');
                 }
             });    
         }
     },
     // methods結束
     created(){
-        this.loginCheck();
+        // this.loginCheck();
     }
 }
 </script>

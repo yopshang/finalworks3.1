@@ -7,7 +7,7 @@
         <!-- left side -->
         <div class="left">
             <!-- second nav -->
-            <h2 class="secNav mb-15"> <span class="secNavtitle1">填寫資訊</span><span class="secNavtitle3"> ></span> 結帳<span class="secNavtitle3"> > 完成購物!</span></h2>
+            <h2 class="secNav mb-15"> <span class="secNavtitle3">填寫資訊</span><span class="secNavtitle1"> ></span> 結帳<span class=""> > 完成購物!</span></h2>
             <!-- second nav end -->
             <!-- contact information -->
             <div>
@@ -39,14 +39,11 @@
                     <input class="w-100 p-15 mb-15" placeholder="Address" type="text">
                     <div class="d-flex mb-30 w-100 jc-space-between">
                         <p  class="mainColor w-50 p-15">
-                            <router-link to="/product/shopping"></router-link>
+                            <router-link to="/product/myorder">
                                 < Return to information 
-                        </p>
-                        <button class="fullColorBtn w-50 p-15">
-                            <router-link to="/product/myorder/myorder_info">
-                                Continue to payment
                             </router-link>
-                        </button>
+                        </p>
+                        <button class="fullColorBtn w-50 p-15">Continue to payment</button>
                     </div>
                   
                     </div>
@@ -56,11 +53,10 @@
             <!-- left side end -->
         <div class="d-flex right">
             <div class="w-100">
-                <!-- cart cards -->
-                <div v-for="item in inCarts" class="d-flex mb-15 procuctArea ai-center">
+                <!-- procuct area -->
+                <div class="d-flex mb-15 procuctArea ai-center">
                     <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt="">
-                    <!-- <img class="checkOutAreaImg w-25" :src="cart.imageUrl" alt=""> -->
-                    <section class="w-40">{{item.title}}</section>
+                    <section class="w-40">Tatami Cup ×1</section>
                     <section class="w-35">NT$1,080</section>
                 </div>
                 <div class="d-flex procuctArea ai-center">
@@ -68,7 +64,7 @@
                     <section class="w-40">Baifan Bowl ×2</section>
                     <section class="w-35">NT$3,600</section>
                 </div>
-                <!-- cart cards end -->
+                <!-- product area end -->
                 <hr>
                 <!-- counting area -->
                 <div class="d-flex jc-space-between mb-15">
@@ -91,57 +87,3 @@
     </div>        
     </div>
 </template>
-<script>
-export default {
-    name:"myOrder",
-    data(){
-        return{
-            product:{}, 
-            isLoading:false,
-            inCarts:{}
-        }
-    },
-    methods:{
-        getProduct(id){
-            const vm= this;
-            const url = `https://vue-course-api.hexschool.io/api/yop/product/${id}`;
-            vm.status.loadingItem=id;
-            this.$http.get(url).then((response) =>{
-                vm.product= response.data.product;
-                $('#productModal').modal('show');
-                console.log(response);
-                vm.status.loadingItem='';
-            })
-        },
-        addtoCart(id,qty=1){
-            const vm = this;
-            const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
-            vm.status.loading=id;
-            const cart={
-                product_id:id,
-                qty  //  等同qty:qty
-            }
-            this.$http.post(url,{data:cart}).then((response)=>{
-                console.log(response);
-                vm.status.loadingItem='';
-                $('#productModal').modal('hide');
-            })
-        },                
-        getCart(){
-            const vm =this;
-            const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            vm.isLoading=true;         
-            this.$http.get(url).then((response)=>{
-                console.log(response);
-                // vm.carts=response.data.carts;
-                vm.inCarts=response.data.data.carts.product;
-                vm.isLoading=false;
-                console.log(inCarts);
-            })
-        },        
-    },
-    created(){
-        this.getCart();        
-    }
-}
-</script>

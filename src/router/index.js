@@ -6,6 +6,7 @@ import product from '@/components/pages/product.vue'
 import productList from '@/components/pages/productList.vue';
 import shopping from '@/components/pages/shopping.vue';
 import myOrder from '@/components/pages/myOrder.vue';
+import myOrder_Info from '@/components/pages/myOrder_Info';
 
 Vue.use(Router)
 
@@ -45,6 +46,13 @@ export default new Router({
           path: 'myorder',
           name: 'myOrder',
           component:myOrder ,
+          children:[
+            {
+              path: 'myorder_info',
+              name: 'myOrder_Info',
+              component:myOrder_Info,
+            },
+          ]
         },
       ]
     },

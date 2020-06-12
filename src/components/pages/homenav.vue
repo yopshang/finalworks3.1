@@ -22,24 +22,14 @@ ASD83A<template>
                         | Shopping
                     </router-link>
                 </li>
-                <li id="navPage" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/product/myorder">
-                        | My Order
-                    </router-link>
-                </li>                
+              
                 <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
                     <router-link class="productList" to="/login">
                         | Login
                     </router-link>
                 </li>
-                <!-- <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <a @click.prevent="signout"  class="productList" href="#" >
-                        | Logout
-                    </a>
-                </li>                 -->
-                <!--購物車圖案-->
                 <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/product/mycart">
+                    <router-link class="productList" to="/product/myorder">
                         | <i class="fas fa-shopping-cart"></i>
                     </router-link>
                 </li>
@@ -50,6 +40,7 @@ ASD83A<template>
 </template>
 
 <script>
+import $ from 'jquery';
 export default {
     name:'homenav',
     data(){
@@ -67,22 +58,16 @@ export default {
                 }
             })
         },        
-    }
+    },
+    created(){
+        $(document).ready(function() {
+            console.log( "ready!" );
+            $('#ham-icon').click(function(e) {
+                e.preventDefault();
+                $('.dropdown').toggleClass('hide');
+            });
+        });
+    },
+    // created end
 }
-</script>
-<script>
-import $ from 'jquery';
-$( document ).ready(function() {
-    console.log( "ready!" );
-    $('#ham-icon').click(function(e) {
-        e.preventDefault();
-        $('.dropdown').toggleClass('hide');
-        // console.log('成功點擊');
-    })
-    // $('#navPage').click(function(e){
-    //     e.preventDefault();
-    //     console.log('成功點擊');
-    //     $('#navPage').toggleClass('inThisPage');
-    // })
-});
 </script>
