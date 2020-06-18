@@ -1,7 +1,7 @@
 <template>
 <div class="mainContainer">
         <!--nav-->
-        <homenav/>
+        <!-- <homenav/> -->
         <!-- nav end -->
 
         <!-- product -->

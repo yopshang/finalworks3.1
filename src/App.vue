@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <homenav/> -->
+    <homenav/>
     <router-view/>
   </div>
 </template>
@@ -26,6 +26,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
+
   // margin-top: 60px;
   background-color:	#E0E0E0;
 }

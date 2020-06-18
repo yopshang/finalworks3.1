@@ -5,7 +5,7 @@
             <loading :active.sync="isLoading" ></loading>    
         </div>
         <!--全螢幕讀取效果結束-->
-        <homenav/>
+        <!-- <homenav/> -->
         <!-- firstRow --><!--title-->
         <div class="topDiv  d-flex flex-wrap">
             <div class="topDivLeft  d-flex ai-center">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="d-flex topDivright jc-flex-end" 
-            :style="{ backgroundImage: 'url(' + require('@/assets/img/index-1.jpg') + ')' }">
+            :style="{ backgroundImage: 'url(' + require('@/assets/img/index-1new.jpg') + ')' }">
             </div>
         </div>
         <!-- firstRow end -->
@@ -34,7 +34,7 @@
         <div>
             <div class="d-flex flex-wrap mb-25 h-250">
                 <div  class="secondRow" 
-                :style="{ backgroundImage: 'url(' + require('@/assets/img/index-2.jpg') + ')' }"></div>
+                :style="{ backgroundImage: 'url(' + require('@/assets/img/index-2new.jpg') + ')' }"></div>
                 <div class="d-flex ai-center secondRow ai-center">
                     <section class="secRowsection">
                         <h2>Special Clays</h2>
@@ -55,10 +55,10 @@
                         </router-link>
                     </section>
                 </div>
-                <div class="secondRow" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-3.jpg') + ')' }"></div>
+                <div class="secondRow" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-3new.jpg') + ')' }"></div>
             </div>
             <div class="d-flex flex-wrap mb-25 h-250 secRowRwd">
-                    <div class="secondRow m-rwd" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-4.jpg') + ')' }"></div>
+                    <div class="secondRow m-rwd" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-4new.jpg') + ')' }"></div>
                     <div class="d-flex ai-center secondRow">
                         <section class="secRowsection">
                             <h2>Marvelous Detail</h2>
@@ -72,7 +72,7 @@
         </div>
         <!-- secondRow end -->
     <!-- thirdRow --> <!--big img-->
-    <div class="d-flex thirdRow m-rwd thirdRowoutsideRwd" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">
+    <div class="d-flex thirdRow m-rwd thirdRowoutsideRwd" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5new.jpg') + ')' }">
         <div class=" d-flex thirdTurnRwd leftSide ai-center">
             <p class="m-30">“I want to make the life more simple by crafts.”</p>
         </div>
@@ -117,6 +117,7 @@
 </div>
 </template>
 <script>
+import $ from 'jquery';
 import homenav from './homenav.vue';
 import bottom from './bottom';
 import productList from './productList';
@@ -132,7 +133,7 @@ export default {
             pagination:'',
             tempProduct:{},
             isNew:false,
-            isLoading:false, //控制全螢幕讀取效果
+            // isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
             },
@@ -144,15 +145,23 @@ export default {
         getProducts(){
             const api=`https://vue-course-api.hexschool.io/api/yop/products`;
             const vm=this;
-            vm.isLoading=true;
+            // vm.isLoading=true;
+            vm.$store.dispatch('updateLoading',true);
             this.$http.get(api).then((response)=>{
                 console.log(response.data);
-                vm.isLoading=false;
+                // vm.isLoading=false;
+                vm.$store.dispatch('updateLoading',false);
                 vm.products=response.data.products;
             })
         },
     },
     // methods end
+    computed:{
+        isLoading(){
+            return this.$store.state.isLoading;
+        }
+    },
+    // computed end
     created() {
         this.getProducts();
     },

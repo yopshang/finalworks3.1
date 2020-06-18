@@ -3,7 +3,7 @@
     <div class="mainContainer">
         <!-- bottomRow -->
         <div class="bottomRow d-flex jc-flex-start ai-center" 
-        :style="{ backgroundImage: 'url(' + require('@/assets/img/footer.jpg') + ')' }">
+        :style="{ backgroundImage: 'url(' + require('@/assets/img/footernew.jpg') + ')' }">
             <div class="bottomDiv ai-center">
                 <h2 class="">Subscribe for news and special offers!</h2>
                 <form class="d-flex jc-center formRwd w-100">

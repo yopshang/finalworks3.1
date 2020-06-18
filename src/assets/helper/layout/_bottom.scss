@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     height: 400px;
-    @media (max-width:375px) {
+    @media (max-width:414px) {
         height: 300px;
     }
     div{
@@ -11,7 +11,7 @@
             font-size: 48px;
             font-weight: bold;
             color: #fff;
-            @media (max-width:375px) {
+            @media (max-width:414) {
                 font-size: 16px;
                 font-weight: bold;
                 color: #fff;
@@ -32,7 +32,7 @@
 }
 // bottomRow end
 // footerRow
-@media (max-width:375px){
+@media (max-width:414px){
     .footerRow{
         background-color: #121212;
         justify-content: space-between;

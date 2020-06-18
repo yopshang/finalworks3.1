@@ -9,6 +9,11 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import './router/bus';
 import currencyFilter from './components/pages/filter/currency';
 
+// Vuex
+import Vuex from 'vuex';
+Vue.use(Vuex);
+import store from './store/index';
+
 // 允許跨域存取
 axios.defaults.withCredentials = true;
 
@@ -26,7 +31,7 @@ router.beforeEach((to,from,next)=>{
               path:'/login',
             })
           }
-          ////驗證是否持續登入結束
+          //驗證是否持續登入結束
       });
     }else{
       next();
@@ -71,5 +76,6 @@ Vue.component('Loading',Loading);
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
