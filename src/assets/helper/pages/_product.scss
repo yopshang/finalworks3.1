@@ -13,6 +13,7 @@
 .filterList:hover{
     color: $main-color;
     text-decoration: none;
+    cursor: pointer;
 }
 .mylogoDiv{
     font-size: 24px;
@@ -49,7 +50,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    @media (max-width:414) {
+    @media (max-width:$mobileSize) {
         height: 400px;
         overflow: scroll;
         margin:0 50px;
@@ -60,7 +61,7 @@
         padding: 15px;
         margin: 15px;
         border-radius: 5%;
-        @media (max-width:414) {
+        @media (max-width:$mobileSize) {
             max-width: 100%;
         }
         .cate{

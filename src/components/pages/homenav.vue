@@ -13,23 +13,23 @@
             
             <ul class="d-flex ulList flex-wrap">
                 <li id="navPage" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList animated__animate animate__heartBeat" to="/product/productlist">
+                    <router-link class="hamList productList animated__animate animate__heartBeat" to="/product/productlist">
                         | My Shop
                     </router-link>
                 </li>
                 <li id="navPage" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/product/shopping">
+                    <router-link class="hamList productList" to="/product/shopping">
                         | Shopping
                     </router-link>
                 </li>
               
                 <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/login">
+                    <router-link class="hamList productList" to="/login">
                         | Login
                     </router-link>
                 </li>
                 <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="productList" to="/product/myorder">
+                    <router-link class="hamList productList" to="/product/myorder">
                         | <i class="fas fa-shopping-cart"></i>
                     </router-link>
                 </li>
@@ -57,7 +57,7 @@ export default {
                     vm.$router.push('/login');
                 }
             })
-        },        
+        },
     },
     created(){
         $(document).ready(function() {
@@ -66,6 +66,10 @@ export default {
                 e.preventDefault();
                 $('.dropdown').toggleClass('hide');
             });
+            $('.hamList').click(function(e) {
+                e.preventDefault();
+                $('.dropdown').toggleClass('hide');
+            });          
         });
     },
     // created end

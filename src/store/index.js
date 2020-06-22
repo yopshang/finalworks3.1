@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
 import getProducts from './products';
+Vue.use(axios);
 
 Vue.use(Vuex,getProducts);
 

@@ -29,13 +29,13 @@
 // nav end
 .left{
     max-width: 50%;
-    @media (max-width:414px) {
+    @media (max-width:$mobileSize) {
         max-width: 100%;
     }
 }
 .right{
     min-width: 40%;
-    @media (max-width:414px) {
+    @media (max-width:$mobileSize) {
        min-width: 100%; 
     }
 }

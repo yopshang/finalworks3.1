@@ -295,8 +295,8 @@ export default {
     name:'Procucts',
     data(){
         return {
-            products:[],
-            pagination:'',
+            // products:[], // 從Vuex return
+            pagination:'', //從vuex return
             tempProduct:{},
             isNew:false,
             isLoading:false, //控制全螢幕讀取效果
@@ -309,15 +309,16 @@ export default {
     },
     methods: {
         getProducts(page=1){
-            const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
-            const vm=this;
-            vm.isLoading=true;
-            this.$http.get(api).then((response)=>{
-                console.log(response.data);
-                vm.isLoading=false;
-                vm.products=response.data.products;
-                vm.pagination=response.data.pagination;
-            })
+            this.$store.dispatch('getProducts',page);
+            // const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
+            // const vm=this;
+            // vm.isLoading=true;
+            // this.$http.get(api).then((response)=>{
+            //     console.log(response.data);
+            //     vm.isLoading=false;
+            //     vm.products=response.data.products;
+            //     vm.pagination=response.data.pagination;
+            // })
         },
         openModal(isNew,item){
             if(isNew){
@@ -391,8 +392,16 @@ export default {
             })
         },         
     },
-    created() {
-        this.getProducts();
+    computed:{
+        products(){
+            return this.$store.state.products;
+        },
+        // pagination(){
+        //     return this.$store.state.pagination;
+        // }
+    },
+    created(){
+        this.getProducts();        
     }
 }
 </script>
