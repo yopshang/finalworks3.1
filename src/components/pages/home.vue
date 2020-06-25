@@ -129,9 +129,8 @@ export default {
             },
     data(){
         return {
-            products:[],
+            // products:[],
             pagination:'',
-            tempProduct:{},
             isNew:false,
             // isLoading:false, //控制全螢幕讀取效果
             status:{
@@ -142,23 +141,18 @@ export default {
     // data end
     methods:{
         getProducts(){
-            const api=`https://vue-course-api.hexschool.io/api/yop/products`;
-            const vm=this;
-            // vm.isLoading=true;
-            vm.$store.dispatch('updateLoading',true);
-            this.$http.get(api).then((response)=>{
-                console.log(response.data);
-                // vm.isLoading=false;
-                vm.$store.dispatch('updateLoading',false);
-                vm.products=response.data.products;
-            })
+            const vm = this;
+            vm.$store.dispatch('getProducts');
         },
     },
     // methods end
     computed:{
         isLoading(){
             return this.$store.state.isLoading;
-        }
+        },
+        products(){
+            return this.$store.state.products;
+        },
     },
     // computed end
     created() {
