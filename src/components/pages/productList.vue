@@ -295,11 +295,11 @@ export default {
     name:'Procucts',
     data(){
         return {
-            // products:[], // 從Vuex return
+            products:[], // 從Vuex return
             pagination:'', //從vuex return
             tempProduct:{},
             isNew:false,
-            isLoading:false, //控制全螢幕讀取效果
+            // isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
             },
@@ -309,16 +309,18 @@ export default {
     },
     methods: {
         getProducts(page=1){
-            this.$store.dispatch('getProducts',page);
-            // const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
-            // const vm=this;
+            // this.$store.dispatch('getProducts',page);
+            const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
+            const vm=this;
+            vm.$store.dispatch('updateLoading',true);
             // vm.isLoading=true;
-            // this.$http.get(api).then((response)=>{
-            //     console.log(response.data);
-            //     vm.isLoading=false;
-            //     vm.products=response.data.products;
-            //     vm.pagination=response.data.pagination;
-            // })
+            this.$http.get(api).then((response)=>{
+                console.log(response.data);
+                vm.$store.dispatch('updateLoading',false);
+                // vm.isLoading=false;
+                vm.products=response.data.products;
+                vm.pagination=response.data.pagination;
+            })
         },
         openModal(isNew,item){
             if(isNew){
@@ -393,12 +395,9 @@ export default {
         },         
     },
     computed:{
-        products(){
-            return this.$store.state.products;
-        },
-        // pagination(){
-        //     return this.$store.state.pagination;
-        // }
+        isLoading(){
+            return this.$store.state.isLoading;
+        }
     },
     created(){
         this.getProducts();        

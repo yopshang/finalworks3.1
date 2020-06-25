@@ -87,3 +87,64 @@
     </div>        
     </div>
 </template>
+<script>
+export default {
+    name:"myOrder",
+    data(){
+        return{
+            product:{}, 
+            // isLoading:false,
+            inCarts:{}
+        }
+    },
+    methods:{
+        getProduct(id){
+            const vm= this;
+            const url = `https://vue-course-api.hexschool.io/api/yop/product/${id}`;
+            vm.status.loadingItem=id;
+            this.$http.get(url).then((response) =>{
+                vm.product= response.data.product;
+                $('#productModal').modal('show');
+                console.log(response);
+                vm.status.loadingItem='';
+            })
+        },
+        addtoCart(id,qty=1){
+            const vm = this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
+            vm.status.loading=id;
+            const cart={
+                product_id:id,
+                qty  //  等同qty:qty
+            }
+            this.$http.post(url,{data:cart}).then((response)=>{
+                console.log(response);
+                vm.status.loadingItem='';
+                $('#productModal').modal('hide');
+            })
+        },                
+        getCart(){
+            const vm =this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/cart`
+            // vm.isLoading=true;         
+            vm.$store.dispatch('updateLoading', true);
+            this.$http.get(url).then((response)=>{
+                console.log(response);
+                // vm.carts=response.data.carts;
+                vm.inCarts=response.data.data.carts.product;
+                // vm.isLoading=false;
+                vm.$store.dispatch('updateLoading',false);
+                console.log(inCarts);
+            })
+        },        
+    },
+    computed:{
+        isLoading(){
+            return this.$store.state.isLoading;
+        }
+    },
+    created(){
+        this.getCart();        
+    }
+}
+</script>

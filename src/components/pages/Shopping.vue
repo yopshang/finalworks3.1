@@ -1,7 +1,7 @@
 <template>
 <div class="PDL">
     <!-- 全螢幕讀取效果 -->
-    <loading :active.sync="isLoading" ></loading>    
+    <!-- <loading :active.sync="isLoading" ></loading>     -->
     <!-- product filter -->
     <div class="mb-30"> <!--做一個分類fiter-->
         <div class="productFilter p-15 d-flex">
@@ -182,7 +182,7 @@ export default {
     data(){
         return {
             products:[],
-            isLoading:false, //控制全螢幕讀取效果
+            // isLoading:false, //控制全螢幕讀取效果
             pagination:'',
             tempProduct:{},
             status:{
@@ -197,13 +197,15 @@ export default {
         getProducts(page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/products?page=${page}`;
             const vm=this;
-            vm.isLoading=true;
+            vm.$store.dispatch('updateLoading', true);
+            // vm.isLoading=true;
             this.$http.get(api).then((response)=>{
                 vm.products=response.data.products;
                 vm.pagination=response.data.pagination;
                 vm.isShow=response.data.imageUrl
                 console.log(response.data);
-                vm.isLoading=false;
+                vm.$store.dispatch('updateLoading',false);
+                // vm.isLoading=false;
             })
         },
         getProduct(id){
@@ -244,11 +246,13 @@ export default {
         getCart(){
             const vm =this;
             const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            vm.isLoading=true;
+            vm.$store.dispatch('updateLoading',true);
+            // vm.isLoading=true;
             this.$http.get(url).then((response)=>{
                 console.log(response);
                 vm.carts=response.data.carts; //vm.carts=response.data.data.carts
-                vm.isLoading=false;
+                vm.$store.dispatch('updateLoading',false);
+                // vm.isLoading=false;
             })
         },
         openModal(isNew,item){
@@ -315,6 +319,11 @@ export default {
                 vm.product.num--;
             }
         },     
+    },
+    computed: {
+        isLoading() {
+            return this.$store.state.isLoading;
+        }
     },
     created() {
         this.getProducts();

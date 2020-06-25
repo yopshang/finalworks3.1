@@ -137,7 +137,6 @@ export default {
             status:{
                 fileUploading:false,
             },
-            
         }
     },
     // data end

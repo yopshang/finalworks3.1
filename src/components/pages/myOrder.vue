@@ -97,7 +97,7 @@ export default {
     data(){
         return{
             product:{}, 
-            isLoading:false,
+            // isLoading:false,
             inCarts:{}
         }
     },
@@ -130,15 +130,22 @@ export default {
         getCart(){
             const vm =this;
             const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            vm.isLoading=true;         
+            // vm.isLoading=true;         
+            vm.$store.dispatch('updateLoading', true);
             this.$http.get(url).then((response)=>{
                 console.log(response);
                 // vm.carts=response.data.carts;
                 vm.inCarts=response.data.data.carts.product;
-                vm.isLoading=false;
+                // vm.isLoading=false;
+                vm.$store.dispatch('updateLoading',false);
                 console.log(inCarts);
             })
         },        
+    },
+    computed:{
+        isLoading(){
+            return this.$store.state.isLoading;
+        }
     },
     created(){
         this.getCart();        
