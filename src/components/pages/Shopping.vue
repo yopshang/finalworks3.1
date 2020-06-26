@@ -181,9 +181,6 @@ export default {
     name:'Procucts',
     data(){
         return {
-            products:[],
-            // isLoading:false, //控制全螢幕讀取效果
-            pagination:'',
             tempProduct:{},
             status:{
                 loadingItem:'',
@@ -195,18 +192,8 @@ export default {
     },
     methods: {
         getProducts(page=1){
-            const api=`https://vue-course-api.hexschool.io/api/yop/products?page=${page}`;
-            const vm=this;
-            vm.$store.dispatch('updateLoading', true);
-            // vm.isLoading=true;
-            this.$http.get(api).then((response)=>{
-                vm.products=response.data.products;
-                vm.pagination=response.data.pagination;
-                vm.isShow=response.data.imageUrl
-                console.log(response.data);
-                vm.$store.dispatch('updateLoading',false);
-                // vm.isLoading=false;
-            })
+            const vm = this;
+            vm.$store.dispatch('getProducts',page=1);
         },
         getProduct(id){
             const vm= this;
@@ -244,16 +231,18 @@ export default {
             })
         },
         getCart(){
-            const vm =this;
-            const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            vm.$store.dispatch('updateLoading',true);
-            // vm.isLoading=true;
-            this.$http.get(url).then((response)=>{
-                console.log(response);
-                vm.carts=response.data.carts; //vm.carts=response.data.data.carts
-                vm.$store.dispatch('updateLoading',false);
-                // vm.isLoading=false;
-            })
+            const vm = this;
+            vm.$store.dispatch('addtoCart', {id,qty});
+            // const vm =this;
+            // const url=`https://vue-course-api.hexschool.io/api/yop/cart`
+            // vm.$store.dispatch('updateLoading',true);
+            // // vm.isLoading=true;
+            // this.$http.get(url).then((response)=>{
+            //     console.log(response);
+            //     vm.carts=response.data.carts; //vm.carts=response.data.data.carts
+            //     vm.$store.dispatch('updateLoading',false);
+            //     // vm.isLoading=false;
+            // })
         },
         openModal(isNew,item){
             if(isNew){
@@ -323,7 +312,13 @@ export default {
     computed: {
         isLoading() {
             return this.$store.state.isLoading;
-        }
+        },
+        products(){
+            return this.$store.state.products;
+        },
+        pagination(){
+            return this.$store.state.pagination;
+        },
     },
     created() {
         this.getProducts();

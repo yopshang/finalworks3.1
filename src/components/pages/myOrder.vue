@@ -54,14 +54,15 @@
             </div>
             <!-- shopping address end -->
             <!-- left side end -->
-        <div class="d-flex right">
-            <div class="w-100">
+        <div class=" right">
+            <div class="w-100 cartArea">
                 <!-- cart cards -->
-                <div v-for="item in inCarts" class="d-flex mb-15 procuctArea ai-center">
-                    <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt="">
+                <div v-for="item in currentCart" class=" d-flex mb-15 procuctArea ai-center">
+                    <!-- <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt=""> -->
+                    <img class="checkOutAreaImg" :src="item.imageUrl" alt="">
                     <!-- <img class="checkOutAreaImg w-25" :src="cart.imageUrl" alt=""> -->
                     <section class="w-40">{{item.title}}</section>
-                    <section class="w-35">NT$1,080</section>
+                    <section class="w-35">{{item.final_total}}</section>
                 </div>
                 <div class="d-flex procuctArea ai-center">
                     <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt="">
@@ -69,24 +70,17 @@
                     <section class="w-35">NT$3,600</section>
                 </div>
                 <!-- cart cards end -->
-                <hr>
-                <!-- counting area -->
-                <div class="d-flex jc-space-between mb-15">
-                    <section>Subtotal</section>
-                    <section>NT$4,680</section>
-                </div>
-                <div class="d-flex jc-space-between mb-15">
-                    <section>Shipping</section>
-                    <section>NT$80</section>
-                </div>
-                <hr>
-                <div class="d-flex jc-space-between mb-15">
-                    <section>Total</section>
-                    <section>NT$4,760</section>
-                </div>
-                <!-- countiing area -->
-                <!-- counting total end -->
             </div>
+            <hr>
+            <!-- counting area -->
+            <div class="countingArea" >
+                <div class="d-flex jc-space-between mb-15" v-for="item in currentCart">
+                    <section>Subtotal</section>
+                    <section>{{}}</section>
+                </div>
+            </div>
+            <!-- countiing area -->
+            <!-- counting total end -->
         </div>
     </div>        
     </div>
@@ -98,7 +92,7 @@ export default {
         return{
             product:{}, 
             // isLoading:false,
-            inCarts:{}
+            // inCarts:{}
         }
     },
     methods:{
@@ -128,24 +122,29 @@ export default {
             })
         },                
         getCart(){
-            const vm =this;
-            const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            // vm.isLoading=true;         
-            vm.$store.dispatch('updateLoading', true);
-            this.$http.get(url).then((response)=>{
-                console.log(response);
-                // vm.carts=response.data.carts;
-                vm.inCarts=response.data.data.carts.product;
-                // vm.isLoading=false;
-                vm.$store.dispatch('updateLoading',false);
-                console.log(inCarts);
-            })
+            const vm = this ;
+            vm.$store.dispatch('getCart');
+            // const vm =this;
+            // const url=`https://vue-course-api.hexschool.io/api/yop/cart`
+            // // vm.isLoading=true;         
+            // vm.$store.dispatch('updateLoading', true);
+            // this.$http.get(url).then((response)=>{
+            //     console.log(response);
+            //     // vm.carts=response.data.carts;
+            //     vm.inCarts=response.data.data.carts.product;
+            //     // vm.isLoading=false;
+            //     vm.$store.dispatch('updateLoading',false);
+            //     // console.log(inCarts);
+            // })
         },        
     },
     computed:{
         isLoading(){
             return this.$store.state.isLoading;
-        }
+        },
+        currentCart(){
+            return this.$store.state.currentCart;
+        },
     },
     created(){
         this.getCart();        

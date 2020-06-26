@@ -33,6 +33,14 @@
         max-width: 100%;
     }
 }
+.cartArea{
+    height: 350px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.countingArea{
+    height: 100px;
+}
 .right{
     min-width: 40%;
     @media (max-width:$mobileSize) {

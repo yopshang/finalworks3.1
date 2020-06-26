@@ -129,10 +129,7 @@ export default {
             },
     data(){
         return {
-            // products:[],
-            pagination:'',
             isNew:false,
-            // isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
             },
