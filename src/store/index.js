@@ -16,6 +16,8 @@ export default new Vuex.Store({
         // 購物車行為
         cart : {},
         currentCart : [],
+        totalPrice:'',
+        homenavPage:''
     },
     actions:{
         updateLoading(context,status){
@@ -47,7 +49,7 @@ export default new Vuex.Store({
             //     product_id:id,
             //     qty  //  等同qty:qty
             // }
-            this.$http.post(url,{cart}).then((response)=>{
+            axios.post(url,{cart}).then((response)=>{
                 // console.log(response);
                 // vm.status.loadingItem='';
                 $('#productModal').modal('hide');
@@ -56,19 +58,18 @@ export default new Vuex.Store({
         getCart(context){
             const vm =this;
             const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            // vm.isLoading=true;         
-            context.dispatch('updateLoading', true);
+            context.commit('LOADING',false);
             axios.get(url).then((response)=>{
-                // console.log(response);
-                context.commit('GETCART', response.data);
-                console.log(response.data);
-                // vm.carts=response.data.carts;
-                // vm.inCarts=response.data.data.carts.product;
-                // vm.isLoading=false;
-                context.dispatch('updateLoading',false);
-                // console.log(inCarts);
+                context.commit('GETCART', response.data.data);
+                console.log(response.data.data.final_total);
+                context.commit('COUNTPRICE',response.data.data.final_total);
+                context.commit('LOADING',false);
             })
         },  
+        turnPage(context,currentPage){
+            context.commit('TURNPAGE',currentPage);
+            console.log(currentPage);
+        }
     },
     mutations:{
         LOADING(state,status){
@@ -84,8 +85,14 @@ export default new Vuex.Store({
             state.cart = status;
         },
         GETCART(state, status){
-            state.currentCart = state.products;
+            state.currentCart = status;
         },
+        COUNTPRICE(state,status){
+            state.totalPrice = status;
+        },
+        TURNPAGE(state,status){
+            state.homenavPage = status;
+        }
     },
     modules:{
         getProducts,

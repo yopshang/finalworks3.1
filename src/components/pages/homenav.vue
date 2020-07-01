@@ -2,8 +2,8 @@
     <div>
         <!--nav-->
         <nav class="homenav d-flex flex-wrap jc-space-between ai-center p-15">
-            <h2 id="navPage" class="topLogo d-flex animated__animate animate__heartBeat">
-                <router-link  to="/">
+            <h2 id="home" class=" topLogo d-flex animated__animate animate__heartBeat">
+                <router-link :class="{'activenav':homenavPage == 'home'}" to="/">
                     <div>
                     CRAFTsMAN
                     </div> 
@@ -12,24 +12,24 @@
             </h2>
             
             <ul class="d-flex ulList flex-wrap">
-                <li id="navPage" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="hamList productList animated__animate animate__heartBeat" to="/product/productlist">
+                <li id="myshop" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link :class="{'activenav':homenavPage == 'myshop'}" class="hamList productList animated__animate animate__heartBeat" to="/product/productlist">
                         | My Shop
                     </router-link>
                 </li>
-                <li id="navPage" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="hamList productList" to="/product/shopping">
+                <li id="shopping" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link :class="{'activenav':homenavPage == 'shopping'}" class="hamList productList" to="/product/shopping">
                         | Shopping
                     </router-link>
                 </li>
               
-                <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="hamList productList" to="/login">
+                <li id="login" class="dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link :class="{'activenav':homenavPage == 'login'}" class="hamList productList" to="/login">
                         | Login
                     </router-link>
                 </li>
-                <li id="navPage" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link class="hamList productList" to="/product/myorder">
+                <li id="cart" class="dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link :class="{'activenav':homenavPage == 'cart'}" class="hamList productList" to="/product/myorder">
                         | <i class="fas fa-shopping-cart"></i>
                     </router-link>
                 </li>
@@ -58,6 +58,15 @@ export default {
                 }
             })
         },
+        // turnPage(currentPage){
+        //     const vm = this;
+        //     vm.$store.dispatch('turnPage',currentPage);
+        // }
+    },
+    computed:{
+        homenavPage(){
+            return this.$store.state.homenavPage;
+        }
     },
     created(){
         $(document).ready(function() {
@@ -69,8 +78,9 @@ export default {
             $('.hamList').click(function(e) {
                 e.preventDefault();
                 $('.dropdown').toggleClass('hide');
-            });          
+            });        
         });
+        // turnPage(home);
     },
     // created end
 }

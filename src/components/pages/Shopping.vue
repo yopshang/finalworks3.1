@@ -307,7 +307,11 @@ export default {
             }else{
                 vm.product.num--;
             }
-        },     
+        }, 
+        turnPage(currentPage){
+            const vm = this;
+            vm.$store.dispatch('turnPage',currentPage);
+        }              
     },
     computed: {
         isLoading() {
@@ -321,6 +325,7 @@ export default {
         },
     },
     created() {
+        this.turnPage("shopping");       
         this.getProducts();
         this.getCart();
     }

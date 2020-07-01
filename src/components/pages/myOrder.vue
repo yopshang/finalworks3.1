@@ -22,8 +22,9 @@
             <!-- shopping address -->
             <div>
                 <div class="d-flex flex-wrap">
-                    <h2 class="w-100">商品資寄送資訊</h2>
-                    <h3 class="informationTitle w-100 mb-15">Information</h3>
+                    <div class="w-100">
+                        <h2 class="informationTitle w-100 mb-15">商品資寄送資訊</h2>
+                    </div>
                     <div class="d-flex w-100 jc-space-between mb-15">
                         <input class="p-15 w-40 mr-15" type="text" placeholder="Name">
                         <input class="p-15 w-40" placeholder="Phone" type="text">
@@ -38,13 +39,13 @@
                     </div>
                     <input class="w-100 p-15 mb-15" placeholder="Address" type="text">
                     <div class="d-flex mb-30 w-100 jc-space-between">
-                        <p  class="mainColor w-50 p-15">
+                        <p  class="EmptyColorBtn w-50 p-15">
                             <router-link to="/product/shopping"></router-link>
-                                < Return to information 
+                                < 還沒買夠，我想回到賣場! 
                         </p>
                         <button class="fullColorBtn w-50 p-15">
                             <router-link to="/product/myorder/myorder_info">
-                                Continue to payment
+                                填寫完畢，結帳去!!
                             </router-link>
                         </button>
                     </div>
@@ -57,27 +58,29 @@
         <div class=" right">
             <div class="w-100 cartArea">
                 <!-- cart cards -->
-                <div v-for="item in currentCart" class=" d-flex mb-15 procuctArea ai-center">
+                <div v-for="item in currentCart.carts" class=" d-flex mb-15 procuctArea ai-center">
                     <!-- <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt=""> -->
-                    <img class="checkOutAreaImg" :src="item.imageUrl" alt="">
+                    <img class="checkOutAreaImg" :src="item.product.imageUrl" alt="">
                     <!-- <img class="checkOutAreaImg w-25" :src="cart.imageUrl" alt=""> -->
-                    <section class="w-40">{{item.title}}</section>
-                    <section class="w-35">{{item.final_total}}</section>
-                </div>
-                <div class="d-flex procuctArea ai-center">
-                    <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt="">
-                    <section class="w-40">Baifan Bowl ×2</section>
-                    <section class="w-35">NT$3,600</section>
+                    <div class="w-100">
+                        <div class="d-flex jc-space-around">
+                            <section class="">{{item.product.title}}</section>
+                            <section class="EachPrice">單價 {{item.final_total | currency}}</section>
+                            <section class="totalPriceEach">合計 {{item.final_total | currency}}</section>
+                        </div>
+                        <div  class="d-flex  ai-center">
+                            <BtnForNum />
+                            <i class="delIcon fas fa-trash-alt p-15"></i>
+                        </div>
+                    </div>
                 </div>
                 <!-- cart cards end -->
             </div>
             <hr>
             <!-- counting area -->
-            <div class="countingArea" >
-                <div class="d-flex jc-space-between mb-15" v-for="item in currentCart">
-                    <section>Subtotal</section>
-                    <section>{{}}</section>
-                </div>
+            <div class="countingArea d-flex jc-space-between ai-center" >
+                <p>合計</p>
+                <input class="priceInput" type="number" v-model="totalPrice" disabled>元
             </div>
             <!-- countiing area -->
             <!-- counting total end -->
@@ -86,13 +89,15 @@
     </div>
 </template>
 <script>
+import BtnForNum from './BtnForNum';
 export default {
     name:"myOrder",
+    components:{
+        BtnForNum
+    },
     data(){
         return{
             product:{}, 
-            // isLoading:false,
-            // inCarts:{}
         }
     },
     methods:{
@@ -124,19 +129,11 @@ export default {
         getCart(){
             const vm = this ;
             vm.$store.dispatch('getCart');
-            // const vm =this;
-            // const url=`https://vue-course-api.hexschool.io/api/yop/cart`
-            // // vm.isLoading=true;         
-            // vm.$store.dispatch('updateLoading', true);
-            // this.$http.get(url).then((response)=>{
-            //     console.log(response);
-            //     // vm.carts=response.data.carts;
-            //     vm.inCarts=response.data.data.carts.product;
-            //     // vm.isLoading=false;
-            //     vm.$store.dispatch('updateLoading',false);
-            //     // console.log(inCarts);
-            // })
         },        
+        turnPage(currentPage){
+            const vm = this;
+            vm.$store.dispatch('turnPage',currentPage);
+        }          
     },
     computed:{
         isLoading(){
@@ -145,9 +142,13 @@ export default {
         currentCart(){
             return this.$store.state.currentCart;
         },
+        totalPrice(){
+            return this.$store.state.totalPrice;
+        }
     },
     created(){
-        this.getCart();        
+        this.getCart(); 
+        this.turnPage("cart");               
     }
 }
 </script>

@@ -62,10 +62,15 @@ export default {
                     next('/login');
                 }
             });    
-        }
+        },
+        turnPage(currentPage){
+            const vm = this;
+            vm.$store.dispatch('turnPage',currentPage);
+        }         
     },
     // methods結束
     created(){
+        this.turnPage("login");          
         // this.loginCheck();
     }
 }

@@ -392,7 +392,11 @@ export default {
                     vm.$router.push('/');
                 }
             })
-        },         
+        }, 
+        turnPage(currentPage){
+            const vm = this;
+            vm.$store.dispatch('turnPage',currentPage);
+        }                
     },
     computed:{
         isLoading(){
@@ -400,7 +404,8 @@ export default {
         }
     },
     created(){
-        this.getProducts();        
+        this.getProducts();
+        this.turnPage("myshop");                
     }
 }
 </script>

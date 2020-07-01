@@ -33,6 +33,13 @@
         max-width: 100%;
     }
 }
+.EmptyColorBtn{
+    color: $secondary-color;
+    cursor: pointer;
+}
+.EmptyColorBtn:hover{
+    color: $main-color;
+}
 .cartArea{
     height: 350px;
     overflow: scroll;
@@ -40,12 +47,33 @@
 }
 .countingArea{
     height: 100px;
+    font-size: 24px;
+}
+.priceInput{
+    max-width: 30%;
+    background:none; 
+    outline:none; 
+    border:none;
+    color:$main-color;
+    font-size: 36px;
 }
 .right{
-    min-width: 40%;
+    max-width: 40%;
     @media (max-width:$mobileSize) {
-       min-width: 100%; 
+       max-width: 100%; 
     }
+}
+.EachPrice{
+    color: grey;
+    font-size: 10px;
+}
+.totalPriceEach{
+    color: $main-color;
+    font-size: 14px;
+}
+.delIcon:hover{
+    color: red;
+    cursor: pointer;
 }
 // contact information
 .inputEmail{
@@ -61,7 +89,7 @@
     color: #fff;
 }
 .informationTitle{
-    font-size: 16px;
+    font-size: 24px;
 }
 .option{
     color: #00000098;
@@ -71,8 +99,9 @@
 }
 .checkOutAreaImg{
     //暫放
-    background-color:black;
+    // background-color:black;
     height:100px;
+    width: 100px;
     //暫放
 
 }

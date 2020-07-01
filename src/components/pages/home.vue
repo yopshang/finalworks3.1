@@ -141,6 +141,10 @@ export default {
             const vm = this;
             vm.$store.dispatch('getProducts');
         },
+        turnPage(currentPage){
+            const vm = this;
+            vm.$store.dispatch('turnPage',currentPage);
+        }        
     },
     // methods end
     computed:{
@@ -149,11 +153,12 @@ export default {
         },
         products(){
             return this.$store.state.products;
-        },
+        },        
     },
     // computed end
     created() {
         this.getProducts();
+        this.turnPage("home");
     },
     // created end
 }
