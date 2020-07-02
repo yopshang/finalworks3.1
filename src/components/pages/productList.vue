@@ -1,5 +1,7 @@
 <template>
 <div class="PDL">
+    <!-- 警告視窗 -->
+    <Alert/>
     <!-- 全螢幕讀取效果 -->
     <loading :active.sync="isLoading" ></loading>        
     <!-- product filter -->
@@ -68,7 +70,7 @@
     <div class="p-15">
         <ul class="pageUl d-flex jc-center">
             <li class="pageNumber p-15" 
-            v-if="pagination.has_pre"> <!--:class="{'disabled':!pagination.has_pre}"-->
+            v-if="pagination.has_pre" :class="{'disabled':!pagination.has_pre}"> 
                 <a href="#" @click.prevent="getProducts(pagination.current_page-1)">
                     <<
                 </a>
@@ -82,7 +84,7 @@
                 </a>
             </li>
             <li class="pageNumber  p-15"
-            v-if="pagination.has_next"><!--:class="{'disabled':!pagination.has_next}"-->
+            v-if="pagination.has_next" :class="{'disabled':!pagination.has_next}">
                 <a href="#" @click.prevent="getProducts(pagination.current_page+1)">
                     >>
                 </a>
@@ -286,20 +288,20 @@
                 </div>
             </div>     
     <!-- Edit Modal end -->
-    
 </div>
 </template>
 <script>
 import $ from 'jquery';
+import Alert from './AlertMessage';
+import {mapGetters,mapActions} from 'vuex';
 export default {
     name:'Procucts',
     data(){
         return {
             products:[], // 從Vuex return
-            pagination:'', //從vuex return
+            // pagination:'', //從vuex return
             tempProduct:{},
             isNew:false,
-            // isLoading:false, //控制全螢幕讀取效果
             status:{
                 fileUploading:false,
             },
@@ -307,17 +309,17 @@ export default {
             product:{},
         }
     },
+    components:{
+        Alert
+    },
     methods: {
         getProducts(page=1){
-            // this.$store.dispatch('getProducts',page);
             const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
             const vm=this;
             vm.$store.dispatch('updateLoading',true);
-            // vm.isLoading=true;
             this.$http.get(api).then((response)=>{
                 console.log(response.data);
                 vm.$store.dispatch('updateLoading',false);
-                // vm.isLoading=false;
                 vm.products=response.data.products;
                 vm.pagination=response.data.pagination;
             })
@@ -375,8 +377,6 @@ export default {
                 console.log(response.data);
                 vm.status.fileUploading=false;
                 if (response.data.success){
-                    // vm.tempProduct.imageUrl=response.data.imageUrl;
-                    // console.log(vm.tempProduct);
                     vm.$set(vm.tempProduct,'imageUrl',response.data.imageUrl);
                 }else{
                     this.$bus.$emit('message:push',response.data.message,'danger');
@@ -396,16 +396,34 @@ export default {
         turnPage(currentPage){
             const vm = this;
             vm.$store.dispatch('turnPage',currentPage);
-        }                
+        },
+        // brforeRouterEnter(to, from, next) {
+        //     const api=`https://vue-course-api.hexschool.io/api/user/check`;
+        //     this.$http.post(api).then((response)=>{
+        //         console.log(response.data);
+        //         // 驗證是否持續登入
+        //         if (response.data.success){
+        //             next();
+        //         }else{
+        //             // vm.$router.push('/login');
+        //             next('/login');
+        //         }
+        //     });    
+        // },                        
     },
     computed:{
-        isLoading(){
-            return this.$store.state.isLoading;
-        }
+        // isLoading(){
+        //     return this.$store.state.isLoading;
+        // },
+        // pagination(){
+        //     return this.$store.state.pagination;
+        // }
+        ...mapGetters(['isLoading','pagination'])
     },
     created(){
         this.getProducts();
         this.turnPage("myshop");                
+        // this.brforeRouterEnter();
     }
 }
 </script>

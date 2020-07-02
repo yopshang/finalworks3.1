@@ -9,6 +9,8 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import './router/bus';
 import currencyFilter from './components/pages/filter/currency';
 
+
+
 // Vuex
 import Vuex from 'vuex';
 Vue.use(Vuex);
@@ -17,27 +19,7 @@ import store from './store/index';
 // 允許跨域存取
 axios.defaults.withCredentials = true;
 
-//登入驗證 導航守衛
-router.beforeEach((to,from,next)=>{
-  if(to.meta.requiresAuth){
-      const api=`https://vue-course-api.hexschool.io/api/user/check`;
-      axios.post(api).then((response)=>{
-          console.log(response.data);
-          //驗證是否持續登入
-          if (response.data.success){
-            next();
-          }else{
-            next({
-              path:'/login',
-            })
-          }
-          //驗證是否持續登入結束
-      });
-    }else{
-      next();
-  }
-});
-// 登入驗證結束
+
 
 
 
@@ -79,3 +61,26 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+//登入驗證 導航守衛
+router.beforeEach((to,from,next)=>{
+  if(to.meta.requiresAuth){
+      const api=`https://vue-course-api.hexschool.io/api/user/check`;
+      axios.post(api).then((response)=>{
+          console.log(response.data);
+          //驗證是否持續登入
+          if (response.data.success){
+            next();
+          }else{
+            next({
+              path:'/login',
+            });
+            this.$bus.$emit('message:push' , response.data.message , 'danger');
+          }
+          //驗證是否持續登入結束
+      });
+    }else{
+      next();
+  }
+});
+// 登入驗證結束

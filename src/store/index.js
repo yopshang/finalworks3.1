@@ -68,7 +68,7 @@ export default new Vuex.Store({
         },  
         turnPage(context,currentPage){
             context.commit('TURNPAGE',currentPage);
-            console.log(currentPage);
+            // console.log(currentPage);
         }
     },
     mutations:{
@@ -96,5 +96,13 @@ export default new Vuex.Store({
     },
     modules:{
         getProducts,
+    },
+    getters:{
+        isLoading(state){
+            return state.isLoading;
+        },
+        pagination(state){
+            return state.pagination;
+        }
     }
 })

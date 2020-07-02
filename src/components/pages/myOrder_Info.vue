@@ -3,11 +3,8 @@
     <!-- 全螢幕讀取效果 -->
     <loading :active.sync="isLoading" ></loading>            
     <!-- navbar end     -->
-    <div class="d-flex mt-30 jc-space-between flex-wrap">
-        <!-- left side -->
-        <div class="left">
             <!-- second nav -->
-            <h2 class="secNav mb-15"> <span class="secNavtitle3">填寫資訊</span><span class="secNavtitle1"> ></span> 結帳<span class=""> > 完成購物!</span></h2>
+            <h2 class="secNav mb-15"> <span class="secNavtitle3">填寫資訊</span><span class="secNavtitle1"> > 結帳</span> <span> > 完成購物!</span></h2>
             <!-- second nav end -->
             <!-- contact information -->
             <div>
@@ -22,8 +19,8 @@
             <!-- shopping address -->
             <div>
                 <div class="d-flex flex-wrap">
-                    <h2 class="w-100">商品資寄送資訊</h2>
-                    <h3 class="informationTitle w-100 mb-15">Information</h3>
+                    <h2 class="informationTitle w-100">結帳資訊</h2>
+                    <h3 class="w-100 mb-15">Checkout</h3>
                     <div class="d-flex w-100 jc-space-between mb-15">
                         <input class="p-15 w-40 mr-15" type="text" placeholder="Name">
                         <input class="p-15 w-40" placeholder="Phone" type="text">
@@ -39,53 +36,17 @@
                     <input class="w-100 p-15 mb-15" placeholder="Address" type="text">
                     <div class="d-flex mb-30 w-100 jc-space-between">
                         <p  class="mainColor w-50 p-15">
-                            <router-link to="/product/myorder">
-                                < Return to information 
+                            <router-link to="/myorder/myorder_cart">
+                                < 重新填寫資訊 
                             </router-link>
                         </p>
-                        <button class="fullColorBtn w-50 p-15">Continue to payment</button>
+                        <button class="fullColorBtn w-50 p-15">填寫完畢，結帳去!</button>
                     </div>
                   
                     </div>
                 </div>
             </div>
             <!-- shopping address end -->
-            <!-- left side end -->
-        <div class="d-flex right">
-            <div class="w-100">
-                <!-- procuct area -->
-                <div class="d-flex mb-15 procuctArea ai-center">
-                    <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt="">
-                    <section class="w-40">Tatami Cup ×1</section>
-                    <section class="w-35">NT$1,080</section>
-                </div>
-                <div class="d-flex procuctArea ai-center">
-                    <img class="checkOutAreaImg w-25" src="/img/img-1.jpg" alt="">
-                    <section class="w-40">Baifan Bowl ×2</section>
-                    <section class="w-35">NT$3,600</section>
-                </div>
-                <!-- product area end -->
-                <hr>
-                <!-- counting area -->
-                <div class="d-flex jc-space-between mb-15">
-                    <section>Subtotal</section>
-                    <section>NT$4,680</section>
-                </div>
-                <div class="d-flex jc-space-between mb-15">
-                    <section>Shipping</section>
-                    <section>NT$80</section>
-                </div>
-                <hr>
-                <div class="d-flex jc-space-between mb-15">
-                    <section>Total</section>
-                    <section>NT$4,760</section>
-                </div>
-                <!-- countiing area -->
-                <!-- counting total end -->
-            </div>
-        </div>
-    </div>        
-    </div>
 </template>
 <script>
 export default {

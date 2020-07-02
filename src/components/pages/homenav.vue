@@ -29,7 +29,7 @@
                     </router-link>
                 </li>
                 <li id="cart" class="dropdown hide mr-15 animated__animate animate__heartBeat">
-                    <router-link :class="{'activenav':homenavPage == 'cart'}" class="hamList productList" to="/product/myorder">
+                    <router-link :class="{'activenav':homenavPage == 'cart'}" class="hamList productList" to="/myorder/myorder_cart">
                         | <i class="fas fa-shopping-cart"></i>
                     </router-link>
                 </li>

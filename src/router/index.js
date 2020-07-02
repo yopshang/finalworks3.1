@@ -7,6 +7,7 @@ import productList from '@/components/pages/productList.vue';
 import shopping from '@/components/pages/shopping.vue';
 import myOrder from '@/components/pages/myOrder.vue';
 import myOrder_Info from '@/components/pages/myOrder_Info';
+import myOrder_cart from '@/components/pages/myOrder_cart';
 
 Vue.use(Router)
 
@@ -42,17 +43,22 @@ export default new Router({
           name: 'shopping',
           component:shopping ,
         },
+      ]
+    },
+    {
+      path: '/myorder',
+      name: 'myOrder',
+      component:myOrder ,
+      children:[
         {
-          path: 'myorder',
-          name: 'myOrder',
-          component:myOrder ,
-          children:[
-            {
-              path: 'myorder_info',
-              name: 'myOrder_Info',
-              component:myOrder_Info,
-            },
-          ]
+          path: 'myorder_cart',
+          name: 'myOrder_cart',
+          component:myOrder_cart,
+        },
+        {
+          path: 'myorder_info',
+          name: 'myOrder_Info',
+          component:myOrder_Info,
         },
       ]
     },
