@@ -1,16 +1,14 @@
 <template>
-    <div>
-        <div class="message-alert">
-            <div class="alert alert-dismissible"
-            :class="'alert-' + item.status"
-            v-for="(item, i) in messages" :key="i">
-            {{ item.message }}
-            <button type="button" class="close" @click="removeMessage(i)" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-        </div> 
+  <div class="message-alert">
+    <div v-if="item.message !== ''" class="alert alert-dismissible"
+      :class="'alert-' + item.status"
+      v-for="(item, i) in messages" :key="i">
+      {{ item.message }}
+      <button type="button" class="close" @click="removeMessage(i)" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+  </div>
 </template>
 <style scope>
 .message-alert {
@@ -26,23 +24,30 @@ export default {
     name:'Alert',
     data(){
         return{
-            messages:[],
+            messages:[{
+                message:'',
+                status:'', //追隨bs4 樣式
+                timestamp:''
+            }],
         }
     },
-    methods: {
+    methods: {       
         updateMessage(message, status){
-            const timestamp = Math.floor(new Date()/1000);
-            this.messages.push({
+            const timestamp = Math.floor(new Date()/1000);  
+            const vm = this;
+            vm.messages.push({
                 message,
                 status,
                 timestamp
             });
-            this.removeMessageWithTiming(timestamp);
+            // console.log('成功更新訊息',vm.messages);
+            this.removeMessageWithTiming(timestamp);  //呼叫自動關閉
         },
-        removeMessage(num){
+        removeMessage(num){  //關閉警告視窗
             this.messages.splice(num,1);
+            // console.log('成功移除');
         },
-        removeMessageWithTiming(timestamp){
+        removeMessageWithTiming(timestamp){  // 自動關閉
             const vm = this;
             setTimeout(() =>{
                 vm.messages.forEach((item,i)=>{

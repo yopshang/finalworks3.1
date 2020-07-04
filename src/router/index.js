@@ -8,6 +8,7 @@ import shopping from '@/components/pages/shopping.vue';
 import myOrder from '@/components/pages/myOrder.vue';
 import myOrder_Info from '@/components/pages/myOrder_Info';
 import myOrder_cart from '@/components/pages/myOrder_cart';
+import Orders from '@/components/pages/orders';
 
 Vue.use(Router)
 
@@ -36,7 +37,7 @@ export default new Router({
           path: 'productlist',
           name: 'productList',
           component:productList ,
-          meta:{requiresAuth:true}
+          // meta:{requiresAuth:true}
         },
         {
           path: 'shopping',
@@ -62,5 +63,10 @@ export default new Router({
         },
       ]
     },
+    {
+      path: '/orders',
+      name: 'Orders',
+      component:Orders ,
+    }
   ]
 })

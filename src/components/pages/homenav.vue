@@ -33,6 +33,11 @@
                         | <i class="fas fa-shopping-cart"></i>
                     </router-link>
                 </li>
+                <li id="cart" class="dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link :class="{'activenav':homenavPage == 'orders'}" class="hamList productList" to="/orders">
+                        | <i class="far fa-file-alt"></i>
+                    </router-link>
+                </li>                
             </ul>
         </nav>
         <!-- nav end -->

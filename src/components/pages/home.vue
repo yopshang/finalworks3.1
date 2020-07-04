@@ -144,7 +144,7 @@ export default {
         turnPage(currentPage){
             const vm = this;
             vm.$store.dispatch('turnPage',currentPage);
-        }        
+        },                 
     },
     // methods end
     computed:{

@@ -40,6 +40,7 @@ extend('alpha_num', alpha_num);
 Object.keys(rules).forEach(rule => {
   extend(rule, rules[rule]);
 });
+
 // 表單驗證中文化
 import { localize } from 'vee-validate'
 import TW from 'vee-validate/dist/locale/zh_TW.json'
@@ -48,13 +49,11 @@ localize('zh_TW', TW)
 // 表單驗證中文化
 // vee-validate表單驗證結束
 
-
-
 Vue.filter('currency',currencyFilter);
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 Vue.component('Loading',Loading);
-/* eslint-disable no-new */
+
 new Vue({
   el: '#app',
   router,
@@ -75,7 +74,6 @@ router.beforeEach((to,from,next)=>{
             next({
               path:'/login',
             });
-            this.$bus.$emit('message:push' , response.data.message , 'danger');
           }
           //驗證是否持續登入結束
       });

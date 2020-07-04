@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-import getProducts from './products';
-import products from './products';
-Vue.use(axios);
+// import getProducts from './products';
+// import products from './products';
+import VueAxios from 'vue-axios'
 
-Vue.use(Vuex,getProducts);
+Vue.use(Vuex);
+Vue.use(VueAxios,axios);
 
 export default new Vuex.Store({
     state:{
@@ -17,7 +18,8 @@ export default new Vuex.Store({
         cart : {},
         currentCart : [],
         totalPrice:'',
-        homenavPage:''
+        homenavPage:'',
+        cartItemId:'',
     },
     actions:{
         updateLoading(context,status){
@@ -38,6 +40,11 @@ export default new Vuex.Store({
                 // vm.products=response.data.products; // 此為存放資料行為，要改為commit呼叫mutation
                 context.commit('PRODUCTS', response.data.products);
                 context.commit('PAGINATION', response.data.pagination);
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   context.dispatch('reload'); 
+                }, 1000);                
             })
         },
         addtoCart( context,{id,qty=1}){
@@ -53,6 +60,11 @@ export default new Vuex.Store({
                 // console.log(response);
                 // vm.status.loadingItem='';
                 $('#productModal').modal('hide');
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   context.dispatch('reload'); 
+                }, 1000);                
             })
         },
         getCart(context){
@@ -64,14 +76,26 @@ export default new Vuex.Store({
                 console.log(response.data.data.final_total);
                 context.commit('COUNTPRICE',response.data.data.final_total);
                 context.commit('LOADING',false);
+                console.log(response.data.data);
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   context.dispatch('reload'); 
+                }, 1000);                
             })
         },  
         turnPage(context,currentPage){
             context.commit('TURNPAGE',currentPage);
             // console.log(currentPage);
+        },
+        reload(context){
+            window.location.reload();
         }
     },
     mutations:{
+        SINGIN(state,status){
+            state.user = status;
+        },
         LOADING(state,status){
             state.isLoading=status;
         },
@@ -95,7 +119,7 @@ export default new Vuex.Store({
         }
     },
     modules:{
-        getProducts,
+        // getProducts,
     },
     getters:{
         isLoading(state){

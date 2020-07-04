@@ -1,31 +1,35 @@
 <template>
     <div class="text-center loginPage">
+    <Alert/>
     <!-- 全螢幕讀取效果 -->
     <loading :active.sync="isLoading" ></loading>                
             <!-- <div class="w-60" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">  
             </div> -->
             <form class="form-signin w-40" @submit.prevent="signin">
                 <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">會員中心</h1>
+                <h1 class="h3 mb-3 font-weight-normal">歡迎來到會員中心，請登入!</h1>
                 <div class="mb-25">
                     <label for="inputEmail" class="sr-only">Email address</label>
-                    <input v-model="user.username" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input v-model="user.username" type="email" id="inputEmail" class="form-control" placeholder="請輸入帳號" required autofocus>
                 </div>
                 <div>
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input v-model="user.password" type="password" id="inputPassword" class="form-control" placeholder="請輸入密碼" required>
                 </div>
                 <div class="checkbox mb-3">
                     <label>
-                        <input type="checkbox" value="remember-me"> Remember me
+                        <input type="checkbox" value="remember-me"> 記住我!
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+                <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p> -->
             </form>
         </div>
 </template>
 <script>
+import Alert from './AlertMessage';
+import {mapGetters,mapActions} from 'vuex';
+import $ from 'jquery';
 export default {
     name:'Login',
     data(){
@@ -34,32 +38,46 @@ export default {
                 username:'',
                 password:'',
             },
+            message : ''
         };
+    },
+    components:{
+        Alert
     },
     methods: {
         signin(){
             const api=`https://vue-course-api.hexschool.io/admin/signin`;
             const vm=this;
             this.$http.post(api,vm.user).then((response)=>{
-                console.log(response.data);
+                // console.log(response.data);
+                vm.$store.dispatch('updateLoading',true);
                 if (response.data.success){
-                    vm.$router.push('/product/productlist');
-                    // next();
+                    vm.$bus.$emit('message:push',response.data.message+', 歡迎您!','success');
+                    setTimeout(() => {
+                        vm.$router.push('/product/productlist');
+                        vm.$store.dispatch('updateLoading',false);                    
+                    }, 2000);
+                }else{
+                    vm.$bus.$emit('message:push',response.data.message+", 請重新嘗試",'danger');
+                    vm.user.username = '';
+                    vm.user.password = '';
+                    vm.$store.dispatch('updateLoading',false);
                 }
             })
         },
         brforeRouterEnter(to, from, next) {
             const api=`https://vue-course-api.hexschool.io/api/user/check`;
-            // const vm= this;
+            const vm= this;
             this.$http.post(api).then((response)=>{
                 console.log(response.data);
                 // 驗證是否持續登入
                 if (response.data.success){
-                    // vm.$router.push('/');
-                    next();
+                    vm.$bus.$emit('message:push','您已登入,歡迎進入會員中心!','success');
+                    setTimeout(() => {
+                        vm.$router.push('product/productlist');
+                    }, 1500);
                 }else{
-                    // vm.$router.push('/login');
-                    next('/login');
+                    vm.$bus.$emit('message:push','您尚未登入,歡迎登入以使用更多功能!','danger');
                 }
             });    
         },
@@ -69,9 +87,12 @@ export default {
         }         
     },
     // methods結束
+    computed:{
+        ...mapGetters(['isLoading'])
+    },
     created(){
         this.turnPage("login");          
-        // this.loginCheck();
+        this.brforeRouterEnter();
     }
 }
 </script>

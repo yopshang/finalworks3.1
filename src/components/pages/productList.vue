@@ -322,6 +322,11 @@ export default {
                 vm.$store.dispatch('updateLoading',false);
                 vm.products=response.data.products;
                 vm.pagination=response.data.pagination;
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   reload(); 
+                }, 1000);
             })
         },
         openModal(isNew,item){
@@ -352,6 +357,11 @@ export default {
                     vm.getProducts();
                     console.log('新增失敗');
                 } 
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   reload(); 
+                }, 1000);
             })
         },
         deleteProduct(item){
@@ -359,7 +369,12 @@ export default {
           const url=`https://vue-course-api.hexschool.io/api/yop/admin/product/${item.id}`;
           this.$http.delete(url).then((response)=>{
               vm.getProducts();
-          })  
+          }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   reload(); 
+                }, 1000);
+            })  
         },
         uploadFile(){
             console.log(this);
@@ -381,6 +396,11 @@ export default {
                 }else{
                     this.$bus.$emit('message:push',response.data.message,'danger');
                 }
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   reload(); 
+                }, 1000);
             });
         },
         signout(){
@@ -388,42 +408,66 @@ export default {
             const url= 'https://vue-course-api.hexschool.io/logout';
             this.$http.post(url).then((response) =>{
                 console.log(response.data);
+                vm.$store.dispatch('updateLoading',true);
                 if (response.data.success){
-                    vm.$router.push('/');
+                    vm.$store.dispatch('updateLoading',true);
+                    vm.$bus.$emit('message:push','登出成功，歡迎再次光臨!','success');
+                    setTimeout(() => {
+                        vm.$router.push('/');
+                        vm.$store.dispatch('updateLoading',false);
+                    }, 2000);
+                }else{
+                    vm.$bus.$emit('message:push','登出失敗，請重新嘗試!','danger');
+                    vm.$store.dispatch('updateLoading',false);
                 }
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   reload(); 
+                }, 1000);
             })
         }, 
         turnPage(currentPage){
             const vm = this;
             vm.$store.dispatch('turnPage',currentPage);
         },
-        // brforeRouterEnter(to, from, next) {
-        //     const api=`https://vue-course-api.hexschool.io/api/user/check`;
-        //     this.$http.post(api).then((response)=>{
-        //         console.log(response.data);
-        //         // 驗證是否持續登入
-        //         if (response.data.success){
-        //             next();
-        //         }else{
-        //             // vm.$router.push('/login');
-        //             next('/login');
-        //         }
-        //     });    
-        // },                        
+        brforeRouterEnter(to, from, next) {
+            const api=`https://vue-course-api.hexschool.io/api/user/check`;
+            const vm =this;
+            vm.$store.dispatch('updateLoading',true);
+            this.$http.post(api).then((response)=>{
+                console.log(response.data);
+                // 驗證是否持續登入
+                if (response.data.success){
+                    vm.$store.dispatch('updateLoading',false);
+                }else{
+                    vm.$bus.$emit('message:push',"您好，請先登入會員! 2秒後自動跳轉",'danger');
+                    vm.$store.dispatch('updateLoading',false);
+                    setTimeout(() => {
+                        vm.$router.push('/login');
+                    }, 2000);
+                }
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                   reload(); 
+                }, 1000);
+            });    
+        },
+        reload(){
+            window.location.reload();
+        }                        
     },
     computed:{
-        // isLoading(){
-        //     return this.$store.state.isLoading;
-        // },
-        // pagination(){
-        //     return this.$store.state.pagination;
-        // }
+
         ...mapGetters(['isLoading','pagination'])
     },
     created(){
         this.getProducts();
         this.turnPage("myshop");                
-        // this.brforeRouterEnter();
+        this.brforeRouterEnter();
+        this.$bus.$emit('message:push',"歡迎回到您的商場!",'success');
+          
     }
 }
 </script>
