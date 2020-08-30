@@ -124,3 +124,11 @@
  width: 50%;   
 }
 // counting area end
+.alertMsg{
+    color: rgb(177, 53, 53);
+    font-size: 12px;
+}
+.numArea{
+    display: flex;
+    flex-direction: column;
+}

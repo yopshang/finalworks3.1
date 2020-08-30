@@ -4,6 +4,8 @@ import axios from 'axios';
 // import getProducts from './products';
 // import products from './products';
 import VueAxios from 'vue-axios'
+import '../router/bus';
+
 
 Vue.use(Vuex);
 Vue.use(VueAxios,axios);
@@ -20,6 +22,15 @@ export default new Vuex.Store({
         totalPrice:'',
         homenavPage:'',
         cartItemId:'',
+        orderData: {
+            user: {
+              name : "",
+              email : "",
+              tel : "",
+              address: ""
+            },
+            message: ""
+          }
     },
     actions:{
         updateLoading(context,status){
@@ -28,20 +39,14 @@ export default new Vuex.Store({
         getProducts(context,page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/products?page=${page}`;
             const vm=this;
-            // vm.isLoading=true;
-            // vm.$store.dispatch('updateLoading',true);
             context.commit('LOADING',true);
             axios.get(api).then((response)=>{
                 console.log(response.data);
-                // vm.isLoading=false;
-                // vm.$store.dispatch('updateLoading',false);
                 context.commit('LOADING',false); 
-                // 將原本在個別component中dispatch呼叫store中的action改為在action中用commit呼叫mutation
-                // vm.products=response.data.products; // 此為存放資料行為，要改為commit呼叫mutation
                 context.commit('PRODUCTS', response.data.products);
                 context.commit('PAGINATION', response.data.pagination);
             }).catch(()=>{
-                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                this.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
                    context.dispatch('reload'); 
                 }, 1000);                
@@ -90,7 +95,7 @@ export default new Vuex.Store({
         },
         reload(context){
             window.location.reload();
-        }
+        },
     },
     mutations:{
         SINGIN(state,status){

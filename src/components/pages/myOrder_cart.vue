@@ -34,8 +34,9 @@
                     <input class="w-100 p-15 mb-15" placeholder="Address" type="text">
                     <div class="d-flex mb-30 w-100 jc-space-between">
                         <p  class="EmptyColorBtn w-50 p-15">
-                            <router-link to="/product/shopping"></router-link>
+                            <router-link to="/product/shopping">
                                 < 還沒買夠，我想回到賣場! 
+                            </router-link>
                         </p>
                         <button class="fullColorBtn w-50 p-15">
                             <router-link to="/myorder/myorder_info">

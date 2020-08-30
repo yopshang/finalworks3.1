@@ -1,0 +1,25 @@
+.productArea:hover {
+  background-color: #0000009A;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cata {
+  font-size: 16px;
+}
+
+.numArea {
+  text-align: center;
+  border: none;
+}
+
+.sign {
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.addToCardBtn:hover {
+  color: #0E8A00;
+}
+/*# sourceMappingURL=shopping.css.map */

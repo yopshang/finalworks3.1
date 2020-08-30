@@ -1,5 +1,6 @@
 <template>
     <div class="mainContainer">
+    <Alert/>
     <!-- 全螢幕讀取效果 -->
     <loading :active.sync="isLoading" ></loading>            
     <!-- navbar end     -->
@@ -8,7 +9,7 @@
         <router-view class="left"></router-view>
         <div class=" right">
             <div class="mb-25 cartTitle">| 您的購物車 <i class="fas fa-shopping-cart"> |</i></div>
-            <div class="w-100 cartArea">
+            <div class="w-100 cartArea ">
                 <!-- cart cards -->
                 <div v-for="item in currentCart.carts" class=" d-flex mb-15 procuctArea ai-center">
                     <img class="checkOutAreaImg" :src="item.product.imageUrl" alt="">
@@ -23,6 +24,9 @@
                             <i @click="removeCartItem(item.id)" class="delIcon fas fa-trash-alt p-15"></i>
                         </div>
                     </div>
+                </div>
+                <div v-if=" currentCart.carts == '' " class="p-30 d-flex mb-15">
+                    您的購物車還沒有商品，快去購物吧!
                 </div>
                 <!-- cart cards end -->
             </div>
@@ -40,6 +44,7 @@
     </div>
 </template>
 <script>
+import Alert from './AlertMessage';
 import $ from 'jquery';
 import BtnForNum from './BtnForNum';
 import bottom from './bottom';
@@ -47,7 +52,8 @@ export default {
     name:"myOrder",
     components:{
         BtnForNum,
-        bottom
+        bottom,
+        Alert
     },
     data(){
         return{
@@ -97,6 +103,7 @@ export default {
                 console.log(response);
                 vm.$store.dispatch('getCart');
             })            
+            vm.$bus.$emit('message:push','移除成功','success');
             console.log('移除成功');
         },
     },

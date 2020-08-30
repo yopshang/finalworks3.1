@@ -105,6 +105,17 @@
 }
 // pagenumber
 // Modal
+@media(max-width:414px){
+    .underProductDetail{
+        flex-direction: column;
+    }
+    .rightSide{
+        max-width: 100%;
+    }
+}
+.detailArea_text_center {
+    text-align: center;
+}
 
 .font20{
     font: 20px;

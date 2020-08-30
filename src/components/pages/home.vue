@@ -5,7 +5,7 @@
             <loading :active.sync="isLoading" ></loading>    
         </div>
         <!--全螢幕讀取效果結束-->
-        <!-- <homenav/> -->
+        <Alert/>
         <!-- firstRow --><!--title-->
         <div class="topDiv  d-flex flex-wrap">
             <div class="topDivLeft  d-flex ai-center">
@@ -121,12 +121,8 @@ import $ from 'jquery';
 import homenav from './homenav.vue';
 import bottom from './bottom';
 import productList from './productList';
+import Alert from './AlertMessage';
 export default {
-    components:{
-                homenav,
-                bottom,
-                productList
-            },
     data(){
         return {
             isNew:false,
@@ -136,10 +132,18 @@ export default {
         }
     },
     // data end
+    components:{
+                homenav,
+                bottom,
+                productList,
+                Alert
+    },
     methods:{
         getProducts(){
             const vm = this;
+            // vm.$bus.$emit('message:push',"商品載入中 , 夏季優惠全面9折!",'danger');
             vm.$store.dispatch('getProducts');
+            // vm.$bus.$emit('message:push',"載入完成 , 歡迎選購!",'success');
         },
         turnPage(currentPage){
             const vm = this;

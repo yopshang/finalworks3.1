@@ -19,27 +19,29 @@ import store from './store/index';
 // 允許跨域存取
 axios.defaults.withCredentials = true;
 
-
-
-
-
 // vee-validate表單驗證
-import { ValidationProvider} from 'vee-validate';
+// 引入並啟用 具名匯入
+
+import { ValidationProvider } from 'vee-validate';
 Vue.component('ValidationProvider', ValidationProvider);
 
-import { extend } from 'vee-validate';
-import * as rules from 'vee-validate/dist/rules';
-import { required, email,alpha_num } from 'vee-validate/dist/rules';
+// 引入驗證規則  具名匯入
+import {  extend } from 'vee-validate';
+extend('positive', value => {
+  return value >= 0;
+});
+// import * as rules from 'vee-validate/dist/rules';
+// import { required, email,alpha_num } from 'vee-validate/dist/rules';
 
 
 // No message specified.
-extend('required',required);
-extend('email', email);
-extend('alpha_num', alpha_num);
+// extend('required',required);
+// extend('email', email);
+// extend('alpha_num', alpha_num);
 
-Object.keys(rules).forEach(rule => {
-  extend(rule, rules[rule]);
-});
+// Object.keys(rules).forEach(rule => {
+//   extend(rule, rules[rule]);
+// });
 
 // 表單驗證中文化
 import { localize } from 'vee-validate'

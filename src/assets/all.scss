@@ -10,12 +10,16 @@
 @import "./helper/base/_fontfamily";
 @import "./helper/base/_base";
 
+// utils
+@import "./helper/utils/utils";
+
 // pages
 @import "./helper/pages/home";
 @import "./helper/pages/product";
 @import "./helper/pages/shopping.scss";
 @import "./helper/pages/_detail";
 @import "./helper/pages/myOrder";
+@import "./helper/pages/orders";
 
 // compontents
 @import "./helper/component/variable";
@@ -27,8 +31,6 @@
 @import "./helper/layout/AlertMsg";
 
 
-// utils
-@import "./helper/utils/utils";
 
 // @import "./helper/_dashboard.scss";
 // @import "./helper/_nav";

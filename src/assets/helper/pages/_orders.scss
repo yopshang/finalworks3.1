@@ -1,0 +1,22 @@
+.listArea{
+    cursor: pointer;
+}
+.listArea:hover{
+    background-color: $secondary-color;
+    color: #fff;
+}
+.noPay{
+    color: rgb(189, 99, 99);
+    font-weight: bold;
+}
+.payed{
+    color: $main-color;
+}
+.orderProducts{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.orderTotal{
+    font-size: 20px;
+    color: $main-color;
+}

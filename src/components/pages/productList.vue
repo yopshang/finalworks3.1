@@ -216,7 +216,7 @@
         </div>       
     <!-- Modal end -->
     <!-- Edit Modal -->
-    <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div  class="modal-dialog modal-lg" role="document">
             <div class="modal-content border-0">
@@ -228,13 +228,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-        <div class="modal-body productDetail">
+        <div class="modal-body">
         <!-- detail -->
         <!-- product detail -->
         <!-- 左邊圖案區塊 -->
-        <div class="d-flex flex-wrap-no ">
+        <div class="d-flex flex-wrap-no underProductDetail">
             <!-- leftSide -->
-            <div class="  d-flex w-60 flex-wrap p-15 mr-15">
+            <div class="  d-flex flex-wrap p-15">
                 <div class="w-100 d-flex jc-center">
                     <img class="smoothInput" :src="tempProduct.imageUrl" alt="">
                 </div>
@@ -243,24 +243,24 @@
                     <input type="text" v-model="tempProduct.imageUrl" class="w-50 m-10 form-control p-15 " id="image" placeholder="請輸入圖片連結">
                     <input type="file" id="customFile" class="form-control m-10 w-50" placeholder="請拖曳或上傳圖片" ref="files" @change="uploadFile">
                 </div>
-                <ul class="w-100 d-flex jc-space-around">
+                <ul class="w-100 d-flex jc-space-around ai-center">
                     <li class="w-40">
-                        <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品描述"  v-model="tempProduct.description">
+                        <input class="w-100 smoothInput eidtInput" type="text" placeholder="請輸入產品描述"  v-model="tempProduct.description">
                     </li>
                     <li class="w-40">
-                        <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品說明內容" v-model="tempProduct.content">
+                        <input class="w-100 smoothInput eidtInput" type="text" placeholder="請輸入產品說明內容" v-model="tempProduct.content">
                     </li>
                 </ul>
             </div>
             <!-- rightSide -->
-            <div class=" d-flex ai-center w-40 p-15">
+            <div class=" d-flex ai-center w-60 rightSide">
                 <section class="modalInside w-100 jc-flex-start p-15">
-                    <input class="smoothInput w-40" type="text" name="" id="" placeholder="請輸入類別"  v-model="tempProduct.category">
+                    <input class="smoothInput w-40 detailArea_text_center" type="text" name="" id="" placeholder="請輸入類別"  v-model="tempProduct.category">
                     <div>
                         <div class="productDetailTitle  mb-30">
-                            <input class="w-100 smoothInput" type="text" v-model="tempProduct.title" placeholder="請輸入標題">
+                            <input class="w-100 smoothInput detailArea_text_center" type="text" v-model="tempProduct.title" placeholder="請輸入標題">
                         </div>
-                        <div class="d-flex jc-space-between mb-15">
+                        <div class="d-flex jc-space-between ai-center">
                             <div>原價</div>
                             <input class="w-35 smoothInput" type="text" placeholder="請輸入原價"  v-model="tempProduct.origin_price">
                             <div>售價</div>
@@ -269,10 +269,10 @@
                     </div>
                     <footer>
                         <ul class="d-flex">
-                            <li class="p-15 ">-</li>
-                            <li class="p-15 ">1</li>
-                            <li class="p-15 ">+</li>
-                            <input class="w-35 smoothInput" type="text" placeholder="請輸入單位"  v-model="tempProduct.unit">
+                            <li class="p-15 detailArea_text_center">-</li>
+                            <li class="p-15 detailArea_text_center">1</li>
+                            <li class="p-15 detailArea_text_center">+</li>
+                            <input class="w-35 smoothInput detailArea_text_center" type="text" placeholder="請輸入單位"  v-model="tempProduct.unit">
                             <!-- <li class="fullColorBtn p-15">Add to cart</li> -->
                         </ul>
                     </footer>   
@@ -456,6 +456,9 @@ export default {
         },
         reload(){
             window.location.reload();
+        },
+        openAlertDel (){
+            $('#AlertDelModal').modal('show');
         }                        
     },
     computed:{
