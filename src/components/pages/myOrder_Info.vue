@@ -15,31 +15,31 @@
                         <div class="d-flex w-100 jc-space-between mb-15">
                             <div>                              
                                 <ValidationProvider v-slot="{ errors }">
-                                    <input name="name" v-model="form.name" class="mb-15 p-15 mr-15" type="text" placeholder="購買人姓名">
+                                    <input name="name" v-model="form.name" class="mb-15 p-15 checkoutInput" type="text" placeholder="購買人姓名">
                                     <span class="alertMsg"></span> {{ errors[0] }}
                                 </ValidationProvider>
                             </div>
                             <div>
-                                    <input v-model="form.tel" class="mb-15 p-15" placeholder="手機號碼" type="text">
+                                    <input v-model="form.tel" class="mb-15 p-15 checkoutInput" placeholder="手機號碼" type="text">
                                     <span class="alertMsg"></span>
                             </div>
                         </div>
                         <div class="d-flex w-100 jc-space-between mb-15">
                             <div>
-                                <input v-model="form.email" class="p-15 mr-15" type="text" placeholder="電子郵件">
+                                <input v-model="form.email" class="p-15 checkoutInput" type="text" placeholder="電子郵件">
                             </div>
                             <div>
-                                <input v-model="form.address" class="p-15" placeholder="地址" type="text">
+                                <input v-model="form.address" class="p-15 checkoutInput" placeholder="地址" type="text">
                             </div>
                         </div>
                         <div class="d-flex w-100 mb-15">
                             <select class="p-15 w-50 mr-15" name="" id="">
-                                <option class="option" value="" disabled selected>付費方式</option>
+                                <option class="option checkoutInput" value="" disabled selected>付費方式</option>
                                 <option value="">貨到付款</option>
                                 <option value="">信用卡</option>
                             </select>
                             <select class="p-15 w-50" name="" id="">
-                                <option class="option" value=""  disabled selected>開立發票種類</option>
+                                <option class="option checkoutInput" value=""  disabled selected>開立發票種類</option>
                                 <option value="">三聯式發票</option>
                                 <option value="">二聯式發票</option>
                                 <option value="">電子發票</option>

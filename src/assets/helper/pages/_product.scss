@@ -113,6 +113,15 @@
         max-width: 100%;
     }
 }
+.checkoutInput{
+    @media(max-width:763px){
+        max-width: 150px;
+    }
+    @media(max-width:1200px){
+        max-width: 170px;
+    }
+    
+}
 .detailArea_text_center {
     text-align: center;
 }
