@@ -97,30 +97,34 @@
     </div>
     <!-- thirdRow end -->
     <!-- fourthRow products--> <!--等新版product做好，要import進來-->
+    <div class="slideWrapper">
+        <slick
+            class="fourthRowinside"
+            ref="slick"
+            :options="slickOptions"
+            @afterChange="handleAfterChange"
+            @beforeChange="handleBeforeChange"
+            @breakpoint="handleBreakpoint"
+            @destroy="handleDestroy"
+            @edge="handleEdge"
+            @init="handleInit"
+            @reInit="handleReInit"
+            @setPosition="handleSetPosition"
+            @swipe="handleSwipe"
+            @lazyLoaded="handleLazyLoaded"
+            @lazyLoadError="handleLazeLoadError">
 
-    <slick
-        class="fourthRowinside"
-        ref="slick"
-        :options="slickOptions"
-        @afterChange="handleAfterChange"
-        @beforeChange="handleBeforeChange"
-        @breakpoint="handleBreakpoint"
-        @destroy="handleDestroy"
-        @edge="handleEdge"
-        @init="handleInit"
-        @reInit="handleReInit"
-        @setPosition="handleSetPosition"
-        @swipe="handleSwipe"
-        @lazyLoaded="handleLazyLoaded"
-        @lazyLoadError="handleLazeLoadError">
+                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
 
-            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+            </slick>
+            <i class="slick-prev slick-arrow fas fa-arrow-circle-left" @click="next"></i>
+            <i class="slick-next slick-arrow fas fa-arrow-circle-right" @click="prev"></i>
 
-        </slick>
+    </div>
     <div class="fourthRowinside mb-25">
         <div v-for="(item) in products" :key="item.id" class="productCard">
             <!-- 商品照片 -->
