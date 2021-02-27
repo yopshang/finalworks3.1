@@ -117,8 +117,12 @@
         <a v-for="(item) in products" :key="item.id"><img :src="item.imageUrl" alt=""></a>
 
         </slick>
-            <!-- <i class="slick-prev slick-arrow fas fa-arrow-circle-left" @click="next"></i>
-            <i class="slick-next slick-arrow fas fa-arrow-circle-right" @click="prev"></i> -->
+        <!-- <div class="left-arrow-wrapper"> -->
+            <i class="slick-prev slick-arrow fas fa-arrow-circle-left" @click="next"></i>
+        <!-- </div> -->
+        <!-- <div class="right-arrow-wrapper"> -->
+            <i class="slick-next slick-arrow fas fa-arrow-circle-right" @click="prev"></i>
+        <!-- </div> -->
 
     </div>
     <!-- <div class="fourthRowinside mb-25">

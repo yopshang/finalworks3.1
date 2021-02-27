@@ -210,7 +210,6 @@
 // fourthRow end
 .slideWrapper {
     position: relative;
-    .fourthRowinside {
         .slick-prev.slick-arrow {
             display: none !important;
             &.fas {
@@ -239,8 +238,6 @@
                 cursor: pointer;
             }
         }
-    }
-
 }
 .slick-slide img  {
     margin: 0 auto;
