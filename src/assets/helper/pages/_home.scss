@@ -154,9 +154,9 @@
 // fourthRow
 .fourthRowinside{
     display: flex;
-    overflow:scroll;
+    // overflow:scroll;
     overflow-y: hidden; 
-    height: 350px;
+    // height: 350px;
     .productCard{
         width: 200px;
         padding: 15px;
@@ -203,6 +203,13 @@
   }
 
 // fourthRow end
+.slick-prev.slick-arrow {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 .footerRow{
     background-color: #121212;

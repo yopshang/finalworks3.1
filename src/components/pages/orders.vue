@@ -190,7 +190,7 @@ export default {
         }
     },
     created(){
-        this.turnPage("orders");        
+        this.turnPage("orders");
         this.getOrderList();
         this.getOrderList();
     },

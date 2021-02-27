@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
-// import getProducts from './products';
+import getProducts from './products';
 // import products from './products';
 import VueAxios from 'vue-axios'
 import '../router/bus';
@@ -24,18 +24,18 @@ export default new Vuex.Store({
         cartItemId:'',
         orderData: {
             user: {
-              name : "",
-              email : "",
-              tel : "",
-              address: ""
+                name : "",
+                email : "",
+                tel : "",
+                address: ""
             },
             message: ""
-          }
+        }
     },
     actions:{
-        updateLoading(context,status){
-            context.commit('LOADING',status);
-        },
+        // updateLoading(context,status){
+        //     context.commit('LOADING',status);
+        // },
         getProducts(context,page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/products?page=${page}`;
             const vm=this;
@@ -124,7 +124,7 @@ export default new Vuex.Store({
         }
     },
     modules:{
-        // getProducts,
+        getProducts,
     },
     getters:{
         isLoading(state){

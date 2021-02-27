@@ -97,13 +97,37 @@
     </div>
     <!-- thirdRow end -->
     <!-- fourthRow products--> <!--等新版product做好，要import進來-->
+
+    <slick
+        class="fourthRowinside"
+        ref="slick"
+        :options="slickOptions"
+        @afterChange="handleAfterChange"
+        @beforeChange="handleBeforeChange"
+        @breakpoint="handleBreakpoint"
+        @destroy="handleDestroy"
+        @edge="handleEdge"
+        @init="handleInit"
+        @reInit="handleReInit"
+        @setPosition="handleSetPosition"
+        @swipe="handleSwipe"
+        @lazyLoaded="handleLazyLoaded"
+        @lazyLoadError="handleLazeLoadError">
+
+            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+            <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
+
+        </slick>
     <div class="fourthRowinside mb-25">
         <div v-for="(item) in products" :key="item.id" class="productCard">
             <!-- 商品照片 -->
             <!-- <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-1.jpg') + ')' }"></div> -->
             <div class="outsideProImg">
                 <img class="proImg" :src="item.imageUrl" alt="">
-                <div class="cate">{{item.category}}</div>             
+                <div class="cate">{{item.category}}</div>
             </div>
             <h2 >{{ item.title }}</h2> <!--商品名稱-->
             <ul class="d-flex">
@@ -116,18 +140,28 @@
     <bottom/>
 </div>
 </template>
+
 <script>
+
+
 import $ from 'jquery';
 import homenav from './homenav.vue';
 import bottom from './bottom';
 import productList from './productList';
 import Alert from './AlertMessage';
+
+import Slick from 'vue-slick'
+
 export default {
     data(){
         return {
             isNew:false,
             status:{
                 fileUploading:false,
+            },
+            slickOptions: {
+                slidesToShow: 3,
+                // Any other options that can be got from plugin documentation
             },
         }
     },
@@ -136,9 +170,59 @@ export default {
                 homenav,
                 bottom,
                 productList,
-                Alert
+                Alert,
+                Slick,
     },
     methods:{
+        next() {
+            this.$refs.slick.next();
+        },
+
+        prev() {
+            this.$refs.slick.prev();
+        },
+
+        reInit() {
+            // Helpful if you have to deal with v-for to update dynamic lists
+            this.$nextTick(() => {
+                this.$refs.slick.reSlick();
+            });
+        },
+
+        // Events listeners
+        handleAfterChange(event, slick, currentSlide) {
+            console.log('handleAfterChange', event, slick, currentSlide);
+        },
+        handleBeforeChange(event, slick, currentSlide, nextSlide) {
+            console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);
+        },
+        handleBreakpoint(event, slick, breakpoint) {
+            console.log('handleBreakpoint', event, slick, breakpoint);
+        },
+        handleDestroy(event, slick) {
+            console.log('handleDestroy', event, slick);
+        },
+        handleEdge(event, slick, direction) {
+            console.log('handleEdge', event, slick, direction);
+        },
+        handleInit(event, slick) {
+            console.log('handleInit', event, slick);
+        },
+        handleReInit(event, slick) {
+            console.log('handleReInit', event, slick);
+        },
+        handleSetPosition(event, slick) {
+            console.log('handleSetPosition', event, slick);
+        },
+        handleSwipe(event, slick, direction) {
+            console.log('handleSwipe', event, slick, direction);
+        },
+        handleLazyLoaded(event, slick, image, imageSource) {
+            console.log('handleLazyLoaded', event, slick, image, imageSource);
+        },
+        handleLazeLoadError(event, slick, image, imageSource) {
+            console.log('handleLazeLoadError', event, slick, image, imageSource);
+        },
         getProducts(){
             const vm = this;
             // vm.$bus.$emit('message:push',"商品載入中 , 夏季優惠全面9折!",'danger');
@@ -148,7 +232,7 @@ export default {
         turnPage(currentPage){
             const vm = this;
             vm.$store.dispatch('turnPage',currentPage);
-        },                 
+        },
     },
     // methods end
     computed:{
@@ -167,3 +251,6 @@ export default {
     // created end
 }
 </script>
+<style lang="css">
+    @import 'slick-carousel/slick/slick.css';
+</style>
