@@ -207,42 +207,31 @@
     position: relative;
     .fourthRowinside {
         .slick-prev.slick-arrow {
-            position: absolute;
-            left: 0;
-            z-index: 1;
-            top: 50%;
-            transform: translateY(-50%);
-            display: none;
+            display: none !important;
             &.fas {
-                display: block;
+                position: absolute;
+                left: 0;
+                z-index: 1;
+                top: 50%;
+                transform: translateY(-50%);
+                display: block !important;
                 height: 10px;
                 cursor: pointer;
             }
         }
         .slick-next.slick-arrow {
-            position: absolute;
-            right: 0;
-            z-index: 1;
-            top: 50%;
-            transform: translateY(-50%);
-            display: none;
+            display: none !important;
             &.fas {
-                display: block;
+                position: absolute;
+                right: 0;
+                z-index: 1;
+                top: 50%;
+                transform: translateY(-50%);
+                display: block !important;
                 height: 10px;
                 cursor: pointer;
             }
         }
-        .slick-prev::before, .slick-next::before {
-            font-family: FontAwesome;
-          }
-          .slick-prev::before {
-            /* fa-arrow-circle-left */
-            content: "\f0a8";
-          }s
-          .slick-next::before {
-            /* fa-arrow-circle-right */
-            content: "\f0a9";
-          }
     }
 
 }
