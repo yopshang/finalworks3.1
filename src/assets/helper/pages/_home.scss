@@ -153,9 +153,9 @@
 // thirdRow end
 // fourthRow
 .fourthRowinside{
-    display: flex;
+    display: flex !important;
     // overflow:scroll;
-    overflow-y: hidden; 
+    overflow-y: hidden;
     // height: 350px;
     .productCard{
         width: 200px;
@@ -197,6 +197,11 @@
             }
         }
     }
+    .slick-slider {
+        // border-radius: 15%;
+        // width: 150px;
+        // height: 160px;
+    }
 }
 .fourthRowinside::-webkit-scrollbar {
     display: none;
@@ -209,6 +214,7 @@
         .slick-prev.slick-arrow {
             display: none !important;
             &.fas {
+                width: 10px;
                 position: absolute;
                 left: 0;
                 z-index: 1;
@@ -223,6 +229,7 @@
             display: none !important;
             &.fas {
                 position: absolute;
+                width: 10px;
                 right: 0;
                 z-index: 1;
                 top: 50%;
@@ -234,6 +241,12 @@
         }
     }
 
+}
+.slick-slide img  {
+    margin: 0 auto;
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
 }
 
 .footerRow{
@@ -275,6 +288,16 @@
     @media (max-width:$mobileSize) {
         max-width: 200px;
     }
+}
+.slide-img {
+    width: 200px;
+    height: 200px;
+}
+
+.slideWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 // footerRow end
 @media(max-width:$mobileSize){

@@ -99,47 +99,42 @@
     <!-- fourthRow products--> <!--等新版product做好，要import進來-->
     <div class="slideWrapper">
         <slick
-            class="fourthRowinside"
-            ref="slick"
-            :options="slickOptions"
-            @afterChange="handleAfterChange"
-            @beforeChange="handleBeforeChange"
-            @breakpoint="handleBreakpoint"
-            @destroy="handleDestroy"
-            @edge="handleEdge"
-            @init="handleInit"
-            @reInit="handleReInit"
-            @setPosition="handleSetPosition"
-            @swipe="handleSwipe"
-            @lazyLoaded="handleLazyLoaded"
-            @lazyLoadError="handleLazeLoadError">
+        ref="slick"
+        v-if ="products.length"
+        :options="slickOptions"
+        @afterChange="handleAfterChange"
+        @beforeChange="handleBeforeChange"
+        @breakpoint="handleBreakpoint"
+        @destroy="handleDestroy"
+        @edge="handleEdge"
+        @init="handleInit"
+        @reInit="handleReInit"
+        @setPosition="handleSetPosition"
+        @swipe="handleSwipe"
+        @lazyLoaded="handleLazyLoaded"
+        @lazyLoadError="handleLazeLoadError">
+        
+        <a v-for="(item) in products" :key="item.id"><img :src="item.imageUrl" alt=""></a>
 
-                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-                <a href="http://placehold.it/2000x1000"><img src="http://placehold.it/2000x1000" alt=""></a>
-
-            </slick>
-            <i class="slick-prev slick-arrow fas fa-arrow-circle-left" @click="next"></i>
-            <i class="slick-next slick-arrow fas fa-arrow-circle-right" @click="prev"></i>
+        </slick>
+            <!-- <i class="slick-prev slick-arrow fas fa-arrow-circle-left" @click="next"></i>
+            <i class="slick-next slick-arrow fas fa-arrow-circle-right" @click="prev"></i> -->
 
     </div>
-    <div class="fourthRowinside mb-25">
+    <!-- <div class="fourthRowinside mb-25">
         <div v-for="(item) in products" :key="item.id" class="productCard">
-            <!-- 商品照片 -->
-            <!-- <div :style="{ backgroundImage: 'url(' + require('@/assets/img/img-1.jpg') + ')' }"></div> -->
+          
             <div class="outsideProImg">
                 <img class="proImg" :src="item.imageUrl" alt="">
                 <div class="cate">{{item.category}}</div>
             </div>
-            <h2 >{{ item.title }}</h2> <!--商品名稱-->
+            <h2 >{{ item.title }}</h2>
             <ul class="d-flex">
-                <li class="text-dec">原價{{ item.origin_price | currency }}</li> <!--原價-->
-                <li>特價{{ item.price | currency }}</li> <!--特價-->
+                <li class="text-dec">原價{{ item.origin_price | currency }}</li>
+                <li>特價{{ item.price | currency }}</li>
             </ul>
         </div>
-    </div>
+    </div> -->
     <!-- fourthRow end -->
     <bottom/>
 </div>
