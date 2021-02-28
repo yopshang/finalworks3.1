@@ -7,10 +7,11 @@
 
 <script>
 import homenav from '@/components/pages/homenav.vue';
+
 export default {
   name: 'App',
   components:{
-    homenav
+    homenav,
   }
 }
 </script>

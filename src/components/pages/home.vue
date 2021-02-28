@@ -114,7 +114,14 @@
         @lazyLoaded="handleLazyLoaded"
         @lazyLoadError="handleLazeLoadError">
         
-        <a v-for="(item) in products" :key="item.id"><img :src="item.imageUrl" alt=""></a>
+        <a v-for="(item) in products" :key="item.id"
+        class="item-in-slide"
+        href="/product/productlist"
+        >
+            <img :src="item.imageUrl" alt="">
+            <h2 >{{ item.title }}</h2>
+
+        </a>
 
         </slick>
         <!-- <div class="left-arrow-wrapper"> -->

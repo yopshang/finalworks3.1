@@ -37,17 +37,17 @@ export default {
         homenav,bottom,productList
     },
     methods: {
-        // getProducts(page){
-        //     const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
-        //     const vm=this;
-        //     vm.isLoading=true;
-        //     this.$http.get(api).then((response)=>{
-        //         console.log(response.data);
-        //         vm.isLoading=false;
-        //         vm.products=response.data.products;
-        //         vm.pagination=response.data.pagination;
-        //     })
-        // },
+        getProducts(page){
+            const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
+            const vm=this;
+            vm.isLoading=true;
+            this.$http.get(api).then((response)=>{
+                console.log(response.data);
+                vm.isLoading=false;
+                vm.products=response.data.products;
+                vm.pagination=response.data.pagination;
+            })
+        },
         openModal(isNew,item){
             if(isNew){
                 this.tempProduct={};
@@ -57,25 +57,25 @@ export default {
             }
             $('#productModal').modal('show');
         },
-        // updateProduct(){
-        //     let api=`https://vue-course-api.hexschool.io/api/yop/admin/product`;
-        //     const vm= this;
-        //     let httpMethods=`post`;
-        //     if(!vm.isNew){
-        //         api=`https://vue-course-api.hexschool.io/api/yop/admin/product/${vm.tempProduct.id}`;
-        //         httpMethods='put';
-        //     }
-        //     this.$http[httpMethods](api,{data:vm.tempProduct}).then((response)=>{
-        //         console.log(response.data);
-        //         if (response.data.success){
-        //             $('#productModal').modal('hide');
-        //             vm.getProducts();
-        //         }else{
-        //             $('#productModal').modal('hide');
-        //             console.log('新增失敗');
-        //         }
-        //     })
-        // },
+        updateProduct(){
+            let api=`https://vue-course-api.hexschool.io/api/yop/admin/product`;
+            const vm= this;
+            let httpMethods=`post`;
+            if(!vm.isNew){
+                api=`https://vue-course-api.hexschool.io/api/yop/admin/product/${vm.tempProduct.id}`;
+                httpMethods='put';
+            }
+            this.$http[httpMethods](api,{data:vm.tempProduct}).then((response)=>{
+                console.log(response.data);
+                if (response.data.success){
+                    $('#productModal').modal('hide');
+                    vm.getProducts();
+                }else{
+                    $('#productModal').modal('hide');
+                    console.log('新增失敗');
+                }
+            })
+        },
         uploadFile(){
             console.log(this);
             const uploadFile=this.$refs.files.files[0];
@@ -102,7 +102,7 @@ export default {
         },
     },
     created() {
-        // this.getProducts();
+        this.getProducts();
     }
 }
 </script>

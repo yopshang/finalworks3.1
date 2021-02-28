@@ -1,16 +1,15 @@
 <template>
 <div class="PDL">
-    <!-- 警告視窗 -->
     <Alert/>
     <!-- 全螢幕讀取效果 -->
-    <loading :active.sync="isLoading" ></loading>        
+    <loading :active.sync="isLoading" ></loading>
     <!-- product filter -->
     <div class="mb-30"> <!--做一個分類fiter-->
         <div class="productFilter p-15 d-flex">
             <ul class="d-flex w-100 jc-space-between">
                 <li class="filterList" :class="{'active':sort=='all'}" @click="sort='all'">
                     ALL
-                </li>                                        
+                </li>
                 <li class="filterList" :class="{'active':sort=='保養品'}" @click="sort='保養品'">
                     保養品
                 </li>
@@ -35,6 +34,9 @@
     <div class="d-flex jc-space-between ai-center p-15">
         <div class="mylogoDiv">我的商城</div>
         <div>
+            <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+                + 新增商品
+            </el-button>
             <button class="addProduct mr-15" data-toggle="modal" data-target="#productModal" @click="openModal(true)"> + 新增商品</button>
             <button @click.prevent="signout"  class="addProduct">登出</button>
             <!-- <a  href="#" >
@@ -44,7 +46,7 @@
     </div>
     <!-- product filter end -->
     <div class="productcard">
-        <div v-for="(item) in products" :key="item.id" 
+        <div v-for="(item) in products" :key="item.id"
         v-if="item.category==sort || sort=='all'"
         class="productArea"><!--這邊要用v-for引入資料-->
             <div class="cateContainer">
@@ -60,24 +62,24 @@
                         <button class="smBtn p-10" data-toggle="modal"
                         data-target="#editModal" @click="openModal(false,item)">編輯</button>
                         <button class="smBtn-cancel p-10" @click="deleteProduct(item)">刪除</button>
-                    </div>                    
+                    </div>
                 </section>
             </div>
-        </div>          
-        
+        </div>
+
     </div>
     <!-- page number -->
     <div class="p-15">
         <ul class="pageUl d-flex jc-center">
-            <li class="pageNumber p-15" 
-            v-if="pagination.has_pre" :class="{'disabled':!pagination.has_pre}"> 
+            <li class="pageNumber p-15"
+            v-if="pagination.has_pre" :class="{'disabled':!pagination.has_pre}">
                 <a href="#" @click.prevent="getProducts(pagination.current_page-1)">
                     <<
                 </a>
             </li>
-            <li class="pageNumber  p-15" 
-            v-for="page in pagination.total_pages" 
-            :key="page" 
+            <li class="pageNumber  p-15"
+            v-for="page in pagination.total_pages"
+            :key="page"
             :class="{'active':pagination.current_page===page}">
                 <a href="#" @click.prevent="getProducts(page)">
                     {{page}}
@@ -93,7 +95,7 @@
     </div>
     <!-- page number end -->
     <!-- Modal --> <!--id="productModal"-->
-    <div class="modal fade" id="" tabindex="-1" role="dialog" 
+    <div class="modal fade" id="" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content border-0">
@@ -121,7 +123,7 @@
                                         ref="files" @change="uploadFile">
                                     </div>
                                     <div class="urlImgDiv p-15 mb-10">
-                                        <img class="img-fluid" :src="tempProduct.imageUrl" 
+                                        <img class="img-fluid" :src="tempProduct.imageUrl"
                                         alt="" img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80">
                                     </div>
                                 </div>
@@ -213,10 +215,10 @@
                     </div>
                 </div>
             </div>
-        </div>       
+        </div>
     <!-- Modal end -->
     <!-- Edit Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
+    <div  class="modal fade" id="productModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div  class="modal-dialog modal-lg" role="document">
             <div class="modal-content border-0">
@@ -275,7 +277,7 @@
                             <input class="w-35 smoothInput detailArea_text_center" type="text" placeholder="請輸入單位"  v-model="tempProduct.unit">
                             <!-- <li class="fullColorBtn p-15">Add to cart</li> -->
                         </ul>
-                    </footer>   
+                    </footer>
                 </section>
             </div>
         </div>
@@ -286,7 +288,24 @@
         </div>
                     </div>
                 </div>
-            </div>     
+    </div>
+
+    <el-drawer
+        title="我是外面的 Drawer"
+        :visible.sync="drawer"
+        size="50%">
+        <div>
+        <el-button @click="innerDrawer = true">打开里面的!</el-button>
+        <el-drawer
+            title="我是里面的"
+            :append-to-body="true"
+            :before-close="handleClose"
+            :visible.sync="innerDrawer">
+            <p>_(:зゝ∠)_</p>
+        </el-drawer>
+        </div>
+    </el-drawer>
+
     <!-- Edit Modal end -->
 </div>
 </template>
@@ -294,10 +313,14 @@
 import $ from 'jquery';
 import Alert from './AlertMessage';
 import {mapGetters,mapActions} from 'vuex';
+
 export default {
     name:'Procucts',
     data(){
         return {
+            // element-ui-drawer
+            drawer: false,
+            innerDrawer: false,
             products:[], // 從Vuex return
             // pagination:'', //從vuex return
             tempProduct:{},
@@ -310,9 +333,16 @@ export default {
         }
     },
     components:{
-        Alert
+        Alert,
     },
     methods: {
+        handleClose(done) {
+            this.$confirm('还有未保存的工作哦确定关闭吗？')
+            .then(_ => {
+                done();
+            })
+            .catch(_ => {});
+        },
         getProducts(page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
             const vm=this;
@@ -325,7 +355,7 @@ export default {
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   reload(); 
+                    this.reload();
                 }, 1000);
             })
         },
@@ -337,7 +367,7 @@ export default {
                 this.tempProduct=Object.assign({},item); //避免物件傳參考的特性
                 this.isNew=false;
             }
-            $('#productModal').modal('show');
+            $('#productModal').modal('show'); // 這邊打開modol
         },
         updateProduct(){
             let api=`https://vue-course-api.hexschool.io/api/yop/admin/product`;
@@ -356,25 +386,25 @@ export default {
                     $('#productModal').modal('hide');
                     vm.getProducts();
                     console.log('新增失敗');
-                } 
+                }
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   reload(); 
+                    this.reload();
                 }, 1000);
             })
         },
         deleteProduct(item){
-          const vm=this;
-          const url=`https://vue-course-api.hexschool.io/api/yop/admin/product/${item.id}`;
-          this.$http.delete(url).then((response)=>{
-              vm.getProducts();
-          }).catch(()=>{
+            const vm=this;
+            const url=`https://vue-course-api.hexschool.io/api/yop/admin/product/${item.id}`;
+            this.$http.delete(url).then((response)=>{
+            vm.getProducts();
+            }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   reload(); 
+                this.reload();
                 }, 1000);
-            })  
+            })
         },
         uploadFile(){
             console.log(this);
@@ -399,7 +429,7 @@ export default {
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   reload(); 
+                    this.reload();
                 }, 1000);
             });
         },
@@ -423,10 +453,10 @@ export default {
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   reload(); 
+                    this.reload();
                 }, 1000);
             })
-        }, 
+        },
         turnPage(currentPage){
             const vm = this;
             vm.$store.dispatch('turnPage',currentPage);
@@ -450,27 +480,42 @@ export default {
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   reload(); 
+                    // debugger;
+                    this.reload();
                 }, 1000);
-            });    
+            });
         },
         reload(){
-            window.location.reload();
+            // window.location.reload();
+            // alert ('錯誤');
+            vm.$store.dispatch('updateLoading', false);
+
         },
         openAlertDel (){
             $('#AlertDelModal').modal('show');
-        }                        
+        },
+        init () {
+            this.getProducts();
+            this.turnPage("myshop");
+            this.brforeRouterEnter();
+            this.$bus.$emit('message:push',"歡迎回到您的商場!",'success');
+        }
     },
     computed:{
-
-        ...mapGetters(['isLoading','pagination'])
+        ...mapGetters(['isLoading','pagination']),
+        pageNumber: ()=>{
+            return this.pagination;
+        }
     },
     created(){
-        this.getProducts();
-        this.turnPage("myshop");                
-        this.brforeRouterEnter();
-        this.$bus.$emit('message:push',"歡迎回到您的商場!",'success');
-          
+        this.init();
+        // this.getProducts();
+        // this.turnPage("myshop");
+        // this.brforeRouterEnter();
+        // this.$bus.$emit('message:push',"歡迎回到您的商場!",'success');
+    },
+    mounted() {
+        this.init();
     }
 }
 </script>

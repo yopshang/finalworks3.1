@@ -9,7 +9,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 import './router/bus';
 import currencyFilter from './components/pages/filter/currency';
 
+import Element from 'element-ui'
 
+Vue.use(Element);
 
 // Vuex
 import Vuex from 'vuex';
