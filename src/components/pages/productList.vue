@@ -62,10 +62,12 @@
                         <p class="text-dec">{{item.origin_price | currency}}</p>
                     </div>
                     <div class="w-100 mt-15 d-flex jc-space-between">
-                        <button class="smBtn p-10" data-toggle="modal"
-                        data-target="#editModal" @click="openModal(false,item)">編輯</button>
+                        <!-- <button class="smBtn p-10" data-toggle="modal"
+                        data-target="#editModal" @click="openModal(false,item)">編輯</button> -->
+                        <el-button type="success" @click="openModal(false,item)">編輯</el-button>
                         <!--  -->
-                        <button class="smBtn-cancel p-10" @click="deleteProduct(item)">刪除</button>
+                        <el-button type="info" @click="deleteProduct(item)">刪除</el-button>
+                        <!-- <button class="smBtn-cancel p-10" @click="deleteProduct(item)">刪除</button> -->
                     </div>
                 </section>
             </div>
