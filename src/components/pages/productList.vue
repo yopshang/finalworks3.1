@@ -37,8 +37,11 @@
             <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
                 + 新增商品
             </el-button>
-            <button class="addProduct mr-15" data-toggle="modal" data-target="#productModal" @click="openModal(true)"> + 新增商品</button>
-            <button @click.prevent="signout"  class="addProduct">登出</button>
+            <!-- <button class="addProduct mr-15" data-toggle="modal" data-target="#productModal" @click="openModal(true)"> + 新增商品</button> -->
+            <el-button @click.prevent="signout" type="primary" style="margin-left: 16px;">
+                登出
+            </el-button>
+            <!-- <button @click.prevent="signout"  class="addProduct">登出</button> -->
             <!-- <a  href="#" >
                 登出
             </a>   -->
@@ -291,20 +294,55 @@
     </div>
 
     <el-drawer
-        title="我是外面的 Drawer"
+        title="+新增商品"
         :visible.sync="drawer"
-        size="50%">
+        size="70%">
         <div>
-        <el-button @click="innerDrawer = true">打开里面的!</el-button>
-        <el-drawer
+        <!-- <el-button @click="innerDrawer = true">打开里面的!</el-button> -->
+        <!-- <el-drawer
             title="我是里面的"
             :append-to-body="true"
             :before-close="handleClose"
             :visible.sync="innerDrawer">
             <p>_(:зゝ∠)_</p>
+        </el-drawer> -->
+        <el-row>
+            <el-col :span="24">
+                <el-card :body-style="{ padding: '15px' }">
+                <img :src="tempProduct.imageUrl" class="image">
+                <el-input v-model="tempProduct.title" placeholder="请输入商品名稱"></el-input>
+                <div class="img-url-input">
+                    <el-input class="item" v-model="tempProduct.imageUrl" placeholder="请输入圖片網址"></el-input>
+                    <el-input class="item" @change="uploadFile" v-model="tempProduct.imageUrl" placeholder="或上傳圖片"></el-input>
+                    <el-input class="item" v-model="tempProduct.unit" placeholder="請輸入單位"></el-input>
+                    <el-input class="item" v-model="tempProduct.origin_price" placeholder="請輸入原價"></el-input>
+                    <el-input class="item" v-model="tempProduct.price" placeholder="請輸入售價"></el-input>
+                    <el-input class="item" v-model="tempProduct.content" placeholder="請輸入產品說明內容"></el-input>
+                    <el-input class="item" v-model="tempProduct.description" placeholder="請輸入產品描述"></el-input>
+                    <el-select v-model="value" placeholder="請選擇類別">
+                        <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                        </el-option>
+                    </el-select>
+                </div>
+                <div style="padding: 14px;">
+                    <div class="bottom clearfix">
+                        <el-button @click="updateProduct()" type="primary" style="margin-left: 16px;">
+                            確定
+                        </el-button>
+                        <el-button  @click="drawer = false" type="primary" style="margin-left: 16px;">
+                            取消
+                        </el-button>
+                    </div>
+                </div>
+                </el-card>
+            </el-col>
+        </el-row>
+            </div>
         </el-drawer>
-        </div>
-    </el-drawer>
 
     <!-- Edit Modal end -->
 </div>
@@ -330,6 +368,23 @@ export default {
             },
             sort:"all",
             product:{},
+             options: [{
+                value: '保養品',
+                label: '保養品'
+                }, {
+                value: '玩具',
+                label: '玩具'
+                }, {
+                value: '外套',
+                label: '外套'
+                }, {
+                value: '鞋子',
+                label: '鞋子'
+                }, {
+                value: '其他',
+                label: '其他'
+            }],
+            value: '',
         }
     },
     components:{
@@ -370,6 +425,7 @@ export default {
             $('#productModal').modal('show'); // 這邊打開modol
         },
         updateProduct(){
+            this.tempProduct.categor = this.value;
             let api=`https://vue-course-api.hexschool.io/api/yop/admin/product`;
             const vm= this;
             let httpMethods='post';
@@ -393,6 +449,7 @@ export default {
                     this.reload();
                 }, 1000);
             })
+            this.drawer = false; 
         },
         deleteProduct(item){
             const vm=this;
@@ -505,7 +562,8 @@ export default {
         ...mapGetters(['isLoading','pagination']),
         pageNumber: ()=>{
             return this.pagination;
-        }
+        },
+        
     },
     created(){
         this.init();

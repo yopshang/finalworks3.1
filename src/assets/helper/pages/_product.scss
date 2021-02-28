@@ -103,6 +103,20 @@
 .pageUl{
     // border: solid;
 }
+.img-url-input {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 20px 0;
+    flex-wrap: wrap;
+    .item {
+        width: 45%;
+        margin-bottom: 10px ;
+    }
+}
+.image {
+    height: 150px;
+    object-fit: contain;
+}
 // pagenumber
 // Modal
 @media(max-width:414px){
