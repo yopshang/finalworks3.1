@@ -314,7 +314,7 @@
                 <el-input v-model="tempProduct.title" placeholder="请输入商品名稱"></el-input>
                 <div class="img-url-input">
                     <el-input class="item" v-model="tempProduct.imageUrl" placeholder="请输入圖片網址"></el-input>
-                    <el-input class="item" @change="uploadFile" v-model="tempProduct.imageUrl" placeholder="或上傳圖片"></el-input>
+                    <el-input class="item" @change="uploadFile" type="file" v-model="tempProduct.imageUrl" placeholder="或上傳圖片"></el-input>
                     <el-input class="item" v-model="tempProduct.unit" placeholder="請輸入單位"></el-input>
                     <el-input class="item" v-model="tempProduct.origin_price" placeholder="請輸入原價"></el-input>
                     <el-input class="item" v-model="tempProduct.price" placeholder="請輸入售價"></el-input>
