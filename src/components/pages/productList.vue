@@ -34,7 +34,7 @@
     <div class="d-flex jc-space-between ai-center p-15">
         <div class="mylogoDiv">我的商城</div>
         <div>
-            <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+            <el-button @click="openModal(false)" type="primary" style="margin-left: 16px;">
                 + 新增商品
             </el-button>
             <!-- <button class="addProduct mr-15" data-toggle="modal" data-target="#productModal" @click="openModal(true)"> + 新增商品</button> -->
@@ -64,6 +64,7 @@
                     <div class="w-100 mt-15 d-flex jc-space-between">
                         <button class="smBtn p-10" data-toggle="modal"
                         data-target="#editModal" @click="openModal(false,item)">編輯</button>
+                        <!--  -->
                         <button class="smBtn-cancel p-10" @click="deleteProduct(item)">刪除</button>
                     </div>
                 </section>
@@ -368,7 +369,7 @@ export default {
             },
             sort:"all",
             product:{},
-             options: [{
+            options: [{
                 value: '保養品',
                 label: '保養品'
                 }, {
@@ -422,7 +423,8 @@ export default {
                 this.tempProduct=Object.assign({},item); //避免物件傳參考的特性
                 this.isNew=false;
             }
-            $('#productModal').modal('show'); // 這邊打開modol
+            // $('#productModal').modal('show'); // 這邊打開modol
+            this.drawer = true;
         },
         updateProduct(){
             this.tempProduct.categor = this.value;
