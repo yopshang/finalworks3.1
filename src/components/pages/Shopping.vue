@@ -172,11 +172,59 @@
     <!-- cart side modal -->
     
     <!-- cart side model end -->
-    
+        <!-- <el-drawer
+        title="+新增商品"
+        :visible.sync="drawer"
+        size="70%">
+        <div>
+        <el-row>
+            <el-col :span="24">
+                <el-card :body-style="{ padding: '15px' }">
+                <img :src="tempProduct.imageUrl" class="image">
+                <el-input v-model="tempProduct.title" placeholder="请输入商品名稱"></el-input>
+                <div class="img-url-input">
+                    <el-input class="item" v-model="tempProduct.imageUrl" placeholder="请输入圖片網址"></el-input>
+                    <el-input class="item" @change="uploadFile" type="file" v-model="tempProduct.imageUrl" placeholder="或上傳圖片"></el-input>
+                    <el-input class="item" v-model="tempProduct.unit" placeholder="請輸入單位"></el-input>
+                    <el-input class="item" v-model="tempProduct.origin_price" placeholder="請輸入原價"></el-input>
+                    <el-input class="item" v-model="tempProduct.price" placeholder="請輸入售價"></el-input>
+                    <el-input class="item" v-model="tempProduct.content" placeholder="請輸入產品說明內容"></el-input>
+                    <el-input class="item" v-model="tempProduct.description" placeholder="請輸入產品描述"></el-input>
+                    <el-select v-model="value" placeholder="請選擇類別">
+                        <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                        </el-option>
+                    </el-select>
+                </div>
+                <div style="padding: 14px;">
+                    <div class="bottom clearfix">
+                        <el-button @click="updateProduct()" type="primary" style="margin-left: 16px;">
+                            確定
+                        </el-button>
+                        <el-button  @click="drawer = false" type="primary" style="margin-left: 16px;">
+                            取消
+                        </el-button>
+                    </div>
+                </div>
+                </el-card>
+            </el-col>
+        </el-row>
+            </div>
+        </el-drawer> -->
+        <procuctsModal
+            :drawer="drawer"
+            :tempProduct="tempProduct"
+            :product="product"
+        />
 </div>
 </template>
 <script>
 import $ from 'jquery';
+import procuctsModal from './productModal';
+
 export default {
     name:'Procucts',
     data(){
@@ -188,7 +236,30 @@ export default {
             tempProduct:{},
             sort:"all",
             product:{},
+                        // element-ui-drawer
+            drawer: false,
+            innerDrawer: false,
+            options: [{
+                value: '保養品',
+                label: '保養品'
+                }, {
+                value: '玩具',
+                label: '玩具'
+                }, {
+                value: '外套',
+                label: '外套'
+                }, {
+                value: '鞋子',
+                label: '鞋子'
+                }, {
+                value: '其他',
+                label: '其他'
+            }],
+            value: '',
         }
+    },
+    components:{
+        procuctsModal,
     },
     methods: {
         getProducts(page=1){
@@ -205,6 +276,7 @@ export default {
                 console.log(response);
                 vm.status.loadingItem='';
             })
+            this.drawer = true;
         },
         signout(){
             const url= 'https://vue-course-api.hexschool.io/logout';
