@@ -255,6 +255,15 @@ export default {
         procuctsModal,
     },
     methods: {
+        successAlert() {
+            this.$message({
+            message: '商品已加入購物車!',
+            type: 'success'
+            });
+        },
+        failAlert(){
+            this.$message.error('加入失敗，很抱歉，請重新操作!');
+        },
         getProducts(page=1){
             const vm = this;
             vm.$store.dispatch('getProducts',page=1);
@@ -292,6 +301,11 @@ export default {
             }
             this.$http.post(url,{data:cart}).then((response)=>{
                 console.log(response);
+                if ( response.data.success ) {
+                    this.successAlert();
+                } else {
+                    this.failAlert();
+                }
                 vm.status.loadingItem='';
                 this.closeDrawer();
                 // $('#productModal').modal('hide');
