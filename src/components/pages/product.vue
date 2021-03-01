@@ -43,9 +43,14 @@ export default {
             vm.isLoading=true;
             this.$http.get(api).then((response)=>{
                 console.log(response.data);
+                if (!response.data.success) {
+                    console.log('連線失敗');
+                    this.signout();
+                } else {
+                    vm.products=response.data.products;
+                    vm.pagination=response.data.pagination;
+                }
                 vm.isLoading=false;
-                vm.products=response.data.products;
-                vm.pagination=response.data.pagination;
             })
         },
         openModal(isNew,item){
@@ -99,6 +104,30 @@ export default {
                     this.$bus.$emit('message:push',response.data.message,'danger');
                 }
             });
+        },
+        signout(){
+            const vm = this;
+            const url= 'https://vue-course-api.hexschool.io/logout';
+            this.$http.post(url).then((response) =>{
+                console.log(response.data);
+                vm.$store.dispatch('updateLoading',true);
+                if (response.data.success){
+                    vm.$store.dispatch('updateLoading',true);
+                    vm.$bus.$emit('message:push','登出成功，歡迎再次光臨!','success');
+                    setTimeout(() => {
+                        vm.$router.push('/');
+                        vm.$store.dispatch('updateLoading',false);
+                    }, 2000);
+                }else{
+                    vm.$bus.$emit('message:push','登出失敗，請重新嘗試!','danger');
+                    vm.$store.dispatch('updateLoading',false);
+                }
+            }).catch(()=>{
+                vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
+                setTimeout(() => {
+                    this.reload();
+                }, 1000);
+            })
         },
     },
     created() {
