@@ -22,7 +22,7 @@
 
                             <div class="bottom clearfix">
                             <time class="time">{{ currentDate }}</time>
-                                <el-button @click="updateProduct()" type="primary" style="margin-left: 16px;">
+                                <el-button @click="addtoCart(product.id)" type="primary" style="margin-left: 16px;">
                                     加入購物車
                                 </el-button>
                                 <el-button  @click="drawer = false" type="primary" style="margin-left: 16px;">
@@ -43,6 +43,7 @@
     .content{
         display: flex;
         flex-direction: column;
+        align-items: center;
         margin: 0 auto;
         padding: 10px;
     }
@@ -102,6 +103,11 @@ export default {
     components:{
     },
     methods: {
+        addtoCart (id) {
+            debugger;
+            this.$emit('addtoCart', id);
+            
+        }
     },
     computed:{
     },

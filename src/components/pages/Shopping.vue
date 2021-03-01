@@ -210,6 +210,7 @@
             :drawer="drawer"
             :tempProduct="tempProduct"
             :product="product"
+            @addtoCart="addtoCart"
         />
 </div>
 </template>
@@ -281,6 +282,7 @@ export default {
             })
         }, 
         addtoCart(id,qty=1){
+            debugger;
             const vm = this;
             const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
             vm.status.loading=id;
@@ -291,8 +293,12 @@ export default {
             this.$http.post(url,{data:cart}).then((response)=>{
                 console.log(response);
                 vm.status.loadingItem='';
-                $('#productModal').modal('hide');
+                this.closeDrawer();
+                // $('#productModal').modal('hide');
             })
+        },
+        closeDrawer() {
+            this.drawer = false;
         },
         getCart(){
             const vm = this;
