@@ -42,9 +42,8 @@ export default new Vuex.Store({
             context.commit('LOADING',true);
             axios.get(api).then((response)=>{
                 console.log(response.data);
-                context.commit('LOADING',false); 
+                context.commit('LOADING',false);
                 context.commit('PRODUCTS', response.data.products);
-                // debugger;
                 context.commit('PAGINATION', response.data.pagination);
             }).catch(()=>{
                 this.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
@@ -69,8 +68,8 @@ export default new Vuex.Store({
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   context.dispatch('reload'); 
-                }, 1000);                
+                    context.dispatch('reload');
+                }, 1000);
             })
         },
         getCart(context){
@@ -86,10 +85,10 @@ export default new Vuex.Store({
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                   context.dispatch('reload'); 
-                }, 1000);                
+                    context.dispatch('reload');
+                }, 1000);
             })
-        },  
+        },
         turnPage(context,currentPage){
             context.commit('TURNPAGE',currentPage);
             // console.log(currentPage);

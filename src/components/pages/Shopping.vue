@@ -291,7 +291,6 @@ export default {
             })
         }, 
         addtoCart(id,qty=1){
-            debugger;
             const vm = this;
             const url=`https://vue-course-api.hexschool.io/api/yop/cart`;
             vm.status.loading=id;

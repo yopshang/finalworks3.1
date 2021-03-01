@@ -396,12 +396,12 @@ export default {
     methods: {
         successAlert() {
             this.$message({
-            message: '編輯成功!',
+            message: '更新成功!',
             type: 'success'
             });
         },
         failAlert(){
-            this.$message.error('編輯失敗，很抱歉，請重新操作!');
+            this.$message.error('更新失敗，很抱歉，請重新操作!');
         },
         getProducts(page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
@@ -551,7 +551,6 @@ export default {
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
                 setTimeout(() => {
-                    // debugger;
                     this.reload();
                 }, 1000);
             });

@@ -104,9 +104,8 @@ export default {
     },
     methods: {
         addtoCart (id) {
-            debugger;
             this.$emit('addtoCart', id);
-            
+
         }
     },
     computed:{
