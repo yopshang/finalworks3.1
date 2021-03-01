@@ -8,7 +8,7 @@
             <ul class="d-flex w-100 jc-space-between">
                 <li class="filterList" :class="{'active':sort=='all'}" @click="sort='all'">
                     ALL
-                </li>                                        
+                </li>
                 <li class="filterList" :class="{'active':sort=='保養品'}" @click="sort='保養品'">
                     保養品
                 </li>
@@ -35,12 +35,12 @@
 
     <!-- test Modal ende-->
     <div class="d-flex jc-space-between ai-center">
-        <div class="mylogoDiv">購物專區</div>      
+        <div class="mylogoDiv">購物專區</div>
     </div>
     <!-- product filter end -->
     <div class="productcard">
         <div  v-for="(item) in products" :key="item.id"
-        @click="getProduct(item.id)" 
+        @click="getProduct(item.id)"
         v-if="item.category==sort || sort=='all'"
         class="productArea cardHover"><!--這邊要用v-for引入資料-->
             <div class="cateContainer">
@@ -59,20 +59,20 @@
                     </div>
                 </section>
             </div>
-        </div>          
+        </div>
     </div>
     <!-- page number -->
     <div class="p-15">
         <ul class="pageUl d-flex jc-center">
-            <li class="pageNumber p-15" 
+            <li class="pageNumber p-15"
             v-if="pagination.has_pre"> <!--:class="{'disabled':!pagination.has_pre}"-->
                 <a href="#" @click.prevent="getProducts(pagination.current_page-1)">
                     <<
                 </a>
             </li>
-            <li class="pageNumber  p-15" 
-            v-for="page in pagination.total_pages" 
-            :key="page" 
+            <li class="pageNumber  p-15"
+            v-for="page in pagination.total_pages"
+            :key="page"
             :class="{'active':pagination.current_page===page}">
                 <a href="#" @click.prevent="getProducts(page)">
                     {{page}}
@@ -162,7 +162,7 @@
     <!-- Edit Modal end -->
 
     <!-- cart side modal -->
-    
+
     <!-- cart side model end -->
         <!-- <el-drawer
         title="+新增商品"

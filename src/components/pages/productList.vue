@@ -394,12 +394,14 @@ export default {
         Alert,
     },
     methods: {
-        handleClose(done) {
-            this.$confirm('还有未保存的工作哦确定关闭吗？')
-            .then(_ => {
-                done();
-            })
-            .catch(_ => {});
+        successAlert() {
+            this.$message({
+            message: '編輯成功!',
+            type: 'success'
+            });
+        },
+        failAlert(){
+            this.$message.error('編輯失敗，很抱歉，請重新操作!');
         },
         getProducts(page=1){
             const api=`https://vue-course-api.hexschool.io/api/yop/admin/products?page=${page}`;
@@ -407,6 +409,11 @@ export default {
             vm.$store.dispatch('updateLoading',true);
             this.$http.get(api).then((response)=>{
                 console.log(response.data);
+                if (response.data.success) {
+                    this.successAlert();
+                } else {
+                    this.failAlert();
+                }
                 vm.$store.dispatch('updateLoading',false);
                 vm.products=response.data.products;
                 vm.pagination=response.data.pagination;
@@ -440,12 +447,15 @@ export default {
             this.$http[httpMethods](api,{data:vm.tempProduct}).then((response)=>{
                 console.log(response.data);
                 if (response.data.success){
-                    $('#productModal').modal('hide');
+                    // $('#productModal').modal('hide');
+                    this.drawer = false;
                     vm.getProducts();
                 }else{
-                    $('#productModal').modal('hide');
-                    vm.getProducts();
-                    console.log('新增失敗');
+                    // $('#productModal').modal('hide');
+                    this.drawer = false;
+                    // vm.getProducts();
+                    this.failAlert();
+                    // console.log('新增失敗');
                 }
             }).catch(()=>{
                 vm.$bus.$emit('message:push',"連線錯誤,請重新嘗試",'danger');
