@@ -49,7 +49,7 @@
                 <section class="d-flex fd-column">
                     <div class="d-flex jc-center">
                         <h2 class="mb-15 mr-15">{{item.title}}</h2>
-                        <div class="addToCardBtn" @click="addtoCart(product.id)">
+                        <div class="addToCardBtn" @click.stop="addtoCart(product.id)">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
                     </div>
