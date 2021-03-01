@@ -88,30 +88,26 @@
     </div>
     <!-- page number end -->
     <!-- Edit Modal --> <!--修改成取得單一商品-->
-    <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
+    <!-- <div class="modal fade  animate__animated animate__fadeInLeft" id="productModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content border-0">
                 <div class="modal-header titleStyle">
-                    <h5 class=" p-15 d-flex jc-center" id="exampleModalLabel"><!--title-->
+                    <h5 class=" p-15 d-flex jc-center" id="exampleModalLabel">
                         <span>商品內容</span>
                     </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <!--叉叉按鈕-->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
         <div class="modal-body productDetail">
-        <!-- detail -->
-        <!-- product detail -->
-        <!-- 左邊圖案區塊 -->
         <div class="d-flex flex-wrap-no ">
-            <!-- leftSide -->
+
             <div class="  d-flex w-60 flex-wrap p-15 mr-15">
-                 <!--商品圖片-->
                 <div class="w-100  mb-30 d-flex jc-center">
                     <img class="smoothInput" :src="product.imageUrl" alt="">
                 </div>
-                <!-- 商品描述及說明 -->
+
                 <ul class="w-100 d-flex jc-space-around">
                     <li class="w-40 ">
                         <input class="w-100 h-200 smoothInput" type="text" placeholder="請輸入產品描述"  v-model="product.description" disabled="disabled">
@@ -121,7 +117,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- rightSide -->
+
             <div class=" d-flex ai-center w-40 p-15 flex-wrap jc-center">
                 <section class="modalInside w-100 jc-flex-start p-15">
                     <div>
@@ -141,15 +137,11 @@
                             <li class="sign w-25 p-15 " @click="minus(product.num)">-</li>
                             <input class=" numArea w-25 p-15" type="number" value="" v-model="product.num">
                             <li class="sign w-25 p-15" @click="add">+</li>
-                            <!-- <select name="" id="" v-model="product.num">
-                                <option value="">
-                                    選購1個
-                                </option>
-                            </select> -->
+
                             <input class="w-25 smoothInput" type="text" placeholder="請輸入單位"  v-model="product.unit" disabled="disabled">
-                            <!-- <li class="fullColorBtn p-15">Add to cart</li> -->
+
                         </ul>
-                    </footer>   
+                    </footer>
                     <hr>
                     <section class="w-100 d-flex ai-center jc-space-around">
                         <div>小記</div>
@@ -166,7 +158,7 @@
         </div>
                     </div>
                 </div>
-            </div>     
+            </div> -->
     <!-- Edit Modal end -->
 
     <!-- cart side modal -->

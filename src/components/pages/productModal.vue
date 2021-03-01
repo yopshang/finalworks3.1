@@ -10,30 +10,20 @@
             <div>
                 <el-row>
                     <el-col :span="24">
-                        <el-card :body-style="{ padding: '15px' }">
+                        <el-card :body-style="{ padding: '10px' }">
                         <img :src="product.imageUrl" class="image">
-                        <el-input v-model="product.title" placeholder="请输入商品名稱"></el-input>
-                        <div class="img-url-input">
-                            <el-input class="item" v-model="product.imageUrl" placeholder="请输入圖片網址"></el-input>
-                            <el-input class="item" @change="uploadFile" type="file" v-model="product.imageUrl" placeholder="或上傳圖片"></el-input>
-                            <el-input class="item" v-model="product.unit" placeholder="請輸入單位"></el-input>
-                            <el-input class="item" v-model="product.origin_price" placeholder="請輸入原價"></el-input>
-                            <el-input class="item" v-model="product.price" placeholder="請輸入售價"></el-input>
-                            <el-input class="item" v-model="product.content" placeholder="請輸入產品說明內容"></el-input>
-                            <el-input class="item" v-model="product.description" placeholder="請輸入產品描述"></el-input>
-                            <el-select v-model="value" placeholder="請選擇類別">
-                                <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                                </el-option>
-                            </el-select>
-                        </div>
-                        <div style="padding: 14px;">
+                        <div class="content" style="padding: 14px;">
+                            <span class="product-item">商品名稱: {{product.title}}</span>
+                            <span class="product-item">商品原價: {{product.origin_price}}</span>
+                            <span class="product-item">商品售價: {{product.price}}</span>
+                            <span class="product-item">商品描述: {{product.description}}</span>
+                            <span class="product-item">商品內容: {{product.content}}</span>
+                            <span class="product-item">商品類別: {{product.category}}</span>
+
                             <div class="bottom clearfix">
+                            <time class="time">{{ currentDate }}</time>
                                 <el-button @click="updateProduct()" type="primary" style="margin-left: 16px;">
-                                    確定
+                                    加入購物車
                                 </el-button>
                                 <el-button  @click="drawer = false" type="primary" style="margin-left: 16px;">
                                     取消
@@ -49,6 +39,17 @@
     <!-- Edit Modal end -->
 </div>
 </template>
+<style lang="scss" scope>
+    .content{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    .product-item {
+        margin: 5px 0;
+    }
+</style>
 <script>
 import $ from 'jquery';
 // import {mapGetters,mapActions} from 'vuex';
