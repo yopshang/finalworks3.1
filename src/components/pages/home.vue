@@ -116,7 +116,7 @@
         
         <a v-for="(item) in products" :key="item.id"
         class="item-in-slide"
-        href="/product/productlist"
+        @click.prevent="turnToShopping"
         >
             <img :src="item.imageUrl" alt="">
             <h2 >{{ item.title }}</h2>
@@ -184,6 +184,9 @@ export default {
                 Slick,
     },
     methods:{
+        turnToShopping(){
+            this.$router.push('/product/shopping')
+        },
         next() {
             this.$refs.slick.next();
         },
@@ -261,6 +264,9 @@ export default {
     // created end
 }
 </script>
-<style lang="css">
+<style scope lang="css">
     @import 'slick-carousel/slick/slick.css';
+.item-in-slide {
+    cursor: pointer;
+}
 </style>
