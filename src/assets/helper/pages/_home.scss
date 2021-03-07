@@ -154,10 +154,8 @@
 // thirdRow end
 // fourthRow
 .fourthRowinside{
-    display: flex !important;
-    // overflow:scroll;
+    display: flex;
     overflow-y: hidden;
-    // height: 350px;
     .productCard{
         width: 200px;
         padding: 15px;
@@ -199,14 +197,11 @@
         }
     }
     .slick-slider {
-        // border-radius: 15%;
-        // width: 150px;
-        // height: 160px;
     }
 }
 .fourthRowinside::-webkit-scrollbar {
     display: none;
-  }
+}
 
 // fourthRow end
 .slideWrapper {

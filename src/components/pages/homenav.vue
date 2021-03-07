@@ -6,13 +6,21 @@
                 <router-link :class="{'activenav':homenavPage == 'home'}" to="/">
                     <div>
                     CRAFTsMAN
-                    </div> 
+                    </div>
                 </router-link>
                 <i id="ham-icon" class="fas fa-bars"></i>
             </h2>
-            
+
             <ul class="d-flex ulList flex-wrap">
-                <li id="myshop" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
+
+                <li v-for="(item, i) in filterObject" :key="i"
+                :id="item.currentPage" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
+                    <router-link :class="{'activenav':homenavPage == item.currentPage}" class="hamList productList animated__animate animate__heartBeat" :to="item.path">
+                        | <span v-html="item.content"></span>
+                    </router-link>
+                </li>
+
+                <!-- <li id="myshop" class=" dropdown hide mr-15 animated__animate animate__heartBeat">
                     <router-link :class="{'activenav':homenavPage == 'myshop'}" class="hamList productList animated__animate animate__heartBeat" to="/product/productlist">
                         | My Shop
                     </router-link>
@@ -22,7 +30,7 @@
                         | Shopping
                     </router-link>
                 </li>
-              
+
                 <li id="login" class="dropdown hide mr-15 animated__animate animate__heartBeat">
                     <router-link :class="{'activenav':homenavPage == 'login'}" class="hamList productList" to="/login">
                         | Login
@@ -37,7 +45,7 @@
                     <router-link :class="{'activenav':homenavPage == 'orders'}" class="hamList productList" to="/orders">
                         | <i class="far fa-file-alt"></i>
                     </router-link>
-                </li>                
+                </li> -->
             </ul>
         </nav>
         <!-- nav end -->
@@ -50,6 +58,33 @@ export default {
     name:'homenav',
     data(){
         return{
+            filterObject:[
+                {
+                    currentPage: "myshop",
+                    content: "My Shop",
+                    path: "/product/productlist",
+                },
+                {
+                    currentPage: "shopping",
+                    content: "Shopping",
+                    path: "/product/shopping",
+                },
+                {
+                    currentPage: "login",
+                    content: "Login",
+                    path: "/login",
+                },
+                {
+                    currentPage: "cart",
+                    content: "<i class='fas fa-shopping-cart'></i>",
+                    path: "/myorder/myorder_cart",
+                },
+                {
+                    currentPage: "orders",
+                    content: "<i class='far fa-file-alt'></i>",
+                    path: "/orders"
+                },
+            ],
         }
     },
     methods:{
