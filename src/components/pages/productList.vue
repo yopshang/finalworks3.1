@@ -308,6 +308,7 @@
             :before-close="handleClose"
             :visible.sync="innerDrawer">
             <p>_(:зゝ∠)_</p>
+            
         </el-drawer> -->
         <el-row>
             <el-col :span="24">
@@ -316,7 +317,8 @@
                 <el-input v-model="tempProduct.title" placeholder="请输入商品名稱"></el-input>
                 <div class="img-url-input">
                     <el-input class="item" v-model="tempProduct.imageUrl" placeholder="请输入圖片網址"></el-input>
-                    <el-input class="item" @change="uploadFile" type="file" v-model="tempProduct.imageUrl" placeholder="或上傳圖片"></el-input>
+                    <!-- <el-input class="item" @change="uploadFile" type="file" v-model="tempProduct.imageUrl" placeholder="或上傳圖片"></el-input> -->
+                    <input class="item" @change="uploadFile" ref="files" type="file" placeholder="或上傳圖片"></input>
                     <el-input class="item" v-model="tempProduct.unit" placeholder="請輸入單位"></el-input>
                     <el-input class="item" v-model="tempProduct.origin_price" placeholder="請輸入原價"></el-input>
                     <el-input class="item" v-model="tempProduct.price" placeholder="請輸入售價"></el-input>
@@ -350,6 +352,11 @@
     <!-- Edit Modal end -->
 </div>
 </template>
+<style lang="scss" scope>
+    .uploadInput {
+        width: 100%;
+    }
+</style>
 <script>
 import $ from 'jquery';
 import Alert from './AlertMessage';

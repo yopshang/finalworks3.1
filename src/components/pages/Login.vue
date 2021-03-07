@@ -6,7 +6,8 @@
             <!-- <div class="w-60" :style="{ backgroundImage: 'url(' + require('@/assets/img/index-5.jpg') + ')' }">  
             </div> -->
             <form class="form-signin w-40" @submit.prevent="signin">
-                <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                <!-- <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+                <i class="far fa-user-circle"></i>
                 <h1 class="h3 mb-3 font-weight-normal">歡迎來到會員中心，請登入!</h1>
                 <div class="mb-25">
                     <label for="inputEmail" class="sr-only">Email address</label>
@@ -104,6 +105,9 @@ export default {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    }
+    .fa-user-circle {
+        margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
